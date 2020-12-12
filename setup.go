@@ -20,7 +20,7 @@ func NewBotSavedData() *BotSavedData {
 }
 
 func (cl *LineClient) BeforeLogin() {
-
+	cl.SaveData = cl.loadBotData()
 }
 
 func (cl *LineClient) loadBotData() *BotSavedData {
