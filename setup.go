@@ -7,9 +7,9 @@ import (
 )
 
 type BotSavedData struct {
-	LastRevision  int64 `json:"LastRevision"`
-	GlobalRev     int64 `json:"globalRev"`
-	IndividualRev int64 `json:"individualRev"`
+	LastRevision  int64 `json:"lastRevision"`
+	GlobalRev     int64 `json:"globalRevision"`
+	IndividualRev int64 `json:"individualRevision"`
 }
 
 func (cl *LineClient) BeforeLogin() {
