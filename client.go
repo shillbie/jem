@@ -22,3 +22,14 @@ func NewLineClient(appType api.AppType) *LineClient {
 		ctx:     context.Background(),
 	}
 }
+
+func (cl *LineClient) Login(attribute ...string) {
+	switch len(attribute) {
+	case 0:
+		cl.loginViaQrCode()
+	case 1:
+		cl.LoginViaToken(attribute[0])
+	case 2:
+		cl.loginViaMail(attribute[0], attribute[1])
+	}
+}
