@@ -32,4 +32,5 @@ func (cl *LineClient) Login(attribute ...string) {
 	case 2:
 		cl.loginViaMail(attribute[0], attribute[1])
 	}
+	cl.BeforeLogin()
 }

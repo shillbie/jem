@@ -12,6 +12,10 @@ type BotSavedData struct {
 	IndividualRev int64 `json:"individualRev"`
 }
 
+func (cl *LineClient) BeforeLogin() {
+
+}
+
 func (cl *LineClient) loadBotData() *BotSavedData {
 	bytes, err := ioutil.ReadFile(cl.Profile.Mid + ".json")
 	if err != nil {
