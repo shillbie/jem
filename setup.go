@@ -12,6 +12,14 @@ type BotSavedData struct {
 	IndividualRev int64 `json:"individualRevision"`
 }
 
+func NewBotSavedData() *BotSavedData {
+	return &BotSavedData{
+		LastRevision:  0,
+		GlobalRev:     0,
+		IndividualRev: 0,
+	}
+}
+
 func (cl *LineClient) BeforeLogin() {
 
 }
