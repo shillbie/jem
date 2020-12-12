@@ -3,7 +3,6 @@ package linego
 import (
 	"encoding/json"
 	"io/ioutil"
-	"log"
 )
 
 type BotSavedData struct {
@@ -27,11 +26,11 @@ func (cl *LineClient) BeforeLogin() {
 func (cl *LineClient) loadBotData() *BotSavedData {
 	bytes, err := ioutil.ReadFile(cl.Profile.Mid + ".json")
 	if err != nil {
-		log.Fatal(err)
+		return NewBotSavedData()
 	}
 	var data *BotSavedData
 	if err := json.Unmarshal(bytes, &data); err != nil {
-		log.Fatal(err)
+		return NewBotSavedData()
 	}
 	return data
 }
