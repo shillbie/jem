@@ -9,9 +9,10 @@ type LineClient struct {
 	Talk *api.TalkServiceClient
 	Poll *api.TalkServiceClient
 
-	ctx     context.Context
-	appType api.AppType
-	Profile *api.Profile
+	ctx      context.Context
+	appType  api.AppType
+	Profile  *api.Profile
+	SaveData *BotSavedData
 }
 
 func NewLineClient(appType api.AppType) *LineClient {
