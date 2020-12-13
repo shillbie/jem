@@ -2,17 +2,26 @@ package linego
 
 import (
 	"context"
-	api "github.com/sakura-rip/linego/lineapi"
+	api "github.com/sakura-rip/linego/talkservice"
 )
 
 type LineClient struct {
 	Talk *api.TalkServiceClient
 	Poll *api.TalkServiceClient
 
-	ctx      context.Context
-	appType  api.AppType
-	Profile  *api.Profile
-	SaveData *BotSavedData
+	ctx           context.Context
+	appType       api.AppType
+	Profile       *api.Profile
+	SaveData      *BotSavedData
+	reqSeq        int32
+	reqSeqMessage map[string]int32
+
+	OperationValue struct {
+		localRev      int64
+		count         int32
+		globalRev     int64
+		individualRev int64
+	}
 }
 
 func NewLineClient(appType api.AppType) *LineClient {
