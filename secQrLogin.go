@@ -20,6 +20,7 @@ func (cl *QrLoginClient) CreateQrSession() {
 		log.Printf("%+v\n", err)
 	}
 	cl.sessionID = res.AuthSessionId
+}
 
 func (cl *QrLoginClient) createLoginCheckSession() {
 	cl.loginCheck = createSqLoginCheckService(LineHost+SQLoginCheck, map[string]string{
@@ -29,9 +30,7 @@ func (cl *QrLoginClient) createLoginCheckSession() {
 		"X-Line-Access":      cl.sessionID,
 	})
 }
-func (cl *QrLoginClient) createLoginSession2() {
 
-}
 func (cl *QrLoginClient) CreateQrCode() (string, error) {
 	req := api.NewCreateQrCodeRequest()
 	req.AuthSessionId = cl.sessionID
