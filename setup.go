@@ -35,7 +35,7 @@ func (cl *LineClient) loadBotData() *BotSavedData {
 	return data
 }
 
-func (cl *LineClient) dumpBotData(data *BotSavedData) {
-	file, _ := json.MarshalIndent(data, "", " ")
+func (cl *LineClient) dumpBotData() {
+	file, _ := json.MarshalIndent(cl.SaveData, "", " ")
 	_ = ioutil.WriteFile(cl.Profile.Mid+".json", file, 0644)
 }
