@@ -1,7 +1,7 @@
 package linego
 
 import (
-	api "github.com/sakura-rip/linego/lineapi"
+	api "github.com/sakura-rip/linego/talkservice"
 	"log"
 )
 
