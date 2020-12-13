@@ -29,7 +29,7 @@ func (cl *LineClient) Login(attribute ...string) {
 	case 0:
 		cl.loginViaQrCode()
 	case 1:
-		cl.LoginViaToken(attribute[0])
+		cl.LoginViaToken(attribute[0], false)
 	case 2:
 		cl.loginViaMail(attribute[0], attribute[1])
 	}
