@@ -45,3 +45,30 @@ func (cl *LineClient) loginViaQrCode() {
 func (cl *LineClient) loginViaMail(mail, passwd string) {
 
 }
+
+func (cl *LineClient) getDefaultHeader(authToken string) map[string]string {
+	return map[string]string{
+		"X-Line-Access":      authToken,
+		"X-Line-Application": cl.GetLineApp(),
+		"User-Agent":         cl.GetUserAgent(),
+		"x-lal":              cl.GetXLal(),
+	}
+}
+
+func createTalkService(url string, header map[string]string) *api.TalkServiceClient {
+	var transport thrift.TTransport
+
+	option := thrift.THttpClientOptions{
+		Client: &http.Client{
+			Transport: &http.Transport{},
+		},
+	}
+	transport, _ = thrift.NewTHttpClientWithOptions(url, option)
+	connect := transport.(*thrift.THttpClient)
+	for k, v := range header {
+		connect.SetHeader(k, v)
+	}
+	pCol := thrift.NewTCompactProtocol(transport)
+	tStc := thrift.NewTStandardClient(pCol, pCol)
+	return api.NewTalkServiceClient(tStc)
+}
