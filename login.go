@@ -7,6 +7,17 @@ func (cl *LineClient) LoginViaToken(authToken string) {
 	cl.BeforeLogin()
 }
 
+type QrLoginClient struct {
+	ctx        context.Context
+	login      *api.SecondaryQrcodeLoginServiceClient
+	loginCheck *api.SecondaryQrCodeLoginPermitNoticeServiceClient
+	sessionID  string
+}
+
+func NewQrLoginClient() *QrLoginClient {
+	return &QrLoginClient{
+		ctx: context.Background(),
+	}
 }
 func (cl *LineClient) loginViaQrCode() {
 
