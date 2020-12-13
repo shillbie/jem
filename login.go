@@ -1,5 +1,14 @@
 package linego
 
+import (
+	"context"
+	"fmt"
+	"github.com/apache/thrift/lib/go/thrift"
+	api "github.com/sakura-rip/linego/lineapi"
+	"log"
+	"net/http"
+)
+
 func (cl *LineClient) LoginViaToken(authToken string) {
 	cl.Talk = createTalkService(LineHost+TalkPath, cl.getDefaultHeader(authToken))
 	cl.Poll = createTalkService(LineHost+PollPath, cl.getDefaultHeader(authToken))
