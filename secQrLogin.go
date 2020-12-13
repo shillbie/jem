@@ -6,6 +6,11 @@ import (
 )
 
 func (cl *QrLoginClient) createLoginSession1() {
+	cl.login = createSqLoginService(LineHost+SQLogin, map[string]string{
+		"X-Line-Application": cl.GetLineApp() + ";SECONDARY",
+		"User-Agent":         cl.GetUserAgent(),
+		"x-lal":              cl.GetXLal(),
+	})
 }
 
 func (cl *QrLoginClient) CreateQrSession() {
@@ -16,6 +21,13 @@ func (cl *QrLoginClient) CreateQrSession() {
 	}
 	cl.sessionID = res.AuthSessionId
 
+func (cl *QrLoginClient) createLoginCheckSession() {
+	cl.loginCheck = createSqLoginCheckService(LineHost+SQLoginCheck, map[string]string{
+		"X-Line-Application": cl.GetLineApp() + ";SECONDARY",
+		"User-Agent":         cl.GetUserAgent(),
+		"x-lal":              cl.GetXLal(),
+		"X-Line-Access":      cl.sessionID,
+	})
 }
 func (cl *QrLoginClient) createLoginSession2() {
 
