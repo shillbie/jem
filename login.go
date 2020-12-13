@@ -19,6 +19,7 @@ type QrLoginClient struct {
 	login      *api.SecondaryQrcodeLoginServiceClient
 	loginCheck *api.SecondaryQrCodeLoginPermitNoticeServiceClient
 	sessionID  string
+	appType    api.AppType
 }
 
 func NewQrLoginClient() *QrLoginClient {
@@ -28,6 +29,7 @@ func NewQrLoginClient() *QrLoginClient {
 }
 func (cl *LineClient) loginViaQrCode() {
 	qrL := NewQrLoginClient()
+	qrL.appType = cl.appType
 	qrL.createLoginSession1()
 	qrL.CreateQrSession()
 	qrL.createLoginSession2()
