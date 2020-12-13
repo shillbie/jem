@@ -20,8 +20,8 @@ var appVersion = map[string]string{
 	"IOS":    "10.9.0",
 }
 
-func (cl *LineClient) GetLineApp() string {
-	switch cl.appType {
+func GetLineAppBase(appType api.AppType) string {
+	switch appType {
 	case api.AppType_ANDROIDLITE:
 		return "ANDROIDLITE\t" + appVersion["LITE"] + "\tAndroid OS\t" + systemVersion["LITE"]
 	case api.AppType_IOS:
@@ -30,7 +30,6 @@ func (cl *LineClient) GetLineApp() string {
 		return "CHROMEOS\t" + appVersion["CHROME"] + "\tChrome_OS\t" + systemVersion["CHROME"]
 	case api.AppType_DESKTOPMAC:
 		return "DESKTOPMAC\t" + appVersion["MAC"] + "\tOS X\t" + systemVersion["MAC"]
-
 	case api.AppType_DESKTOPWIN:
 	case api.AppType_ANDROID:
 	case api.AppType_IOSIPAD:
@@ -38,10 +37,11 @@ func (cl *LineClient) GetLineApp() string {
 		panic("invalid app type")
 	}
 	return ""
+
 }
 
-func (cl *LineClient) GetUserAgent() string {
-	switch cl.appType {
+func GetUserAgentBase(appType api.AppType) string {
+	switch appType {
 	case api.AppType_ANDROIDLITE:
 		return "LLA/" + systemVersion["LITE"] + " Galaxy Note 10+ " + systemVersion["LITE"]
 	case api.AppType_IOS:
@@ -59,11 +59,30 @@ func (cl *LineClient) GetUserAgent() string {
 	}
 	return ""
 }
-func (cl *LineClient) GetXLal() string {
-	switch cl.appType {
+func GetXLalBase(appType api.AppType) string {
+
+	switch appType {
 	case api.AppType_CHROMEOS:
 		return "ja"
 	default:
 		return "jp_ja"
 	}
+}
+func (cl *LineClient) GetUserAgent() string {
+	return GetUserAgentBase(cl.appType)
+}
+func (cl *LineClient) GetLineApp() string {
+	return GetLineAppBase(cl.appType)
+}
+func (cl *LineClient) GetXLal() string {
+	return GetXLalBase(cl.appType)
+}
+func (cl *QrLoginClient) GetUserAgent() string {
+	return GetUserAgentBase(cl.appType)
+}
+func (cl *QrLoginClient) GetLineApp() string {
+	return GetLineAppBase(cl.appType)
+}
+func (cl *QrLoginClient) GetXLal() string {
+	return GetXLalBase(cl.appType)
 }
