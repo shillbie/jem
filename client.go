@@ -26,10 +26,10 @@ type LineClient struct {
 
 func NewLineClient(appType api.AppType) *LineClient {
 	return &LineClient{
-		Talk:    nil,
-		Poll:    nil,
-		appType: appType,
-		ctx:     context.Background(),
+		ctx:           context.Background(),
+		appType:       appType,
+		Profile:       &api.Profile{},
+		reqSeqMessage: map[string]int32{},
 	}
 }
 
