@@ -1,10 +1,12 @@
 package linego
 
-import api "github.com/sakura-rip/linego/lineapi"
+import api "github.com/sakura-rip/linego/talkservice"
 
 const LineHost = "https://legy-jp-addr-long.line.naver.jp"
 const TalkPath = "/S4"
 const PollPath = "/P4"
+const SQLogin = "/acct/lgn/sq/v1"
+const SQLoginCheck = "/acct/lp/lgn/sq/v1"
 
 var systemVersion = map[string]string{
 	"LITE":   "10.0",
