@@ -274,7 +274,7 @@ Contact
 
 // FindAndAddContactsByMid add friend
 func (cl *LineClient) FindAndAddContactsByMid(targetMid string) (map[string]*api.Contact, error) {
-	return cl.Talk.FindAndAddContactsByMid(cl.ctx, cl.reqSeq, targetMid, api.ContactType_MID, `{"screen":"homeTab","spec":"native"}`)
+	return cl.Talk.FindAndAddContactsByMid(cl.ctx, cl.reqSeq, targetMid, api.ContactType_MID, "")
 }
 
 // GetContacts get contact with list
