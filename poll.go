@@ -20,8 +20,8 @@ func (cl *LineClient) fetchOps() ([]*api.Operation, error) {
 func (cl *LineClient) fetchOperations() ([]*api.Operation, error) {
 	res, err := cl.Poll.FetchOperations(
 		cl.ctx,
-		cl.OperationValue.localRev,
-		cl.OperationValue.count,
+		cl.SaveData.LastRevision,
+		cl.SaveData.Count,
 	)
 	return res, err
 }
