@@ -2,7 +2,7 @@ package linego
 
 import api "github.com/sakura-rip/linego/talkservice"
 
-const LineHost = "https://legy-jp-addr-long.line.naver.jp"
+const LineHost = "https://gxx.line.naver.jp"
 const TalkPath = "/S4"
 const PollPath = "/P4"
 const SQLogin = "/acct/lgn/sq/v1"
@@ -12,11 +12,11 @@ var systemVersion = map[string]string{
 	"LITE":   "10.0",
 	"MAC":    "10.15.1",
 	"CHROME": "1",
-	"IOS":    "13.4.1",
+	"IOS":    "14.2",
 }
 
 var appVersion = map[string]string{
-	"LITE":   "2.14.0",
+	"LITE":   "2.16.0",
 	"MAC":    "5.24.1",
 	"CHROME": "2.3.9",
 	"IOS":    "10.9.0",
@@ -45,7 +45,7 @@ func GetLineAppBase(appType api.AppType) string {
 func GetUserAgentBase(appType api.AppType) string {
 	switch appType {
 	case api.AppType_ANDROIDLITE:
-		return "LLA/" + systemVersion["LITE"] + " Galaxy Note 10+ " + systemVersion["LITE"]
+		return "LLA/" + appVersion["LITE"] + " Galaxy Note 10+ " + systemVersion["LITE"]
 	case api.AppType_IOS:
 		return "Line/" + appVersion["IOS"] + " iPhone8,1 " + systemVersion["IOS"]
 	case api.AppType_CHROMEOS:
@@ -67,7 +67,7 @@ func GetXLalBase(appType api.AppType) string {
 	case api.AppType_CHROMEOS:
 		return "ja"
 	default:
-		return "jp_ja"
+		return "ja_jp"
 	}
 }
 func (cl *LineClient) GetUserAgent() string {
