@@ -27,7 +27,7 @@ func (cl *LineClient) FetchOperations() ([]*api.Operation, error) {
 }
 
 func (cl *LineClient) SetRevision(rev int64) {
-	if cl.SaveData.LastRevision > rev {
+	if cl.SaveData.LastRevision < rev {
 		cl.SaveData.LastRevision = rev
 	}
 }
