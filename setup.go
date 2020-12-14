@@ -9,6 +9,7 @@ type BotSavedData struct {
 	LastRevision  int64 `json:"lastRevision"`
 	GlobalRev     int64 `json:"globalRevision"`
 	IndividualRev int64 `json:"individualRevision"`
+	Count         int32 `json:"OpsCount"`
 }
 
 func NewBotSavedData() *BotSavedData {
@@ -16,6 +17,7 @@ func NewBotSavedData() *BotSavedData {
 		LastRevision:  0,
 		GlobalRev:     0,
 		IndividualRev: 0,
+		Count:         0,
 	}
 }
 
