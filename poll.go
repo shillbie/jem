@@ -54,5 +54,4 @@ func (cl *LineClient) SetGlobalRev(op *api.Operation) {
 			}
 		}
 	}
-
 }
