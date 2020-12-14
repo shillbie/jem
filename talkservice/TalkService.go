@@ -740,52 +740,52 @@ func (p * FriendRequestStatus) Value() (driver.Value, error) {
   }
 return int64(*p), nil
 }
-type MidType int64
+type ToTYpe int64
 const (
-  MidType_USER MidType = 0
-  MidType_ROOM MidType = 1
-  MidType_GROUP MidType = 2
-  MidType_SQUARE MidType = 3
-  MidType_SQUARE_CHAT MidType = 4
-  MidType_SQUARE_MEMBER MidType = 5
-  MidType_BOT MidType = 6
+  ToTYpe_USER ToTYpe = 0
+  ToTYpe_ROOM ToTYpe = 1
+  ToTYpe_GROUP ToTYpe = 2
+  ToTYpe_SQUARE ToTYpe = 3
+  ToTYpe_SQUARE_CHAT ToTYpe = 4
+  ToTYpe_SQUARE_MEMBER ToTYpe = 5
+  ToTYpe_BOT ToTYpe = 6
 )
 
-func (p MidType) String() string {
+func (p ToTYpe) String() string {
   switch p {
-  case MidType_USER: return "USER"
-  case MidType_ROOM: return "ROOM"
-  case MidType_GROUP: return "GROUP"
-  case MidType_SQUARE: return "SQUARE"
-  case MidType_SQUARE_CHAT: return "SQUARE_CHAT"
-  case MidType_SQUARE_MEMBER: return "SQUARE_MEMBER"
-  case MidType_BOT: return "BOT"
+  case ToTYpe_USER: return "USER"
+  case ToTYpe_ROOM: return "ROOM"
+  case ToTYpe_GROUP: return "GROUP"
+  case ToTYpe_SQUARE: return "SQUARE"
+  case ToTYpe_SQUARE_CHAT: return "SQUARE_CHAT"
+  case ToTYpe_SQUARE_MEMBER: return "SQUARE_MEMBER"
+  case ToTYpe_BOT: return "BOT"
   }
   return "<UNSET>"
 }
 
-func MidTypeFromString(s string) (MidType, error) {
+func ToTYpeFromString(s string) (ToTYpe, error) {
   switch s {
-  case "USER": return MidType_USER, nil 
-  case "ROOM": return MidType_ROOM, nil 
-  case "GROUP": return MidType_GROUP, nil 
-  case "SQUARE": return MidType_SQUARE, nil 
-  case "SQUARE_CHAT": return MidType_SQUARE_CHAT, nil 
-  case "SQUARE_MEMBER": return MidType_SQUARE_MEMBER, nil 
-  case "BOT": return MidType_BOT, nil 
+  case "USER": return ToTYpe_USER, nil 
+  case "ROOM": return ToTYpe_ROOM, nil 
+  case "GROUP": return ToTYpe_GROUP, nil 
+  case "SQUARE": return ToTYpe_SQUARE, nil 
+  case "SQUARE_CHAT": return ToTYpe_SQUARE_CHAT, nil 
+  case "SQUARE_MEMBER": return ToTYpe_SQUARE_MEMBER, nil 
+  case "BOT": return ToTYpe_BOT, nil 
   }
-  return MidType(0), fmt.Errorf("not a valid MidType string")
+  return ToTYpe(0), fmt.Errorf("not a valid ToTYpe string")
 }
 
 
-func MidTypePtr(v MidType) *MidType { return &v }
+func ToTYpePtr(v ToTYpe) *ToTYpe { return &v }
 
-func (p MidType) MarshalText() ([]byte, error) {
+func (p ToTYpe) MarshalText() ([]byte, error) {
 return []byte(p.String()), nil
 }
 
-func (p *MidType) UnmarshalText(text []byte) error {
-q, err := MidTypeFromString(string(text))
+func (p *ToTYpe) UnmarshalText(text []byte) error {
+q, err := ToTYpeFromString(string(text))
 if (err != nil) {
 return err
 }
@@ -793,16 +793,16 @@ return err
 return nil
 }
 
-func (p *MidType) Scan(value interface{}) error {
+func (p *ToTYpe) Scan(value interface{}) error {
 v, ok := value.(int64)
 if !ok {
 return errors.New("Scan value is not int64")
 }
-*p = MidType(v)
+*p = ToTYpe(v)
 return nil
 }
 
-func (p * MidType) Value() (driver.Value, error) {
+func (p * ToTYpe) Value() (driver.Value, error) {
   if p == nil {
     return nil, nil
   }
@@ -8595,7 +8595,7 @@ func (p *Location) String() string {
 type Message struct {
   From_ string `thrift:"from_,1" db:"from_" json:"from_"`
   To string `thrift:"to,2" db:"to" json:"to"`
-  ToType MidType `thrift:"toType,3" db:"toType" json:"toType"`
+  ToType ToTYpe `thrift:"toType,3" db:"toType" json:"toType"`
   ID string `thrift:"id,4" db:"id" json:"id"`
   CreatedTime int64 `thrift:"createdTime,5" db:"createdTime" json:"createdTime"`
   DeliveredTime int64 `thrift:"deliveredTime,6" db:"deliveredTime" json:"deliveredTime"`
@@ -8630,7 +8630,7 @@ func (p *Message) GetTo() string {
   return p.To
 }
 
-func (p *Message) GetToType() MidType {
+func (p *Message) GetToType() ToTYpe {
   return p.ToType
 }
 
@@ -8944,7 +8944,7 @@ func (p *Message)  ReadField3(iprot thrift.TProtocol) error {
   if v, err := iprot.ReadI32(); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
-  temp := MidType(v)
+  temp := ToTYpe(v)
   p.ToType = temp
 }
   return nil
@@ -9380,7 +9380,7 @@ func (p *Message) String() string {
 
 // Attributes:
 //  - ID
-//  - MidType
+//  - ContactType
 //  - LastDeliveredMessageId
 //  - LastSeenMessageId
 //  - UnreadCount
@@ -9389,7 +9389,7 @@ func (p *Message) String() string {
 //  - LastRemovedTime
 type ExtendedMessageBox struct {
   ID string `thrift:"id,1" db:"id" json:"id"`
-  MidType MidType `thrift:"midType,2" db:"midType" json:"midType"`
+  ContactType ContactType `thrift:"ContactType,2" db:"ContactType" json:"ContactType"`
   // unused field # 3
   LastDeliveredMessageId *MessageBoxV2MessageId `thrift:"lastDeliveredMessageId,4" db:"lastDeliveredMessageId" json:"lastDeliveredMessageId"`
   LastSeenMessageId int64 `thrift:"lastSeenMessageId,5" db:"lastSeenMessageId" json:"lastSeenMessageId"`
@@ -9408,8 +9408,8 @@ func (p *ExtendedMessageBox) GetID() string {
   return p.ID
 }
 
-func (p *ExtendedMessageBox) GetMidType() MidType {
-  return p.MidType
+func (p *ExtendedMessageBox) GetContactType() ContactType {
+  return p.ContactType
 }
 var ExtendedMessageBox_LastDeliveredMessageId_DEFAULT *MessageBoxV2MessageId
 func (p *ExtendedMessageBox) GetLastDeliveredMessageId() *MessageBoxV2MessageId {
@@ -9563,8 +9563,8 @@ func (p *ExtendedMessageBox)  ReadField2(iprot thrift.TProtocol) error {
   if v, err := iprot.ReadI32(); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
-  temp := MidType(v)
-  p.MidType = temp
+  temp := ContactType(v)
+  p.ContactType = temp
 }
   return nil
 }
@@ -9664,12 +9664,12 @@ func (p *ExtendedMessageBox) writeField1(oprot thrift.TProtocol) (err error) {
 }
 
 func (p *ExtendedMessageBox) writeField2(oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin("midType", thrift.I32, 2); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:midType: ", p), err) }
-  if err := oprot.WriteI32(int32(p.MidType)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.midType (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin("ContactType", thrift.I32, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:ContactType: ", p), err) }
+  if err := oprot.WriteI32(int32(p.ContactType)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.ContactType (2) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:midType: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:ContactType: ", p), err) }
   return err
 }
 
@@ -12472,13 +12472,13 @@ func (p *E2EEPublicKey) String() string {
 // Attributes:
 //  - Contact
 //  - Luid
-//  - ContactType
+//  - MidType
 //  - ContactKey
 type ContactRegistration struct {
   Contact *Contact `thrift:"contact,1" db:"contact" json:"contact"`
   // unused fields # 2 to 9
   Luid string `thrift:"luid,10" db:"luid" json:"luid"`
-  ContactType int32 `thrift:"contactType,11" db:"contactType" json:"contactType"`
+  MidType int32 `thrift:"midType,11" db:"midType" json:"midType"`
   ContactKey string `thrift:"contactKey,12" db:"contactKey" json:"contactKey"`
 }
 
@@ -12498,8 +12498,8 @@ func (p *ContactRegistration) GetLuid() string {
   return p.Luid
 }
 
-func (p *ContactRegistration) GetContactType() int32 {
-  return p.ContactType
+func (p *ContactRegistration) GetMidType() int32 {
+  return p.MidType
 }
 
 func (p *ContactRegistration) GetContactKey() string {
@@ -12598,7 +12598,7 @@ func (p *ContactRegistration)  ReadField11(iprot thrift.TProtocol) error {
   if v, err := iprot.ReadI32(); err != nil {
   return thrift.PrependError("error reading field 11: ", err)
 } else {
-  p.ContactType = v
+  p.MidType = v
 }
   return nil
 }
@@ -12650,12 +12650,12 @@ func (p *ContactRegistration) writeField10(oprot thrift.TProtocol) (err error) {
 }
 
 func (p *ContactRegistration) writeField11(oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin("contactType", thrift.I32, 11); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 11:contactType: ", p), err) }
-  if err := oprot.WriteI32(int32(p.ContactType)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.contactType (11) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin("midType", thrift.I32, 11); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 11:midType: ", p), err) }
+  if err := oprot.WriteI32(int32(p.MidType)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.midType (11) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 11:contactType: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 11:midType: ", p), err) }
   return err
 }
 
@@ -31585,7 +31585,7 @@ type TalkService interface {
   //  - Type
   //  - Target
   //  - Enablement
-  SetNotificationsEnabled(ctx context.Context, reqSeq int32, type_a1 MidType, target string, enablement bool) (err error)
+  SetNotificationsEnabled(ctx context.Context, reqSeq int32, type_a1 ContactType, target string, enablement bool) (err error)
   // Parameters:
   //  - Request
   DeleteOtherFromChat(ctx context.Context, request *DeleteOtherFromChatRequest) (r *DeleteOtherFromChatResponse, err error)
@@ -32266,7 +32266,7 @@ func (p *TalkServiceClient) ClearRingtone(ctx context.Context, oid string) (err 
 //  - Type
 //  - Target
 //  - Enablement
-func (p *TalkServiceClient) SetNotificationsEnabled(ctx context.Context, reqSeq int32, type_a1 MidType, target string, enablement bool) (err error) {
+func (p *TalkServiceClient) SetNotificationsEnabled(ctx context.Context, reqSeq int32, type_a1 ContactType, target string, enablement bool) (err error) {
   var _args86 TalkServiceSetNotificationsEnabledArgs
   _args86.ReqSeq = reqSeq
   _args86.Type = type_a1
@@ -43935,7 +43935,7 @@ func (p *TalkServiceClearRingtoneResult) String() string {
 //  - Enablement
 type TalkServiceSetNotificationsEnabledArgs struct {
   ReqSeq int32 `thrift:"reqSeq,1" db:"reqSeq" json:"reqSeq"`
-  Type MidType `thrift:"type,2" db:"type" json:"type"`
+  Type ContactType `thrift:"type,2" db:"type" json:"type"`
   Target string `thrift:"target,3" db:"target" json:"target"`
   Enablement bool `thrift:"enablement,4" db:"enablement" json:"enablement"`
 }
@@ -43949,7 +43949,7 @@ func (p *TalkServiceSetNotificationsEnabledArgs) GetReqSeq() int32 {
   return p.ReqSeq
 }
 
-func (p *TalkServiceSetNotificationsEnabledArgs) GetType() MidType {
+func (p *TalkServiceSetNotificationsEnabledArgs) GetType() ContactType {
   return p.Type
 }
 
@@ -44041,7 +44041,7 @@ func (p *TalkServiceSetNotificationsEnabledArgs)  ReadField2(iprot thrift.TProto
   if v, err := iprot.ReadI32(); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
-  temp := MidType(v)
+  temp := ContactType(v)
   p.Type = temp
 }
   return nil
