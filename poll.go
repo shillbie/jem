@@ -1,14 +1,18 @@
 package linego
 
-import api "github.com/sakura-rip/linego/talkservice"
+import (
+	api "github.com/sakura-rip/linego/talkservice"
+	"strconv"
+	"strings"
+)
 
 func (cl *LineClient) fetchOps() ([]*api.Operation, error) {
 	res, err := cl.Poll.FetchOps(
 		cl.ctx,
-		cl.OperationValue.localRev,
-		cl.OperationValue.count,
-		cl.OperationValue.globalRev,
-		cl.OperationValue.individualRev,
+		cl.SaveData.LastRevision,
+		cl.SaveData.Count,
+		cl.SaveData.GlobalRev,
+		cl.SaveData.IndividualRev,
 	)
 	return res, err
 }
