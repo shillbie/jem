@@ -17,7 +17,7 @@ func NewBotSavedData() *BotSavedData {
 		LastRevision:  0,
 		GlobalRev:     0,
 		IndividualRev: 0,
-		Count:         0,
+		Count:         100,
 	}
 }
 
