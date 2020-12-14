@@ -27,7 +27,32 @@ func (cl *LineClient) fetchOperations() ([]*api.Operation, error) {
 }
 
 func (cl *LineClient) setRevision(rev int64) {
-	if cl.OperationValue.localRev > rev {
-		cl.OperationValue.localRev = rev
+	if cl.SaveData.LastRevision > rev {
+		cl.SaveData.LastRevision = rev
 	}
+}
+
+func (cl *LineClient) setIndividualRev(op *api.Operation) {
+	if op.Param1 != "" {
+		sps := strings.Split(op.Param1, "")
+		if len(sps) != 0 {
+			res, err := strconv.ParseInt(sps[0], 10, 64)
+			if err != nil {
+				cl.SaveData.IndividualRev = res
+			}
+		}
+	}
+}
+
+func (cl *LineClient) setGlobalRev(op *api.Operation) {
+	if op.Param2 != "" {
+		sps := strings.Split(op.Param2, "")
+		if len(sps) != 0 {
+			res, err := strconv.ParseInt(sps[0], 10, 64)
+			if err != nil {
+				cl.SaveData.GlobalRev = res
+			}
+		}
+	}
+
 }
