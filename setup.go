@@ -22,10 +22,10 @@ func NewBotSavedData() *BotSavedData {
 }
 
 func (cl *LineClient) BeforeLogin() {
-	cl.SaveData = cl.loadBotData()
+	cl.SaveData = cl.LoadBotData()
 }
 
-func (cl *LineClient) loadBotData() *BotSavedData {
+func (cl *LineClient) LoadBotData() *BotSavedData {
 	bytes, err := ioutil.ReadFile(cl.Profile.Mid + ".json")
 	if err != nil {
 		return NewBotSavedData()
@@ -37,7 +37,7 @@ func (cl *LineClient) loadBotData() *BotSavedData {
 	return data
 }
 
-func (cl *LineClient) dumpBotData() {
+func (cl *LineClient) DumpBotData() {
 	file, _ := json.MarshalIndent(cl.SaveData, "", " ")
 	_ = ioutil.WriteFile(cl.Profile.Mid+".json", file, 0644)
 }
