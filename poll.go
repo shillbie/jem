@@ -37,7 +37,7 @@ func (cl *LineClient) SetIndividualRev(op *api.Operation) {
 		sps := strings.Split(op.Param1, "")
 		if len(sps) != 0 {
 			res, err := strconv.ParseInt(sps[0], 10, 64)
-			if err != nil {
+			if err == nil {
 				cl.SaveData.IndividualRev = res
 			}
 		}
@@ -49,7 +49,7 @@ func (cl *LineClient) SetGlobalRev(op *api.Operation) {
 		sps := strings.Split(op.Param2, "")
 		if len(sps) != 0 {
 			res, err := strconv.ParseInt(sps[0], 10, 64)
-			if err != nil {
+			if err == nil {
 				cl.SaveData.GlobalRev = res
 			}
 		}
