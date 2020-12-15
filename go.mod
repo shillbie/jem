@@ -1,4 +1,4 @@
-module github.com/sakura-rip/linego
+module github.com/shillbie/jem
 
 go 1.15
 
