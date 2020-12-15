@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/apache/thrift/lib/go/thrift"
-	api "github.com/sakura-rip/linego/talkservice"
+	api "github.com/shillbie/jem/talkservice"
 	"log"
 	"net/http"
 )
