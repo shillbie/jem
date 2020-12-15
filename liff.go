@@ -3,7 +3,7 @@ package linego
 import (
 	"bytes"
 	"encoding/json"
-	api "github.com/sakura-rip/linego/talkservice"
+	api "github.com/shillbie/jem/talkservice"
 	"net/http"
 )
 
