@@ -1,7 +1,7 @@
 package linego
 
 import (
-	api "github.com/sakura-rip/linego/talkservice"
+	api "github.com/shillbie/jem/talkservice"
 	"strconv"
 	"strings"
 )
