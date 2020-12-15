@@ -17,6 +17,7 @@ func (cl *LineClient) LoginViaToken(authToken string, isSeq bool) {
 	cl.Profile.Mid = authToken[:33]
 	cl.Talk = createTalkService(LineHost+TalkPath, header)
 	cl.Poll = createTalkService(LineHost+PollPath, header)
+	cl.Liff = createLiffService(LineHost+LiffPath, header)
 }
 
 type QrLoginClient struct {
@@ -91,7 +92,9 @@ func createThriftClient(url string, header map[string]string) *thrift.TStandardC
 func createTalkService(url string, header map[string]string) *api.TalkServiceClient {
 	return api.NewTalkServiceClient(createThriftClient(url, header))
 }
-
+func createLiffService(url string, header map[string]string) *api.LiffServiceClient {
+	return api.NewLiffServiceClient(createThriftClient(url, header))
+}
 func createSqLoginService(url string, header map[string]string) *api.SecondaryQrcodeLoginServiceClient {
 	return api.NewSecondaryQrcodeLoginServiceClient(createThriftClient(url, header))
 
