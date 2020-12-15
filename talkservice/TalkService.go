@@ -4915,6 +4915,186 @@ func (p * ContactSettingAttribute) Value() (driver.Value, error) {
   }
 return int64(*p), nil
 }
+type MenuStyle int64
+const (
+  MenuStyle_LIGHT MenuStyle = 1
+  MenuStyle_LIGHT_TRANSLUCENT MenuStyle = 2
+  MenuStyle_DARK_TRANSLUCENT MenuStyle = 3
+)
+
+func (p MenuStyle) String() string {
+  switch p {
+  case MenuStyle_LIGHT: return "LIGHT"
+  case MenuStyle_LIGHT_TRANSLUCENT: return "LIGHT_TRANSLUCENT"
+  case MenuStyle_DARK_TRANSLUCENT: return "DARK_TRANSLUCENT"
+  }
+  return "<UNSET>"
+}
+
+func MenuStyleFromString(s string) (MenuStyle, error) {
+  switch s {
+  case "LIGHT": return MenuStyle_LIGHT, nil 
+  case "LIGHT_TRANSLUCENT": return MenuStyle_LIGHT_TRANSLUCENT, nil 
+  case "DARK_TRANSLUCENT": return MenuStyle_DARK_TRANSLUCENT, nil 
+  }
+  return MenuStyle(0), fmt.Errorf("not a valid MenuStyle string")
+}
+
+
+func MenuStylePtr(v MenuStyle) *MenuStyle { return &v }
+
+func (p MenuStyle) MarshalText() ([]byte, error) {
+return []byte(p.String()), nil
+}
+
+func (p *MenuStyle) UnmarshalText(text []byte) error {
+q, err := MenuStyleFromString(string(text))
+if (err != nil) {
+return err
+}
+*p = q
+return nil
+}
+
+func (p *MenuStyle) Scan(value interface{}) error {
+v, ok := value.(int64)
+if !ok {
+return errors.New("Scan value is not int64")
+}
+*p = MenuStyle(v)
+return nil
+}
+
+func (p * MenuStyle) Value() (driver.Value, error) {
+  if p == nil {
+    return nil, nil
+  }
+return int64(*p), nil
+}
+type Feature int64
+const (
+  Feature_GEOLOCATION Feature = 1
+  Feature_ADVERTISING_ID Feature = 2
+  Feature_BLUETOOTH_LE Feature = 3
+  Feature_QR_CODE Feature = 4
+  Feature_ADVERTISING_SDK Feature = 5
+  Feature_ADD_TO_HOME Feature = 6
+  Feature_SHARE_TARGET_MESSAGE Feature = 7
+  Feature_VIDEO_AUTO_PLAY Feature = 8
+  Feature_PROFILE_PLUS Feature = 9
+)
+
+func (p Feature) String() string {
+  switch p {
+  case Feature_GEOLOCATION: return "GEOLOCATION"
+  case Feature_ADVERTISING_ID: return "ADVERTISING_ID"
+  case Feature_BLUETOOTH_LE: return "BLUETOOTH_LE"
+  case Feature_QR_CODE: return "QR_CODE"
+  case Feature_ADVERTISING_SDK: return "ADVERTISING_SDK"
+  case Feature_ADD_TO_HOME: return "ADD_TO_HOME"
+  case Feature_SHARE_TARGET_MESSAGE: return "SHARE_TARGET_MESSAGE"
+  case Feature_VIDEO_AUTO_PLAY: return "VIDEO_AUTO_PLAY"
+  case Feature_PROFILE_PLUS: return "PROFILE_PLUS"
+  }
+  return "<UNSET>"
+}
+
+func FeatureFromString(s string) (Feature, error) {
+  switch s {
+  case "GEOLOCATION": return Feature_GEOLOCATION, nil 
+  case "ADVERTISING_ID": return Feature_ADVERTISING_ID, nil 
+  case "BLUETOOTH_LE": return Feature_BLUETOOTH_LE, nil 
+  case "QR_CODE": return Feature_QR_CODE, nil 
+  case "ADVERTISING_SDK": return Feature_ADVERTISING_SDK, nil 
+  case "ADD_TO_HOME": return Feature_ADD_TO_HOME, nil 
+  case "SHARE_TARGET_MESSAGE": return Feature_SHARE_TARGET_MESSAGE, nil 
+  case "VIDEO_AUTO_PLAY": return Feature_VIDEO_AUTO_PLAY, nil 
+  case "PROFILE_PLUS": return Feature_PROFILE_PLUS, nil 
+  }
+  return Feature(0), fmt.Errorf("not a valid Feature string")
+}
+
+
+func FeaturePtr(v Feature) *Feature { return &v }
+
+func (p Feature) MarshalText() ([]byte, error) {
+return []byte(p.String()), nil
+}
+
+func (p *Feature) UnmarshalText(text []byte) error {
+q, err := FeatureFromString(string(text))
+if (err != nil) {
+return err
+}
+*p = q
+return nil
+}
+
+func (p *Feature) Scan(value interface{}) error {
+v, ok := value.(int64)
+if !ok {
+return errors.New("Scan value is not int64")
+}
+*p = Feature(v)
+return nil
+}
+
+func (p * Feature) Value() (driver.Value, error) {
+  if p == nil {
+    return nil, nil
+  }
+return int64(*p), nil
+}
+type LaunchOption int64
+const (
+  LaunchOption_ALLOW_DIRECT_LINK LaunchOption = 1
+)
+
+func (p LaunchOption) String() string {
+  switch p {
+  case LaunchOption_ALLOW_DIRECT_LINK: return "ALLOW_DIRECT_LINK"
+  }
+  return "<UNSET>"
+}
+
+func LaunchOptionFromString(s string) (LaunchOption, error) {
+  switch s {
+  case "ALLOW_DIRECT_LINK": return LaunchOption_ALLOW_DIRECT_LINK, nil 
+  }
+  return LaunchOption(0), fmt.Errorf("not a valid LaunchOption string")
+}
+
+
+func LaunchOptionPtr(v LaunchOption) *LaunchOption { return &v }
+
+func (p LaunchOption) MarshalText() ([]byte, error) {
+return []byte(p.String()), nil
+}
+
+func (p *LaunchOption) UnmarshalText(text []byte) error {
+q, err := LaunchOptionFromString(string(text))
+if (err != nil) {
+return err
+}
+*p = q
+return nil
+}
+
+func (p *LaunchOption) Scan(value interface{}) error {
+v, ok := value.(int64)
+if !ok {
+return errors.New("Scan value is not int64")
+}
+*p = LaunchOption(v)
+return nil
+}
+
+func (p * LaunchOption) Value() (driver.Value, error) {
+  if p == nil {
+    return nil, nil
+  }
+return int64(*p), nil
+}
 type SecondaryQrCodeErrorCode int64
 const (
   SecondaryQrCodeErrorCode_INTERNAL_ERROR SecondaryQrCodeErrorCode = 0
@@ -30206,6 +30386,2144 @@ func (p *GetChatsResponse) String() string {
   return fmt.Sprintf("GetChatsResponse(%+v)", *p)
 }
 
+type LiffNoneContext struct {
+}
+
+func NewLiffNoneContext() *LiffNoneContext {
+  return &LiffNoneContext{}
+}
+
+func (p *LiffNoneContext) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffNoneContext) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffNoneContext"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffNoneContext) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffNoneContext(%+v)", *p)
+}
+
+// Attributes:
+//  - ChatMid
+type LiffChatContext struct {
+  ChatMid string `thrift:"chatMid,1" db:"chatMid" json:"chatMid"`
+}
+
+func NewLiffChatContext() *LiffChatContext {
+  return &LiffChatContext{}
+}
+
+
+func (p *LiffChatContext) GetChatMid() string {
+  return p.ChatMid
+}
+func (p *LiffChatContext) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffChatContext)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.ChatMid = v
+}
+  return nil
+}
+
+func (p *LiffChatContext) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffChatContext"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffChatContext) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("chatMid", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:chatMid: ", p), err) }
+  if err := oprot.WriteString(string(p.ChatMid)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.chatMid (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:chatMid: ", p), err) }
+  return err
+}
+
+func (p *LiffChatContext) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffChatContext(%+v)", *p)
+}
+
+// Attributes:
+//  - SquareChatMid
+type LiffSquareChatContext struct {
+  SquareChatMid string `thrift:"squareChatMid,1" db:"squareChatMid" json:"squareChatMid"`
+}
+
+func NewLiffSquareChatContext() *LiffSquareChatContext {
+  return &LiffSquareChatContext{}
+}
+
+
+func (p *LiffSquareChatContext) GetSquareChatMid() string {
+  return p.SquareChatMid
+}
+func (p *LiffSquareChatContext) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffSquareChatContext)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.SquareChatMid = v
+}
+  return nil
+}
+
+func (p *LiffSquareChatContext) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffSquareChatContext"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffSquareChatContext) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("squareChatMid", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:squareChatMid: ", p), err) }
+  if err := oprot.WriteString(string(p.SquareChatMid)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.squareChatMid (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:squareChatMid: ", p), err) }
+  return err
+}
+
+func (p *LiffSquareChatContext) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffSquareChatContext(%+v)", *p)
+}
+
+// Attributes:
+//  - None
+//  - Chat
+//  - SquareChat
+type LiffContext struct {
+  None *LiffNoneContext `thrift:"none,1" db:"none" json:"none"`
+  Chat *LiffChatContext `thrift:"chat,2" db:"chat" json:"chat"`
+  SquareChat *LiffSquareChatContext `thrift:"squareChat,3" db:"squareChat" json:"squareChat"`
+}
+
+func NewLiffContext() *LiffContext {
+  return &LiffContext{}
+}
+
+var LiffContext_None_DEFAULT *LiffNoneContext
+func (p *LiffContext) GetNone() *LiffNoneContext {
+  if !p.IsSetNone() {
+    return LiffContext_None_DEFAULT
+  }
+return p.None
+}
+var LiffContext_Chat_DEFAULT *LiffChatContext
+func (p *LiffContext) GetChat() *LiffChatContext {
+  if !p.IsSetChat() {
+    return LiffContext_Chat_DEFAULT
+  }
+return p.Chat
+}
+var LiffContext_SquareChat_DEFAULT *LiffSquareChatContext
+func (p *LiffContext) GetSquareChat() *LiffSquareChatContext {
+  if !p.IsSetSquareChat() {
+    return LiffContext_SquareChat_DEFAULT
+  }
+return p.SquareChat
+}
+func (p *LiffContext) IsSetNone() bool {
+  return p.None != nil
+}
+
+func (p *LiffContext) IsSetChat() bool {
+  return p.Chat != nil
+}
+
+func (p *LiffContext) IsSetSquareChat() bool {
+  return p.SquareChat != nil
+}
+
+func (p *LiffContext) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField2(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 3:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField3(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffContext)  ReadField1(iprot thrift.TProtocol) error {
+  p.None = &LiffNoneContext{}
+  if err := p.None.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.None), err)
+  }
+  return nil
+}
+
+func (p *LiffContext)  ReadField2(iprot thrift.TProtocol) error {
+  p.Chat = &LiffChatContext{}
+  if err := p.Chat.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Chat), err)
+  }
+  return nil
+}
+
+func (p *LiffContext)  ReadField3(iprot thrift.TProtocol) error {
+  p.SquareChat = &LiffSquareChatContext{}
+  if err := p.SquareChat.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.SquareChat), err)
+  }
+  return nil
+}
+
+func (p *LiffContext) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffContext"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+    if err := p.writeField2(oprot); err != nil { return err }
+    if err := p.writeField3(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffContext) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("none", thrift.STRUCT, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:none: ", p), err) }
+  if err := p.None.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.None), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:none: ", p), err) }
+  return err
+}
+
+func (p *LiffContext) writeField2(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("chat", thrift.STRUCT, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:chat: ", p), err) }
+  if err := p.Chat.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Chat), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:chat: ", p), err) }
+  return err
+}
+
+func (p *LiffContext) writeField3(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("squareChat", thrift.STRUCT, 3); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:squareChat: ", p), err) }
+  if err := p.SquareChat.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.SquareChat), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:squareChat: ", p), err) }
+  return err
+}
+
+func (p *LiffContext) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffContext(%+v)", *p)
+}
+
+// Attributes:
+//  - AdvertisingId
+//  - Tracking
+type LiffAdvertisingId struct {
+  AdvertisingId string `thrift:"advertisingId,1" db:"advertisingId" json:"advertisingId"`
+  Tracking bool `thrift:"tracking,2" db:"tracking" json:"tracking"`
+}
+
+func NewLiffAdvertisingId() *LiffAdvertisingId {
+  return &LiffAdvertisingId{}
+}
+
+
+func (p *LiffAdvertisingId) GetAdvertisingId() string {
+  return p.AdvertisingId
+}
+
+func (p *LiffAdvertisingId) GetTracking() bool {
+  return p.Tracking
+}
+func (p *LiffAdvertisingId) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField2(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffAdvertisingId)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.AdvertisingId = v
+}
+  return nil
+}
+
+func (p *LiffAdvertisingId)  ReadField2(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 2: ", err)
+} else {
+  p.Tracking = v
+}
+  return nil
+}
+
+func (p *LiffAdvertisingId) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffAdvertisingId"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+    if err := p.writeField2(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffAdvertisingId) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("advertisingId", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:advertisingId: ", p), err) }
+  if err := oprot.WriteString(string(p.AdvertisingId)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.advertisingId (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:advertisingId: ", p), err) }
+  return err
+}
+
+func (p *LiffAdvertisingId) writeField2(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("tracking", thrift.BOOL, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:tracking: ", p), err) }
+  if err := oprot.WriteBool(bool(p.Tracking)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.tracking (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:tracking: ", p), err) }
+  return err
+}
+
+func (p *LiffAdvertisingId) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffAdvertisingId(%+v)", *p)
+}
+
+// Attributes:
+//  - VideoAutoPlayAllowed
+//  - AdvertisingId
+type LiffDeviceSetting struct {
+  VideoAutoPlayAllowed bool `thrift:"videoAutoPlayAllowed,1" db:"videoAutoPlayAllowed" json:"videoAutoPlayAllowed"`
+  AdvertisingId *LiffAdvertisingId `thrift:"advertisingId,2" db:"advertisingId" json:"advertisingId"`
+}
+
+func NewLiffDeviceSetting() *LiffDeviceSetting {
+  return &LiffDeviceSetting{}
+}
+
+
+func (p *LiffDeviceSetting) GetVideoAutoPlayAllowed() bool {
+  return p.VideoAutoPlayAllowed
+}
+var LiffDeviceSetting_AdvertisingId_DEFAULT *LiffAdvertisingId
+func (p *LiffDeviceSetting) GetAdvertisingId() *LiffAdvertisingId {
+  if !p.IsSetAdvertisingId() {
+    return LiffDeviceSetting_AdvertisingId_DEFAULT
+  }
+return p.AdvertisingId
+}
+func (p *LiffDeviceSetting) IsSetAdvertisingId() bool {
+  return p.AdvertisingId != nil
+}
+
+func (p *LiffDeviceSetting) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField2(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffDeviceSetting)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.VideoAutoPlayAllowed = v
+}
+  return nil
+}
+
+func (p *LiffDeviceSetting)  ReadField2(iprot thrift.TProtocol) error {
+  p.AdvertisingId = &LiffAdvertisingId{}
+  if err := p.AdvertisingId.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.AdvertisingId), err)
+  }
+  return nil
+}
+
+func (p *LiffDeviceSetting) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffDeviceSetting"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+    if err := p.writeField2(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffDeviceSetting) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("videoAutoPlayAllowed", thrift.BOOL, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:videoAutoPlayAllowed: ", p), err) }
+  if err := oprot.WriteBool(bool(p.VideoAutoPlayAllowed)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.videoAutoPlayAllowed (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:videoAutoPlayAllowed: ", p), err) }
+  return err
+}
+
+func (p *LiffDeviceSetting) writeField2(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("advertisingId", thrift.STRUCT, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:advertisingId: ", p), err) }
+  if err := p.AdvertisingId.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.AdvertisingId), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:advertisingId: ", p), err) }
+  return err
+}
+
+func (p *LiffDeviceSetting) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffDeviceSetting(%+v)", *p)
+}
+
+// Attributes:
+//  - LiffId
+//  - Context
+//  - Lang
+//  - DeviceSetting
+type LiffViewRequest struct {
+  LiffId string `thrift:"liffId,1" db:"liffId" json:"liffId"`
+  Context *LiffContext `thrift:"context,2" db:"context" json:"context"`
+  Lang string `thrift:"lang,3" db:"lang" json:"lang"`
+  DeviceSetting *LiffDeviceSetting `thrift:"deviceSetting,4" db:"deviceSetting" json:"deviceSetting"`
+}
+
+func NewLiffViewRequest() *LiffViewRequest {
+  return &LiffViewRequest{}
+}
+
+
+func (p *LiffViewRequest) GetLiffId() string {
+  return p.LiffId
+}
+var LiffViewRequest_Context_DEFAULT *LiffContext
+func (p *LiffViewRequest) GetContext() *LiffContext {
+  if !p.IsSetContext() {
+    return LiffViewRequest_Context_DEFAULT
+  }
+return p.Context
+}
+
+func (p *LiffViewRequest) GetLang() string {
+  return p.Lang
+}
+var LiffViewRequest_DeviceSetting_DEFAULT *LiffDeviceSetting
+func (p *LiffViewRequest) GetDeviceSetting() *LiffDeviceSetting {
+  if !p.IsSetDeviceSetting() {
+    return LiffViewRequest_DeviceSetting_DEFAULT
+  }
+return p.DeviceSetting
+}
+func (p *LiffViewRequest) IsSetContext() bool {
+  return p.Context != nil
+}
+
+func (p *LiffViewRequest) IsSetDeviceSetting() bool {
+  return p.DeviceSetting != nil
+}
+
+func (p *LiffViewRequest) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField2(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 3:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField3(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 4:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField4(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffViewRequest)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.LiffId = v
+}
+  return nil
+}
+
+func (p *LiffViewRequest)  ReadField2(iprot thrift.TProtocol) error {
+  p.Context = &LiffContext{}
+  if err := p.Context.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Context), err)
+  }
+  return nil
+}
+
+func (p *LiffViewRequest)  ReadField3(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 3: ", err)
+} else {
+  p.Lang = v
+}
+  return nil
+}
+
+func (p *LiffViewRequest)  ReadField4(iprot thrift.TProtocol) error {
+  p.DeviceSetting = &LiffDeviceSetting{}
+  if err := p.DeviceSetting.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.DeviceSetting), err)
+  }
+  return nil
+}
+
+func (p *LiffViewRequest) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffViewRequest"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+    if err := p.writeField2(oprot); err != nil { return err }
+    if err := p.writeField3(oprot); err != nil { return err }
+    if err := p.writeField4(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffViewRequest) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("liffId", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:liffId: ", p), err) }
+  if err := oprot.WriteString(string(p.LiffId)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.liffId (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:liffId: ", p), err) }
+  return err
+}
+
+func (p *LiffViewRequest) writeField2(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("context", thrift.STRUCT, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:context: ", p), err) }
+  if err := p.Context.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Context), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:context: ", p), err) }
+  return err
+}
+
+func (p *LiffViewRequest) writeField3(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("lang", thrift.STRING, 3); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:lang: ", p), err) }
+  if err := oprot.WriteString(string(p.Lang)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.lang (3) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:lang: ", p), err) }
+  return err
+}
+
+func (p *LiffViewRequest) writeField4(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("deviceSetting", thrift.STRUCT, 4); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 4:deviceSetting: ", p), err) }
+  if err := p.DeviceSetting.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.DeviceSetting), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 4:deviceSetting: ", p), err) }
+  return err
+}
+
+func (p *LiffViewRequest) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffViewRequest(%+v)", *p)
+}
+
+// Attributes:
+//  - Type
+//  - URL
+//  - TitleTextColor
+//  - TitleBackgroundColor
+//  - TitleIconUrl
+//  - TitleSubtextColor
+//  - TitleButtonColor
+//  - ProgressBarColor
+//  - ProgressBackgroundColor
+//  - TrustedDomain
+//  - Suspendable
+//  - MaxBrightness
+//  - TitleButtonAreaBackgroundColor
+//  - TitleButtonAreaBorderColor
+//  - SuspendableV2
+//  - MenuStyle
+//  - ModuleMode
+//  - PinToHomeServiceId
+type LiffView struct {
+  Type string `thrift:"type,1" db:"type" json:"type"`
+  URL string `thrift:"url,2" db:"url" json:"url"`
+  // unused field # 3
+  TitleTextColor int32 `thrift:"titleTextColor,4" db:"titleTextColor" json:"titleTextColor"`
+  TitleBackgroundColor int32 `thrift:"titleBackgroundColor,5" db:"titleBackgroundColor" json:"titleBackgroundColor"`
+  TitleIconUrl string `thrift:"titleIconUrl,6" db:"titleIconUrl" json:"titleIconUrl"`
+  TitleSubtextColor int32 `thrift:"titleSubtextColor,7" db:"titleSubtextColor" json:"titleSubtextColor"`
+  TitleButtonColor int32 `thrift:"titleButtonColor,8" db:"titleButtonColor" json:"titleButtonColor"`
+  ProgressBarColor int32 `thrift:"progressBarColor,9" db:"progressBarColor" json:"progressBarColor"`
+  ProgressBackgroundColor int32 `thrift:"progressBackgroundColor,10" db:"progressBackgroundColor" json:"progressBackgroundColor"`
+  TrustedDomain bool `thrift:"trustedDomain,11" db:"trustedDomain" json:"trustedDomain"`
+  Suspendable bool `thrift:"suspendable,12" db:"suspendable" json:"suspendable"`
+  MaxBrightness bool `thrift:"maxBrightness,13" db:"maxBrightness" json:"maxBrightness"`
+  TitleButtonAreaBackgroundColor int32 `thrift:"titleButtonAreaBackgroundColor,14" db:"titleButtonAreaBackgroundColor" json:"titleButtonAreaBackgroundColor"`
+  TitleButtonAreaBorderColor int32 `thrift:"titleButtonAreaBorderColor,15" db:"titleButtonAreaBorderColor" json:"titleButtonAreaBorderColor"`
+  SuspendableV2 bool `thrift:"suspendableV2,16" db:"suspendableV2" json:"suspendableV2"`
+  MenuStyle MenuStyle `thrift:"menuStyle,17" db:"menuStyle" json:"menuStyle"`
+  ModuleMode bool `thrift:"moduleMode,18" db:"moduleMode" json:"moduleMode"`
+  PinToHomeServiceId int32 `thrift:"pinToHomeServiceId,19" db:"pinToHomeServiceId" json:"pinToHomeServiceId"`
+}
+
+func NewLiffView() *LiffView {
+  return &LiffView{}
+}
+
+
+func (p *LiffView) GetType() string {
+  return p.Type
+}
+
+func (p *LiffView) GetURL() string {
+  return p.URL
+}
+
+func (p *LiffView) GetTitleTextColor() int32 {
+  return p.TitleTextColor
+}
+
+func (p *LiffView) GetTitleBackgroundColor() int32 {
+  return p.TitleBackgroundColor
+}
+
+func (p *LiffView) GetTitleIconUrl() string {
+  return p.TitleIconUrl
+}
+
+func (p *LiffView) GetTitleSubtextColor() int32 {
+  return p.TitleSubtextColor
+}
+
+func (p *LiffView) GetTitleButtonColor() int32 {
+  return p.TitleButtonColor
+}
+
+func (p *LiffView) GetProgressBarColor() int32 {
+  return p.ProgressBarColor
+}
+
+func (p *LiffView) GetProgressBackgroundColor() int32 {
+  return p.ProgressBackgroundColor
+}
+
+func (p *LiffView) GetTrustedDomain() bool {
+  return p.TrustedDomain
+}
+
+func (p *LiffView) GetSuspendable() bool {
+  return p.Suspendable
+}
+
+func (p *LiffView) GetMaxBrightness() bool {
+  return p.MaxBrightness
+}
+
+func (p *LiffView) GetTitleButtonAreaBackgroundColor() int32 {
+  return p.TitleButtonAreaBackgroundColor
+}
+
+func (p *LiffView) GetTitleButtonAreaBorderColor() int32 {
+  return p.TitleButtonAreaBorderColor
+}
+
+func (p *LiffView) GetSuspendableV2() bool {
+  return p.SuspendableV2
+}
+
+func (p *LiffView) GetMenuStyle() MenuStyle {
+  return p.MenuStyle
+}
+
+func (p *LiffView) GetModuleMode() bool {
+  return p.ModuleMode
+}
+
+func (p *LiffView) GetPinToHomeServiceId() int32 {
+  return p.PinToHomeServiceId
+}
+func (p *LiffView) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField2(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 4:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField4(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 5:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField5(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 6:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField6(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 7:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField7(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 8:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField8(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 9:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField9(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 10:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField10(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 11:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField11(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 12:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField12(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 13:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField13(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 14:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField14(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 15:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField15(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 16:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField16(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 17:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField17(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 18:
+      if fieldTypeId == thrift.BOOL {
+        if err := p.ReadField18(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 19:
+      if fieldTypeId == thrift.I32 {
+        if err := p.ReadField19(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffView)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.Type = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField2(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 2: ", err)
+} else {
+  p.URL = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField4(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 4: ", err)
+} else {
+  p.TitleTextColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField5(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 5: ", err)
+} else {
+  p.TitleBackgroundColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField6(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 6: ", err)
+} else {
+  p.TitleIconUrl = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField7(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 7: ", err)
+} else {
+  p.TitleSubtextColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField8(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 8: ", err)
+} else {
+  p.TitleButtonColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField9(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 9: ", err)
+} else {
+  p.ProgressBarColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField10(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 10: ", err)
+} else {
+  p.ProgressBackgroundColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField11(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 11: ", err)
+} else {
+  p.TrustedDomain = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField12(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 12: ", err)
+} else {
+  p.Suspendable = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField13(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 13: ", err)
+} else {
+  p.MaxBrightness = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField14(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 14: ", err)
+} else {
+  p.TitleButtonAreaBackgroundColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField15(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 15: ", err)
+} else {
+  p.TitleButtonAreaBorderColor = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField16(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 16: ", err)
+} else {
+  p.SuspendableV2 = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField17(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 17: ", err)
+} else {
+  temp := MenuStyle(v)
+  p.MenuStyle = temp
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField18(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadBool(); err != nil {
+  return thrift.PrependError("error reading field 18: ", err)
+} else {
+  p.ModuleMode = v
+}
+  return nil
+}
+
+func (p *LiffView)  ReadField19(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadI32(); err != nil {
+  return thrift.PrependError("error reading field 19: ", err)
+} else {
+  p.PinToHomeServiceId = v
+}
+  return nil
+}
+
+func (p *LiffView) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffView"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+    if err := p.writeField2(oprot); err != nil { return err }
+    if err := p.writeField4(oprot); err != nil { return err }
+    if err := p.writeField5(oprot); err != nil { return err }
+    if err := p.writeField6(oprot); err != nil { return err }
+    if err := p.writeField7(oprot); err != nil { return err }
+    if err := p.writeField8(oprot); err != nil { return err }
+    if err := p.writeField9(oprot); err != nil { return err }
+    if err := p.writeField10(oprot); err != nil { return err }
+    if err := p.writeField11(oprot); err != nil { return err }
+    if err := p.writeField12(oprot); err != nil { return err }
+    if err := p.writeField13(oprot); err != nil { return err }
+    if err := p.writeField14(oprot); err != nil { return err }
+    if err := p.writeField15(oprot); err != nil { return err }
+    if err := p.writeField16(oprot); err != nil { return err }
+    if err := p.writeField17(oprot); err != nil { return err }
+    if err := p.writeField18(oprot); err != nil { return err }
+    if err := p.writeField19(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffView) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("type", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:type: ", p), err) }
+  if err := oprot.WriteString(string(p.Type)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.type (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:type: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField2(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("url", thrift.STRING, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:url: ", p), err) }
+  if err := oprot.WriteString(string(p.URL)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.url (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:url: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField4(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleTextColor", thrift.I32, 4); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 4:titleTextColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.TitleTextColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleTextColor (4) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 4:titleTextColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField5(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleBackgroundColor", thrift.I32, 5); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 5:titleBackgroundColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.TitleBackgroundColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleBackgroundColor (5) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 5:titleBackgroundColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField6(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleIconUrl", thrift.STRING, 6); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 6:titleIconUrl: ", p), err) }
+  if err := oprot.WriteString(string(p.TitleIconUrl)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleIconUrl (6) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 6:titleIconUrl: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField7(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleSubtextColor", thrift.I32, 7); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 7:titleSubtextColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.TitleSubtextColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleSubtextColor (7) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 7:titleSubtextColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField8(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleButtonColor", thrift.I32, 8); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 8:titleButtonColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.TitleButtonColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleButtonColor (8) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 8:titleButtonColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField9(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("progressBarColor", thrift.I32, 9); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 9:progressBarColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.ProgressBarColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.progressBarColor (9) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 9:progressBarColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField10(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("progressBackgroundColor", thrift.I32, 10); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 10:progressBackgroundColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.ProgressBackgroundColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.progressBackgroundColor (10) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 10:progressBackgroundColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField11(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("trustedDomain", thrift.BOOL, 11); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 11:trustedDomain: ", p), err) }
+  if err := oprot.WriteBool(bool(p.TrustedDomain)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.trustedDomain (11) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 11:trustedDomain: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField12(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("suspendable", thrift.BOOL, 12); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 12:suspendable: ", p), err) }
+  if err := oprot.WriteBool(bool(p.Suspendable)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.suspendable (12) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 12:suspendable: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField13(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("maxBrightness", thrift.BOOL, 13); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 13:maxBrightness: ", p), err) }
+  if err := oprot.WriteBool(bool(p.MaxBrightness)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.maxBrightness (13) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 13:maxBrightness: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField14(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleButtonAreaBackgroundColor", thrift.I32, 14); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 14:titleButtonAreaBackgroundColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.TitleButtonAreaBackgroundColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleButtonAreaBackgroundColor (14) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 14:titleButtonAreaBackgroundColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField15(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("titleButtonAreaBorderColor", thrift.I32, 15); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 15:titleButtonAreaBorderColor: ", p), err) }
+  if err := oprot.WriteI32(int32(p.TitleButtonAreaBorderColor)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.titleButtonAreaBorderColor (15) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 15:titleButtonAreaBorderColor: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField16(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("suspendableV2", thrift.BOOL, 16); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 16:suspendableV2: ", p), err) }
+  if err := oprot.WriteBool(bool(p.SuspendableV2)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.suspendableV2 (16) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 16:suspendableV2: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField17(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("menuStyle", thrift.I32, 17); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 17:menuStyle: ", p), err) }
+  if err := oprot.WriteI32(int32(p.MenuStyle)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.menuStyle (17) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 17:menuStyle: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField18(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("moduleMode", thrift.BOOL, 18); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 18:moduleMode: ", p), err) }
+  if err := oprot.WriteBool(bool(p.ModuleMode)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.moduleMode (18) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 18:moduleMode: ", p), err) }
+  return err
+}
+
+func (p *LiffView) writeField19(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("pinToHomeServiceId", thrift.I32, 19); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 19:pinToHomeServiceId: ", p), err) }
+  if err := oprot.WriteI32(int32(p.PinToHomeServiceId)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.pinToHomeServiceId (19) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 19:pinToHomeServiceId: ", p), err) }
+  return err
+}
+
+func (p *LiffView) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffView(%+v)", *p)
+}
+
+// Attributes:
+//  - View
+//  - ContextToken
+//  - AccessToken
+//  - FeatureToken
+//  - Features
+//  - ChannelId
+//  - IdToken
+//  - Scopes
+//  - LaunchOptions
+type LiffViewResponse struct {
+  View *LiffView `thrift:"view,1" db:"view" json:"view"`
+  ContextToken string `thrift:"contextToken,2" db:"contextToken" json:"contextToken"`
+  AccessToken string `thrift:"accessToken,3" db:"accessToken" json:"accessToken"`
+  FeatureToken string `thrift:"featureToken,4" db:"featureToken" json:"featureToken"`
+  Features []Feature `thrift:"features,5" db:"features" json:"features"`
+  ChannelId string `thrift:"channelId,6" db:"channelId" json:"channelId"`
+  IdToken string `thrift:"idToken,7" db:"idToken" json:"idToken"`
+  Scopes []string `thrift:"scopes,8" db:"scopes" json:"scopes"`
+  LaunchOptions []LaunchOption `thrift:"launchOptions,9" db:"launchOptions" json:"launchOptions"`
+}
+
+func NewLiffViewResponse() *LiffViewResponse {
+  return &LiffViewResponse{}
+}
+
+var LiffViewResponse_View_DEFAULT *LiffView
+func (p *LiffViewResponse) GetView() *LiffView {
+  if !p.IsSetView() {
+    return LiffViewResponse_View_DEFAULT
+  }
+return p.View
+}
+
+func (p *LiffViewResponse) GetContextToken() string {
+  return p.ContextToken
+}
+
+func (p *LiffViewResponse) GetAccessToken() string {
+  return p.AccessToken
+}
+
+func (p *LiffViewResponse) GetFeatureToken() string {
+  return p.FeatureToken
+}
+
+func (p *LiffViewResponse) GetFeatures() []Feature {
+  return p.Features
+}
+
+func (p *LiffViewResponse) GetChannelId() string {
+  return p.ChannelId
+}
+
+func (p *LiffViewResponse) GetIdToken() string {
+  return p.IdToken
+}
+
+func (p *LiffViewResponse) GetScopes() []string {
+  return p.Scopes
+}
+
+func (p *LiffViewResponse) GetLaunchOptions() []LaunchOption {
+  return p.LaunchOptions
+}
+func (p *LiffViewResponse) IsSetView() bool {
+  return p.View != nil
+}
+
+func (p *LiffViewResponse) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 2:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField2(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 3:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField3(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 4:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField4(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 5:
+      if fieldTypeId == thrift.LIST {
+        if err := p.ReadField5(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 6:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField6(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 7:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField7(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 8:
+      if fieldTypeId == thrift.LIST {
+        if err := p.ReadField8(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    case 9:
+      if fieldTypeId == thrift.LIST {
+        if err := p.ReadField9(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField1(iprot thrift.TProtocol) error {
+  p.View = &LiffView{}
+  if err := p.View.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.View), err)
+  }
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField2(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 2: ", err)
+} else {
+  p.ContextToken = v
+}
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField3(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 3: ", err)
+} else {
+  p.AccessToken = v
+}
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField4(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 4: ", err)
+} else {
+  p.FeatureToken = v
+}
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField5(iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadListBegin()
+  if err != nil {
+    return thrift.PrependError("error reading list begin: ", err)
+  }
+  tSlice := make([]Feature, 0, size)
+  p.Features =  tSlice
+  for i := 0; i < size; i ++ {
+var _elem62 Feature
+    if v, err := iprot.ReadI32(); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    temp := Feature(v)
+    _elem62 = temp
+}
+    p.Features = append(p.Features, _elem62)
+  }
+  if err := iprot.ReadListEnd(); err != nil {
+    return thrift.PrependError("error reading list end: ", err)
+  }
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField6(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 6: ", err)
+} else {
+  p.ChannelId = v
+}
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField7(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 7: ", err)
+} else {
+  p.IdToken = v
+}
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField8(iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadListBegin()
+  if err != nil {
+    return thrift.PrependError("error reading list begin: ", err)
+  }
+  tSlice := make([]string, 0, size)
+  p.Scopes =  tSlice
+  for i := 0; i < size; i ++ {
+var _elem63 string
+    if v, err := iprot.ReadString(); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    _elem63 = v
+}
+    p.Scopes = append(p.Scopes, _elem63)
+  }
+  if err := iprot.ReadListEnd(); err != nil {
+    return thrift.PrependError("error reading list end: ", err)
+  }
+  return nil
+}
+
+func (p *LiffViewResponse)  ReadField9(iprot thrift.TProtocol) error {
+  _, size, err := iprot.ReadListBegin()
+  if err != nil {
+    return thrift.PrependError("error reading list begin: ", err)
+  }
+  tSlice := make([]LaunchOption, 0, size)
+  p.LaunchOptions =  tSlice
+  for i := 0; i < size; i ++ {
+var _elem64 LaunchOption
+    if v, err := iprot.ReadI32(); err != nil {
+    return thrift.PrependError("error reading field 0: ", err)
+} else {
+    temp := LaunchOption(v)
+    _elem64 = temp
+}
+    p.LaunchOptions = append(p.LaunchOptions, _elem64)
+  }
+  if err := iprot.ReadListEnd(); err != nil {
+    return thrift.PrependError("error reading list end: ", err)
+  }
+  return nil
+}
+
+func (p *LiffViewResponse) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("LiffViewResponse"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+    if err := p.writeField2(oprot); err != nil { return err }
+    if err := p.writeField3(oprot); err != nil { return err }
+    if err := p.writeField4(oprot); err != nil { return err }
+    if err := p.writeField5(oprot); err != nil { return err }
+    if err := p.writeField6(oprot); err != nil { return err }
+    if err := p.writeField7(oprot); err != nil { return err }
+    if err := p.writeField8(oprot); err != nil { return err }
+    if err := p.writeField9(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffViewResponse) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("view", thrift.STRUCT, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:view: ", p), err) }
+  if err := p.View.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.View), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:view: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField2(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("contextToken", thrift.STRING, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:contextToken: ", p), err) }
+  if err := oprot.WriteString(string(p.ContextToken)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.contextToken (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:contextToken: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField3(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("accessToken", thrift.STRING, 3); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:accessToken: ", p), err) }
+  if err := oprot.WriteString(string(p.AccessToken)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.accessToken (3) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:accessToken: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField4(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("featureToken", thrift.STRING, 4); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 4:featureToken: ", p), err) }
+  if err := oprot.WriteString(string(p.FeatureToken)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.featureToken (4) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 4:featureToken: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField5(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("features", thrift.LIST, 5); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 5:features: ", p), err) }
+  if err := oprot.WriteListBegin(thrift.I32, len(p.Features)); err != nil {
+    return thrift.PrependError("error writing list begin: ", err)
+  }
+  for _, v := range p.Features {
+    if err := oprot.WriteI32(int32(v)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+  }
+  if err := oprot.WriteListEnd(); err != nil {
+    return thrift.PrependError("error writing list end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 5:features: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField6(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("channelId", thrift.STRING, 6); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 6:channelId: ", p), err) }
+  if err := oprot.WriteString(string(p.ChannelId)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.channelId (6) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 6:channelId: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField7(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("idToken", thrift.STRING, 7); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 7:idToken: ", p), err) }
+  if err := oprot.WriteString(string(p.IdToken)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.idToken (7) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 7:idToken: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField8(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("scopes", thrift.LIST, 8); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 8:scopes: ", p), err) }
+  if err := oprot.WriteListBegin(thrift.STRING, len(p.Scopes)); err != nil {
+    return thrift.PrependError("error writing list begin: ", err)
+  }
+  for _, v := range p.Scopes {
+    if err := oprot.WriteString(string(v)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+  }
+  if err := oprot.WriteListEnd(); err != nil {
+    return thrift.PrependError("error writing list end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 8:scopes: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) writeField9(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("launchOptions", thrift.LIST, 9); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 9:launchOptions: ", p), err) }
+  if err := oprot.WriteListBegin(thrift.I32, len(p.LaunchOptions)); err != nil {
+    return thrift.PrependError("error writing list begin: ", err)
+  }
+  for _, v := range p.LaunchOptions {
+    if err := oprot.WriteI32(int32(v)); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T. (0) field write error: ", p), err) }
+  }
+  if err := oprot.WriteListEnd(); err != nil {
+    return thrift.PrependError("error writing list end: ", err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 9:launchOptions: ", p), err) }
+  return err
+}
+
+func (p *LiffViewResponse) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffViewResponse(%+v)", *p)
+}
+
+// Attributes:
+//  - AccessToken
+type RevokeTokenRequest struct {
+  AccessToken string `thrift:"accessToken,1" db:"accessToken" json:"accessToken"`
+}
+
+func NewRevokeTokenRequest() *RevokeTokenRequest {
+  return &RevokeTokenRequest{}
+}
+
+
+func (p *RevokeTokenRequest) GetAccessToken() string {
+  return p.AccessToken
+}
+func (p *RevokeTokenRequest) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRING {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *RevokeTokenRequest)  ReadField1(iprot thrift.TProtocol) error {
+  if v, err := iprot.ReadString(); err != nil {
+  return thrift.PrependError("error reading field 1: ", err)
+} else {
+  p.AccessToken = v
+}
+  return nil
+}
+
+func (p *RevokeTokenRequest) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("RevokeTokenRequest"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *RevokeTokenRequest) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("accessToken", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:accessToken: ", p), err) }
+  if err := oprot.WriteString(string(p.AccessToken)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.accessToken (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:accessToken: ", p), err) }
+  return err
+}
+
+func (p *RevokeTokenRequest) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("RevokeTokenRequest(%+v)", *p)
+}
+
 // Attributes:
 //  - AuthSessionId
 type CreateQrSessionResponse struct {
@@ -30847,19 +33165,19 @@ func (p *QrCodeLoginResponse)  ReadField4(iprot thrift.TProtocol) error {
   tMap := make(map[string]string, size)
   p.MetaData =  tMap
   for i := 0; i < size; i ++ {
-var _key62 string
+var _key65 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key62 = v
+    _key65 = v
 }
-var _val63 string
+var _val66 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _val63 = v
+    _val66 = v
 }
-    p.MetaData[_key62] = _val63
+    p.MetaData[_key65] = _val66
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -31544,6 +33862,551 @@ func (p *SecondaryQrCodeException) Error() string {
   return p.String()
 }
 
+type LiffService interface {
+  // Parameters:
+  //  - Request
+  IssueLiffView(ctx context.Context, request *LiffViewRequest) (r *LiffViewResponse, err error)
+  // Parameters:
+  //  - Request
+  RevokeToken(ctx context.Context, request *RevokeTokenRequest) (err error)
+}
+
+type LiffServiceClient struct {
+  c thrift.TClient
+}
+
+func NewLiffServiceClientFactory(t thrift.TTransport, f thrift.TProtocolFactory) *LiffServiceClient {
+  return &LiffServiceClient{
+    c: thrift.NewTStandardClient(f.GetProtocol(t), f.GetProtocol(t)),
+  }
+}
+
+func NewLiffServiceClientProtocol(t thrift.TTransport, iprot thrift.TProtocol, oprot thrift.TProtocol) *LiffServiceClient {
+  return &LiffServiceClient{
+    c: thrift.NewTStandardClient(iprot, oprot),
+  }
+}
+
+func NewLiffServiceClient(c thrift.TClient) *LiffServiceClient {
+  return &LiffServiceClient{
+    c: c,
+  }
+}
+
+func (p *LiffServiceClient) Client_() thrift.TClient {
+  return p.c
+}
+// Parameters:
+//  - Request
+func (p *LiffServiceClient) IssueLiffView(ctx context.Context, request *LiffViewRequest) (r *LiffViewResponse, err error) {
+  var _args67 LiffServiceIssueLiffViewArgs
+  _args67.Request = request
+  var _result68 LiffServiceIssueLiffViewResult
+  if err = p.Client_().Call(ctx, "issueLiffView", &_args67, &_result68); err != nil {
+    return
+  }
+  return _result68.GetSuccess(), nil
+}
+
+// Parameters:
+//  - Request
+func (p *LiffServiceClient) RevokeToken(ctx context.Context, request *RevokeTokenRequest) (err error) {
+  var _args69 LiffServiceRevokeTokenArgs
+  _args69.Request = request
+  var _result70 LiffServiceRevokeTokenResult
+  if err = p.Client_().Call(ctx, "revokeToken", &_args69, &_result70); err != nil {
+    return
+  }
+  return nil
+}
+
+type LiffServiceProcessor struct {
+  processorMap map[string]thrift.TProcessorFunction
+  handler LiffService
+}
+
+func (p *LiffServiceProcessor) AddToProcessorMap(key string, processor thrift.TProcessorFunction) {
+  p.processorMap[key] = processor
+}
+
+func (p *LiffServiceProcessor) GetProcessorFunction(key string) (processor thrift.TProcessorFunction, ok bool) {
+  processor, ok = p.processorMap[key]
+  return processor, ok
+}
+
+func (p *LiffServiceProcessor) ProcessorMap() map[string]thrift.TProcessorFunction {
+  return p.processorMap
+}
+
+func NewLiffServiceProcessor(handler LiffService) *LiffServiceProcessor {
+
+  self71 := &LiffServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
+  self71.processorMap["issueLiffView"] = &liffServiceProcessorIssueLiffView{handler:handler}
+  self71.processorMap["revokeToken"] = &liffServiceProcessorRevokeToken{handler:handler}
+return self71
+}
+
+func (p *LiffServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  name, _, seqId, err := iprot.ReadMessageBegin()
+  if err != nil { return false, err }
+  if processor, ok := p.GetProcessorFunction(name); ok {
+    return processor.Process(ctx, seqId, iprot, oprot)
+  }
+  iprot.Skip(thrift.STRUCT)
+  iprot.ReadMessageEnd()
+  x72 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
+  oprot.WriteMessageBegin(name, thrift.EXCEPTION, seqId)
+  x72.Write(oprot)
+  oprot.WriteMessageEnd()
+  oprot.Flush(ctx)
+  return false, x72
+
+}
+
+type liffServiceProcessorIssueLiffView struct {
+  handler LiffService
+}
+
+func (p *liffServiceProcessorIssueLiffView) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  args := LiffServiceIssueLiffViewArgs{}
+  if err = args.Read(iprot); err != nil {
+    iprot.ReadMessageEnd()
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err.Error())
+    oprot.WriteMessageBegin("issueLiffView", thrift.EXCEPTION, seqId)
+    x.Write(oprot)
+    oprot.WriteMessageEnd()
+    oprot.Flush(ctx)
+    return false, err
+  }
+
+  iprot.ReadMessageEnd()
+  result := LiffServiceIssueLiffViewResult{}
+var retval *LiffViewResponse
+  var err2 error
+  if retval, err2 = p.handler.IssueLiffView(ctx, args.Request); err2 != nil {
+    x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing issueLiffView: " + err2.Error())
+    oprot.WriteMessageBegin("issueLiffView", thrift.EXCEPTION, seqId)
+    x.Write(oprot)
+    oprot.WriteMessageEnd()
+    oprot.Flush(ctx)
+    return true, err2
+  } else {
+    result.Success = retval
+}
+  if err2 = oprot.WriteMessageBegin("issueLiffView", thrift.REPLY, seqId); err2 != nil {
+    err = err2
+  }
+  if err2 = result.Write(oprot); err == nil && err2 != nil {
+    err = err2
+  }
+  if err2 = oprot.WriteMessageEnd(); err == nil && err2 != nil {
+    err = err2
+  }
+  if err2 = oprot.Flush(ctx); err == nil && err2 != nil {
+    err = err2
+  }
+  if err != nil {
+    return
+  }
+  return true, err
+}
+
+type liffServiceProcessorRevokeToken struct {
+  handler LiffService
+}
+
+func (p *liffServiceProcessorRevokeToken) Process(ctx context.Context, seqId int32, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
+  args := LiffServiceRevokeTokenArgs{}
+  if err = args.Read(iprot); err != nil {
+    iprot.ReadMessageEnd()
+    x := thrift.NewTApplicationException(thrift.PROTOCOL_ERROR, err.Error())
+    oprot.WriteMessageBegin("revokeToken", thrift.EXCEPTION, seqId)
+    x.Write(oprot)
+    oprot.WriteMessageEnd()
+    oprot.Flush(ctx)
+    return false, err
+  }
+
+  iprot.ReadMessageEnd()
+  result := LiffServiceRevokeTokenResult{}
+  var err2 error
+  if err2 = p.handler.RevokeToken(ctx, args.Request); err2 != nil {
+    x := thrift.NewTApplicationException(thrift.INTERNAL_ERROR, "Internal error processing revokeToken: " + err2.Error())
+    oprot.WriteMessageBegin("revokeToken", thrift.EXCEPTION, seqId)
+    x.Write(oprot)
+    oprot.WriteMessageEnd()
+    oprot.Flush(ctx)
+    return true, err2
+  }
+  if err2 = oprot.WriteMessageBegin("revokeToken", thrift.REPLY, seqId); err2 != nil {
+    err = err2
+  }
+  if err2 = result.Write(oprot); err == nil && err2 != nil {
+    err = err2
+  }
+  if err2 = oprot.WriteMessageEnd(); err == nil && err2 != nil {
+    err = err2
+  }
+  if err2 = oprot.Flush(ctx); err == nil && err2 != nil {
+    err = err2
+  }
+  if err != nil {
+    return
+  }
+  return true, err
+}
+
+
+// HELPER FUNCTIONS AND STRUCTURES
+
+// Attributes:
+//  - Request
+type LiffServiceIssueLiffViewArgs struct {
+  Request *LiffViewRequest `thrift:"request,1" db:"request" json:"request"`
+}
+
+func NewLiffServiceIssueLiffViewArgs() *LiffServiceIssueLiffViewArgs {
+  return &LiffServiceIssueLiffViewArgs{}
+}
+
+var LiffServiceIssueLiffViewArgs_Request_DEFAULT *LiffViewRequest
+func (p *LiffServiceIssueLiffViewArgs) GetRequest() *LiffViewRequest {
+  if !p.IsSetRequest() {
+    return LiffServiceIssueLiffViewArgs_Request_DEFAULT
+  }
+return p.Request
+}
+func (p *LiffServiceIssueLiffViewArgs) IsSetRequest() bool {
+  return p.Request != nil
+}
+
+func (p *LiffServiceIssueLiffViewArgs) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceIssueLiffViewArgs)  ReadField1(iprot thrift.TProtocol) error {
+  p.Request = &LiffViewRequest{}
+  if err := p.Request.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Request), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceIssueLiffViewArgs) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("issueLiffView_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffServiceIssueLiffViewArgs) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("request", thrift.STRUCT, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:request: ", p), err) }
+  if err := p.Request.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Request), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:request: ", p), err) }
+  return err
+}
+
+func (p *LiffServiceIssueLiffViewArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffServiceIssueLiffViewArgs(%+v)", *p)
+}
+
+// Attributes:
+//  - Success
+type LiffServiceIssueLiffViewResult struct {
+  Success *LiffViewResponse `thrift:"success,0" db:"success" json:"success,omitempty"`
+}
+
+func NewLiffServiceIssueLiffViewResult() *LiffServiceIssueLiffViewResult {
+  return &LiffServiceIssueLiffViewResult{}
+}
+
+var LiffServiceIssueLiffViewResult_Success_DEFAULT *LiffViewResponse
+func (p *LiffServiceIssueLiffViewResult) GetSuccess() *LiffViewResponse {
+  if !p.IsSetSuccess() {
+    return LiffServiceIssueLiffViewResult_Success_DEFAULT
+  }
+return p.Success
+}
+func (p *LiffServiceIssueLiffViewResult) IsSetSuccess() bool {
+  return p.Success != nil
+}
+
+func (p *LiffServiceIssueLiffViewResult) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 0:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField0(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceIssueLiffViewResult)  ReadField0(iprot thrift.TProtocol) error {
+  p.Success = &LiffViewResponse{}
+  if err := p.Success.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Success), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceIssueLiffViewResult) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("issueLiffView_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField0(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffServiceIssueLiffViewResult) writeField0(oprot thrift.TProtocol) (err error) {
+  if p.IsSetSuccess() {
+    if err := oprot.WriteFieldBegin("success", thrift.STRUCT, 0); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field begin error 0:success: ", p), err) }
+    if err := p.Success.Write(oprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Success), err)
+    }
+    if err := oprot.WriteFieldEnd(); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T write field end error 0:success: ", p), err) }
+  }
+  return err
+}
+
+func (p *LiffServiceIssueLiffViewResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffServiceIssueLiffViewResult(%+v)", *p)
+}
+
+// Attributes:
+//  - Request
+type LiffServiceRevokeTokenArgs struct {
+  Request *RevokeTokenRequest `thrift:"request,1" db:"request" json:"request"`
+}
+
+func NewLiffServiceRevokeTokenArgs() *LiffServiceRevokeTokenArgs {
+  return &LiffServiceRevokeTokenArgs{}
+}
+
+var LiffServiceRevokeTokenArgs_Request_DEFAULT *RevokeTokenRequest
+func (p *LiffServiceRevokeTokenArgs) GetRequest() *RevokeTokenRequest {
+  if !p.IsSetRequest() {
+    return LiffServiceRevokeTokenArgs_Request_DEFAULT
+  }
+return p.Request
+}
+func (p *LiffServiceRevokeTokenArgs) IsSetRequest() bool {
+  return p.Request != nil
+}
+
+func (p *LiffServiceRevokeTokenArgs) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    switch fieldId {
+    case 1:
+      if fieldTypeId == thrift.STRUCT {
+        if err := p.ReadField1(iprot); err != nil {
+          return err
+        }
+      } else {
+        if err := iprot.Skip(fieldTypeId); err != nil {
+          return err
+        }
+      }
+    default:
+      if err := iprot.Skip(fieldTypeId); err != nil {
+        return err
+      }
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceRevokeTokenArgs)  ReadField1(iprot thrift.TProtocol) error {
+  p.Request = &RevokeTokenRequest{}
+  if err := p.Request.Read(iprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", p.Request), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceRevokeTokenArgs) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("revokeToken_args"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+    if err := p.writeField1(oprot); err != nil { return err }
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffServiceRevokeTokenArgs) writeField1(oprot thrift.TProtocol) (err error) {
+  if err := oprot.WriteFieldBegin("request", thrift.STRUCT, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:request: ", p), err) }
+  if err := p.Request.Write(oprot); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T error writing struct: ", p.Request), err)
+  }
+  if err := oprot.WriteFieldEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:request: ", p), err) }
+  return err
+}
+
+func (p *LiffServiceRevokeTokenArgs) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffServiceRevokeTokenArgs(%+v)", *p)
+}
+
+type LiffServiceRevokeTokenResult struct {
+}
+
+func NewLiffServiceRevokeTokenResult() *LiffServiceRevokeTokenResult {
+  return &LiffServiceRevokeTokenResult{}
+}
+
+func (p *LiffServiceRevokeTokenResult) Read(iprot thrift.TProtocol) error {
+  if _, err := iprot.ReadStructBegin(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
+  }
+
+
+  for {
+    _, fieldTypeId, fieldId, err := iprot.ReadFieldBegin()
+    if err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T field %d read error: ", p, fieldId), err)
+    }
+    if fieldTypeId == thrift.STOP { break; }
+    if err := iprot.Skip(fieldTypeId); err != nil {
+      return err
+    }
+    if err := iprot.ReadFieldEnd(); err != nil {
+      return err
+    }
+  }
+  if err := iprot.ReadStructEnd(); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T read struct end error: ", p), err)
+  }
+  return nil
+}
+
+func (p *LiffServiceRevokeTokenResult) Write(oprot thrift.TProtocol) error {
+  if err := oprot.WriteStructBegin("revokeToken_result"); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write struct begin error: ", p), err) }
+  if p != nil {
+  }
+  if err := oprot.WriteFieldStop(); err != nil {
+    return thrift.PrependError("write field stop error: ", err) }
+  if err := oprot.WriteStructEnd(); err != nil {
+    return thrift.PrependError("write struct stop error: ", err) }
+  return nil
+}
+
+func (p *LiffServiceRevokeTokenResult) String() string {
+  if p == nil {
+    return "<nil>"
+  }
+  return fmt.Sprintf("LiffServiceRevokeTokenResult(%+v)", *p)
+}
+
+
 type TalkService interface {
   // Parameters:
   //  - ReqSeq
@@ -32073,36 +34936,36 @@ func (p *TalkServiceClient) Client_() thrift.TClient {
 //  - AttributesToUpdate
 //  - Settings
 func (p *TalkServiceClient) UpdateSettingsAttributes2(ctx context.Context, reqSeq int32, attributesToUpdate []SettingAttribute, settings *Settings) (r []SettingAttribute, err error) {
-  var _args64 TalkServiceUpdateSettingsAttributes2Args
-  _args64.ReqSeq = reqSeq
-  _args64.AttributesToUpdate = attributesToUpdate
-  _args64.Settings = settings
-  var _result65 TalkServiceUpdateSettingsAttributes2Result
-  if err = p.Client_().Call(ctx, "updateSettingsAttributes2", &_args64, &_result65); err != nil {
+  var _args85 TalkServiceUpdateSettingsAttributes2Args
+  _args85.ReqSeq = reqSeq
+  _args85.AttributesToUpdate = attributesToUpdate
+  _args85.Settings = settings
+  var _result86 TalkServiceUpdateSettingsAttributes2Result
+  if err = p.Client_().Call(ctx, "updateSettingsAttributes2", &_args85, &_result86); err != nil {
     return
   }
   switch {
-  case _result65.E!= nil:
-    return r, _result65.E
+  case _result86.E!= nil:
+    return r, _result86.E
   }
 
-  return _result65.GetSuccess(), nil
+  return _result86.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ReqSeq
 //  - Request
 func (p *TalkServiceClient) UpdateProfileAttributes(ctx context.Context, reqSeq int32, request *UpdateProfileAttributesRequest) (err error) {
-  var _args66 TalkServiceUpdateProfileAttributesArgs
-  _args66.ReqSeq = reqSeq
-  _args66.Request = request
-  var _result67 TalkServiceUpdateProfileAttributesResult
-  if err = p.Client_().Call(ctx, "updateProfileAttributes", &_args66, &_result67); err != nil {
+  var _args87 TalkServiceUpdateProfileAttributesArgs
+  _args87.ReqSeq = reqSeq
+  _args87.Request = request
+  var _result88 TalkServiceUpdateProfileAttributesResult
+  if err = p.Client_().Call(ctx, "updateProfileAttributes", &_args87, &_result88); err != nil {
     return
   }
   switch {
-  case _result67.E!= nil:
-    return _result67.E
+  case _result88.E!= nil:
+    return _result88.E
   }
 
   return nil
@@ -32114,18 +34977,18 @@ func (p *TalkServiceClient) UpdateProfileAttributes(ctx context.Context, reqSeq 
 //  - Flag
 //  - Value
 func (p *TalkServiceClient) UpdateContactSetting(ctx context.Context, reqSeq int32, mid string, flag ContactSettingAttribute, value string) (err error) {
-  var _args68 TalkServiceUpdateContactSettingArgs
-  _args68.ReqSeq = reqSeq
-  _args68.Mid = mid
-  _args68.Flag = flag
-  _args68.Value = value
-  var _result69 TalkServiceUpdateContactSettingResult
-  if err = p.Client_().Call(ctx, "updateContactSetting", &_args68, &_result69); err != nil {
+  var _args89 TalkServiceUpdateContactSettingArgs
+  _args89.ReqSeq = reqSeq
+  _args89.Mid = mid
+  _args89.Flag = flag
+  _args89.Value = value
+  var _result90 TalkServiceUpdateContactSettingResult
+  if err = p.Client_().Call(ctx, "updateContactSetting", &_args89, &_result90); err != nil {
     return
   }
   switch {
-  case _result69.E!= nil:
-    return _result69.E
+  case _result90.E!= nil:
+    return _result90.E
   }
 
   return nil
@@ -32134,128 +34997,128 @@ func (p *TalkServiceClient) UpdateContactSetting(ctx context.Context, reqSeq int
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetRecentFriendRequests(ctx context.Context, syncReason SyncReason) (r *FriendRequestsInfo, err error) {
-  var _args70 TalkServiceGetRecentFriendRequestsArgs
-  _args70.SyncReason = syncReason
-  var _result71 TalkServiceGetRecentFriendRequestsResult
-  if err = p.Client_().Call(ctx, "getRecentFriendRequests", &_args70, &_result71); err != nil {
+  var _args91 TalkServiceGetRecentFriendRequestsArgs
+  _args91.SyncReason = syncReason
+  var _result92 TalkServiceGetRecentFriendRequestsResult
+  if err = p.Client_().Call(ctx, "getRecentFriendRequests", &_args91, &_result92); err != nil {
     return
   }
   switch {
-  case _result71.E!= nil:
-    return r, _result71.E
+  case _result92.E!= nil:
+    return r, _result92.E
   }
 
-  return _result71.GetSuccess(), nil
+  return _result92.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) GetCountryWithRequestIp(ctx context.Context) (r string, err error) {
-  var _args72 TalkServiceGetCountryWithRequestIpArgs
-  var _result73 TalkServiceGetCountryWithRequestIpResult
-  if err = p.Client_().Call(ctx, "getCountryWithRequestIp", &_args72, &_result73); err != nil {
+  var _args93 TalkServiceGetCountryWithRequestIpArgs
+  var _result94 TalkServiceGetCountryWithRequestIpResult
+  if err = p.Client_().Call(ctx, "getCountryWithRequestIp", &_args93, &_result94); err != nil {
     return
   }
   switch {
-  case _result73.E!= nil:
-    return r, _result73.E
+  case _result94.E!= nil:
+    return r, _result94.E
   }
 
-  return _result73.GetSuccess(), nil
+  return _result94.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ID
 func (p *TalkServiceClient) GetContact(ctx context.Context, id string) (r *Contact, err error) {
-  var _args74 TalkServiceGetContactArgs
-  _args74.ID = id
-  var _result75 TalkServiceGetContactResult
-  if err = p.Client_().Call(ctx, "getContact", &_args74, &_result75); err != nil {
+  var _args95 TalkServiceGetContactArgs
+  _args95.ID = id
+  var _result96 TalkServiceGetContactResult
+  if err = p.Client_().Call(ctx, "getContact", &_args95, &_result96); err != nil {
     return
   }
   switch {
-  case _result75.E!= nil:
-    return r, _result75.E
+  case _result96.E!= nil:
+    return r, _result96.E
   }
 
-  return _result75.GetSuccess(), nil
+  return _result96.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ChatMid
 func (p *TalkServiceClient) GetLastE2EEPublicKeys(ctx context.Context, chatMid string) (r map[string]*E2EEPublicKey, err error) {
-  var _args76 TalkServiceGetLastE2EEPublicKeysArgs
-  _args76.ChatMid = chatMid
-  var _result77 TalkServiceGetLastE2EEPublicKeysResult
-  if err = p.Client_().Call(ctx, "getLastE2EEPublicKeys", &_args76, &_result77); err != nil {
+  var _args97 TalkServiceGetLastE2EEPublicKeysArgs
+  _args97.ChatMid = chatMid
+  var _result98 TalkServiceGetLastE2EEPublicKeysResult
+  if err = p.Client_().Call(ctx, "getLastE2EEPublicKeys", &_args97, &_result98); err != nil {
     return
   }
   switch {
-  case _result77.E!= nil:
-    return r, _result77.E
+  case _result98.E!= nil:
+    return r, _result98.E
   }
 
-  return _result77.GetSuccess(), nil
+  return _result98.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) GetRingtone(ctx context.Context) (r *Ringtone, err error) {
-  var _args78 TalkServiceGetRingtoneArgs
-  var _result79 TalkServiceGetRingtoneResult
-  if err = p.Client_().Call(ctx, "getRingtone", &_args78, &_result79); err != nil {
+  var _args99 TalkServiceGetRingtoneArgs
+  var _result100 TalkServiceGetRingtoneResult
+  if err = p.Client_().Call(ctx, "getRingtone", &_args99, &_result100); err != nil {
     return
   }
   switch {
-  case _result79.E!= nil:
-    return r, _result79.E
+  case _result100.E!= nil:
+    return r, _result100.E
   }
 
-  return _result79.GetSuccess(), nil
+  return _result100.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Mid
 func (p *TalkServiceClient) NegotiateE2EEPublicKey(ctx context.Context, mid string) (r *E2EENegotiationResult_, err error) {
-  var _args80 TalkServiceNegotiateE2EEPublicKeyArgs
-  _args80.Mid = mid
-  var _result81 TalkServiceNegotiateE2EEPublicKeyResult
-  if err = p.Client_().Call(ctx, "negotiateE2EEPublicKey", &_args80, &_result81); err != nil {
+  var _args101 TalkServiceNegotiateE2EEPublicKeyArgs
+  _args101.Mid = mid
+  var _result102 TalkServiceNegotiateE2EEPublicKeyResult
+  if err = p.Client_().Call(ctx, "negotiateE2EEPublicKey", &_args101, &_result102); err != nil {
     return
   }
   switch {
-  case _result81.E!= nil:
-    return r, _result81.E
+  case _result102.E!= nil:
+    return r, _result102.E
   }
 
-  return _result81.GetSuccess(), nil
+  return _result102.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SearchId
 func (p *TalkServiceClient) FindContactByUserid(ctx context.Context, searchId string) (r *Contact, err error) {
-  var _args82 TalkServiceFindContactByUseridArgs
-  _args82.SearchId = searchId
-  var _result83 TalkServiceFindContactByUseridResult
-  if err = p.Client_().Call(ctx, "findContactByUserid", &_args82, &_result83); err != nil {
+  var _args103 TalkServiceFindContactByUseridArgs
+  _args103.SearchId = searchId
+  var _result104 TalkServiceFindContactByUseridResult
+  if err = p.Client_().Call(ctx, "findContactByUserid", &_args103, &_result104); err != nil {
     return
   }
   switch {
-  case _result83.E!= nil:
-    return r, _result83.E
+  case _result104.E!= nil:
+    return r, _result104.E
   }
 
-  return _result83.GetSuccess(), nil
+  return _result104.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Oid
 func (p *TalkServiceClient) ClearRingtone(ctx context.Context, oid string) (err error) {
-  var _args84 TalkServiceClearRingtoneArgs
-  _args84.Oid = oid
-  var _result85 TalkServiceClearRingtoneResult
-  if err = p.Client_().Call(ctx, "clearRingtone", &_args84, &_result85); err != nil {
+  var _args105 TalkServiceClearRingtoneArgs
+  _args105.Oid = oid
+  var _result106 TalkServiceClearRingtoneResult
+  if err = p.Client_().Call(ctx, "clearRingtone", &_args105, &_result106); err != nil {
     return
   }
   switch {
-  case _result85.E!= nil:
-    return _result85.E
+  case _result106.E!= nil:
+    return _result106.E
   }
 
   return nil
@@ -32267,18 +35130,18 @@ func (p *TalkServiceClient) ClearRingtone(ctx context.Context, oid string) (err 
 //  - Target
 //  - Enablement
 func (p *TalkServiceClient) SetNotificationsEnabled(ctx context.Context, reqSeq int32, type_a1 ContactType, target string, enablement bool) (err error) {
-  var _args86 TalkServiceSetNotificationsEnabledArgs
-  _args86.ReqSeq = reqSeq
-  _args86.Type = type_a1
-  _args86.Target = target
-  _args86.Enablement = enablement
-  var _result87 TalkServiceSetNotificationsEnabledResult
-  if err = p.Client_().Call(ctx, "setNotificationsEnabled", &_args86, &_result87); err != nil {
+  var _args107 TalkServiceSetNotificationsEnabledArgs
+  _args107.ReqSeq = reqSeq
+  _args107.Type = type_a1
+  _args107.Target = target
+  _args107.Enablement = enablement
+  var _result108 TalkServiceSetNotificationsEnabledResult
+  if err = p.Client_().Call(ctx, "setNotificationsEnabled", &_args107, &_result108); err != nil {
     return
   }
   switch {
-  case _result87.E!= nil:
-    return _result87.E
+  case _result108.E!= nil:
+    return _result108.E
   }
 
   return nil
@@ -32287,262 +35150,262 @@ func (p *TalkServiceClient) SetNotificationsEnabled(ctx context.Context, reqSeq 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) DeleteOtherFromChat(ctx context.Context, request *DeleteOtherFromChatRequest) (r *DeleteOtherFromChatResponse, err error) {
-  var _args88 TalkServiceDeleteOtherFromChatArgs
-  _args88.Request = request
-  var _result89 TalkServiceDeleteOtherFromChatResult
-  if err = p.Client_().Call(ctx, "deleteOtherFromChat", &_args88, &_result89); err != nil {
+  var _args109 TalkServiceDeleteOtherFromChatArgs
+  _args109.Request = request
+  var _result110 TalkServiceDeleteOtherFromChatResult
+  if err = p.Client_().Call(ctx, "deleteOtherFromChat", &_args109, &_result110); err != nil {
     return
   }
   switch {
-  case _result89.E!= nil:
-    return r, _result89.E
+  case _result110.E!= nil:
+    return r, _result110.E
   }
 
-  return _result89.GetSuccess(), nil
+  return _result110.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) InviteIntoChat(ctx context.Context, request *InviteIntoChatRequest) (r *InviteIntoChatResponse, err error) {
-  var _args90 TalkServiceInviteIntoChatArgs
-  _args90.Request = request
-  var _result91 TalkServiceInviteIntoChatResult
-  if err = p.Client_().Call(ctx, "inviteIntoChat", &_args90, &_result91); err != nil {
+  var _args111 TalkServiceInviteIntoChatArgs
+  _args111.Request = request
+  var _result112 TalkServiceInviteIntoChatResult
+  if err = p.Client_().Call(ctx, "inviteIntoChat", &_args111, &_result112); err != nil {
     return
   }
   switch {
-  case _result91.E!= nil:
-    return r, _result91.E
+  case _result112.E!= nil:
+    return r, _result112.E
   }
 
-  return _result91.GetSuccess(), nil
+  return _result112.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) AcceptChatInvitationByTicket(ctx context.Context, request *AcceptChatInvitationByTicketRequest) (r *AcceptChatInvitationByTicketResponse, err error) {
-  var _args92 TalkServiceAcceptChatInvitationByTicketArgs
-  _args92.Request = request
-  var _result93 TalkServiceAcceptChatInvitationByTicketResult
-  if err = p.Client_().Call(ctx, "acceptChatInvitationByTicket", &_args92, &_result93); err != nil {
+  var _args113 TalkServiceAcceptChatInvitationByTicketArgs
+  _args113.Request = request
+  var _result114 TalkServiceAcceptChatInvitationByTicketResult
+  if err = p.Client_().Call(ctx, "acceptChatInvitationByTicket", &_args113, &_result114); err != nil {
     return
   }
   switch {
-  case _result93.E!= nil:
-    return r, _result93.E
+  case _result114.E!= nil:
+    return r, _result114.E
   }
 
-  return _result93.GetSuccess(), nil
+  return _result114.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) DeleteSelfFromChat(ctx context.Context, request *DeleteSelfFromChatRequest) (r *DeleteSelfFromChatResponse, err error) {
-  var _args94 TalkServiceDeleteSelfFromChatArgs
-  _args94.Request = request
-  var _result95 TalkServiceDeleteSelfFromChatResult
-  if err = p.Client_().Call(ctx, "deleteSelfFromChat", &_args94, &_result95); err != nil {
+  var _args115 TalkServiceDeleteSelfFromChatArgs
+  _args115.Request = request
+  var _result116 TalkServiceDeleteSelfFromChatResult
+  if err = p.Client_().Call(ctx, "deleteSelfFromChat", &_args115, &_result116); err != nil {
     return
   }
   switch {
-  case _result95.E!= nil:
-    return r, _result95.E
+  case _result116.E!= nil:
+    return r, _result116.E
   }
 
-  return _result95.GetSuccess(), nil
+  return _result116.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) FindChatByTicket(ctx context.Context, request *FindChatByTicketRequest) (r *FindChatByTicketResponse, err error) {
-  var _args96 TalkServiceFindChatByTicketArgs
-  _args96.Request = request
-  var _result97 TalkServiceFindChatByTicketResult
-  if err = p.Client_().Call(ctx, "findChatByTicket", &_args96, &_result97); err != nil {
+  var _args117 TalkServiceFindChatByTicketArgs
+  _args117.Request = request
+  var _result118 TalkServiceFindChatByTicketResult
+  if err = p.Client_().Call(ctx, "findChatByTicket", &_args117, &_result118); err != nil {
     return
   }
   switch {
-  case _result97.E!= nil:
-    return r, _result97.E
+  case _result118.E!= nil:
+    return r, _result118.E
   }
 
-  return _result97.GetSuccess(), nil
+  return _result118.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) CancelChatInvitation(ctx context.Context, request *CancelChatInvitationRequest) (r *CancelChatInvitationResponse, err error) {
-  var _args98 TalkServiceCancelChatInvitationArgs
-  _args98.Request = request
-  var _result99 TalkServiceCancelChatInvitationResult
-  if err = p.Client_().Call(ctx, "cancelChatInvitation", &_args98, &_result99); err != nil {
+  var _args119 TalkServiceCancelChatInvitationArgs
+  _args119.Request = request
+  var _result120 TalkServiceCancelChatInvitationResult
+  if err = p.Client_().Call(ctx, "cancelChatInvitation", &_args119, &_result120); err != nil {
     return
   }
   switch {
-  case _result99.E!= nil:
-    return r, _result99.E
+  case _result120.E!= nil:
+    return r, _result120.E
   }
 
-  return _result99.GetSuccess(), nil
+  return _result120.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) AcceptChatInvitation(ctx context.Context, request *AcceptChatInvitationRequest) (r *AcceptChatInvitationResponse, err error) {
-  var _args100 TalkServiceAcceptChatInvitationArgs
-  _args100.Request = request
-  var _result101 TalkServiceAcceptChatInvitationResult
-  if err = p.Client_().Call(ctx, "acceptChatInvitation", &_args100, &_result101); err != nil {
+  var _args121 TalkServiceAcceptChatInvitationArgs
+  _args121.Request = request
+  var _result122 TalkServiceAcceptChatInvitationResult
+  if err = p.Client_().Call(ctx, "acceptChatInvitation", &_args121, &_result122); err != nil {
     return
   }
   switch {
-  case _result101.E!= nil:
-    return r, _result101.E
+  case _result122.E!= nil:
+    return r, _result122.E
   }
 
-  return _result101.GetSuccess(), nil
+  return _result122.GetSuccess(), nil
 }
 
 // Parameters:
 //  - MessageBoxListRequest
 //  - SyncReason
 func (p *TalkServiceClient) GetMessageBoxes(ctx context.Context, messageBoxListRequest *MessageBoxListRequest, syncReason SyncReason) (r *MessageBoxList, err error) {
-  var _args102 TalkServiceGetMessageBoxesArgs
-  _args102.MessageBoxListRequest = messageBoxListRequest
-  _args102.SyncReason = syncReason
-  var _result103 TalkServiceGetMessageBoxesResult
-  if err = p.Client_().Call(ctx, "getMessageBoxes", &_args102, &_result103); err != nil {
+  var _args123 TalkServiceGetMessageBoxesArgs
+  _args123.MessageBoxListRequest = messageBoxListRequest
+  _args123.SyncReason = syncReason
+  var _result124 TalkServiceGetMessageBoxesResult
+  if err = p.Client_().Call(ctx, "getMessageBoxes", &_args123, &_result124); err != nil {
     return
   }
   switch {
-  case _result103.E!= nil:
-    return r, _result103.E
+  case _result124.E!= nil:
+    return r, _result124.E
   }
 
-  return _result103.GetSuccess(), nil
+  return _result124.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) UpdateChat(ctx context.Context, request *UpdateChatRequest) (r *UpdateChatResponse, err error) {
-  var _args104 TalkServiceUpdateChatArgs
-  _args104.Request = request
-  var _result105 TalkServiceUpdateChatResult
-  if err = p.Client_().Call(ctx, "updateChat", &_args104, &_result105); err != nil {
+  var _args125 TalkServiceUpdateChatArgs
+  _args125.Request = request
+  var _result126 TalkServiceUpdateChatResult
+  if err = p.Client_().Call(ctx, "updateChat", &_args125, &_result126); err != nil {
     return
   }
   switch {
-  case _result105.E!= nil:
-    return r, _result105.E
+  case _result126.E!= nil:
+    return r, _result126.E
   }
 
-  return _result105.GetSuccess(), nil
+  return _result126.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) ReissueChatTicket(ctx context.Context, request *ReissueChatTicketRequest) (r *ReissueChatTicketResponse, err error) {
-  var _args106 TalkServiceReissueChatTicketArgs
-  _args106.Request = request
-  var _result107 TalkServiceReissueChatTicketResult
-  if err = p.Client_().Call(ctx, "reissueChatTicket", &_args106, &_result107); err != nil {
+  var _args127 TalkServiceReissueChatTicketArgs
+  _args127.Request = request
+  var _result128 TalkServiceReissueChatTicketResult
+  if err = p.Client_().Call(ctx, "reissueChatTicket", &_args127, &_result128); err != nil {
     return
   }
   switch {
-  case _result107.E!= nil:
-    return r, _result107.E
+  case _result128.E!= nil:
+    return r, _result128.E
   }
 
-  return _result107.GetSuccess(), nil
+  return _result128.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 //  - SyncReason
 func (p *TalkServiceClient) GetAllChatMids(ctx context.Context, request *GetAllChatMidsRequest, syncReason SyncReason) (r *GetAllChatMidsResponse, err error) {
-  var _args108 TalkServiceGetAllChatMidsArgs
-  _args108.Request = request
-  _args108.SyncReason = syncReason
-  var _result109 TalkServiceGetAllChatMidsResult
-  if err = p.Client_().Call(ctx, "getAllChatMids", &_args108, &_result109); err != nil {
+  var _args129 TalkServiceGetAllChatMidsArgs
+  _args129.Request = request
+  _args129.SyncReason = syncReason
+  var _result130 TalkServiceGetAllChatMidsResult
+  if err = p.Client_().Call(ctx, "getAllChatMids", &_args129, &_result130); err != nil {
     return
   }
   switch {
-  case _result109.E!= nil:
-    return r, _result109.E
+  case _result130.E!= nil:
+    return r, _result130.E
   }
 
-  return _result109.GetSuccess(), nil
+  return _result130.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) RejectChatInvitation(ctx context.Context, request *RejectChatInvitationRequest) (r *RejectChatInvitationResponse, err error) {
-  var _args110 TalkServiceRejectChatInvitationArgs
-  _args110.Request = request
-  var _result111 TalkServiceRejectChatInvitationResult
-  if err = p.Client_().Call(ctx, "rejectChatInvitation", &_args110, &_result111); err != nil {
+  var _args131 TalkServiceRejectChatInvitationArgs
+  _args131.Request = request
+  var _result132 TalkServiceRejectChatInvitationResult
+  if err = p.Client_().Call(ctx, "rejectChatInvitation", &_args131, &_result132); err != nil {
     return
   }
   switch {
-  case _result111.E!= nil:
-    return r, _result111.E
+  case _result132.E!= nil:
+    return r, _result132.E
   }
 
-  return _result111.GetSuccess(), nil
+  return _result132.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) CreateChat(ctx context.Context, request *CreateChatRequest) (r *CreateChatResponse, err error) {
-  var _args112 TalkServiceCreateChatArgs
-  _args112.Request = request
-  var _result113 TalkServiceCreateChatResult
-  if err = p.Client_().Call(ctx, "createChat", &_args112, &_result113); err != nil {
+  var _args133 TalkServiceCreateChatArgs
+  _args133.Request = request
+  var _result134 TalkServiceCreateChatResult
+  if err = p.Client_().Call(ctx, "createChat", &_args133, &_result134); err != nil {
     return
   }
   switch {
-  case _result113.E!= nil:
-    return r, _result113.E
+  case _result134.E!= nil:
+    return r, _result134.E
   }
 
-  return _result113.GetSuccess(), nil
+  return _result134.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ChatRoomMids
 //  - SyncReason
 func (p *TalkServiceClient) GetChatRoomAnnouncementsBulk(ctx context.Context, chatRoomMids []string, syncReason SyncReason) (r map[string][]*ChatRoomAnnouncement, err error) {
-  var _args114 TalkServiceGetChatRoomAnnouncementsBulkArgs
-  _args114.ChatRoomMids = chatRoomMids
-  _args114.SyncReason = syncReason
-  var _result115 TalkServiceGetChatRoomAnnouncementsBulkResult
-  if err = p.Client_().Call(ctx, "getChatRoomAnnouncementsBulk", &_args114, &_result115); err != nil {
+  var _args135 TalkServiceGetChatRoomAnnouncementsBulkArgs
+  _args135.ChatRoomMids = chatRoomMids
+  _args135.SyncReason = syncReason
+  var _result136 TalkServiceGetChatRoomAnnouncementsBulkResult
+  if err = p.Client_().Call(ctx, "getChatRoomAnnouncementsBulk", &_args135, &_result136); err != nil {
     return
   }
   switch {
-  case _result115.E!= nil:
-    return r, _result115.E
+  case _result136.E!= nil:
+    return r, _result136.E
   }
 
-  return _result115.GetSuccess(), nil
+  return _result136.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) GetChats(ctx context.Context, request *GetChatsRequest) (r *GetChatsResponse, err error) {
-  var _args116 TalkServiceGetChatsArgs
-  _args116.Request = request
-  var _result117 TalkServiceGetChatsResult
-  if err = p.Client_().Call(ctx, "getChats", &_args116, &_result117); err != nil {
+  var _args137 TalkServiceGetChatsArgs
+  _args137.Request = request
+  var _result138 TalkServiceGetChatsResult
+  if err = p.Client_().Call(ctx, "getChats", &_args137, &_result138); err != nil {
     return
   }
   switch {
-  case _result117.E!= nil:
-    return r, _result117.E
+  case _result138.E!= nil:
+    return r, _result138.E
   }
 
-  return _result117.GetSuccess(), nil
+  return _result138.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32555,25 +35418,25 @@ func (p *TalkServiceClient) GetChats(ctx context.Context, request *GetChatsReque
 //  - Locale
 //  - SimInfo
 func (p *TalkServiceClient) StartUpdateVerification(ctx context.Context, region string, carrier Carrier, phone string, udidHash string, deviceInfo *DeviceInfo, networkCode string, locale string, simInfo *SIMInfo) (r *VerificationSessionData, err error) {
-  var _args118 TalkServiceStartUpdateVerificationArgs
-  _args118.Region = region
-  _args118.Carrier = carrier
-  _args118.Phone = phone
-  _args118.UdidHash = udidHash
-  _args118.DeviceInfo = deviceInfo
-  _args118.NetworkCode = networkCode
-  _args118.Locale = locale
-  _args118.SimInfo = simInfo
-  var _result119 TalkServiceStartUpdateVerificationResult
-  if err = p.Client_().Call(ctx, "startUpdateVerification", &_args118, &_result119); err != nil {
+  var _args139 TalkServiceStartUpdateVerificationArgs
+  _args139.Region = region
+  _args139.Carrier = carrier
+  _args139.Phone = phone
+  _args139.UdidHash = udidHash
+  _args139.DeviceInfo = deviceInfo
+  _args139.NetworkCode = networkCode
+  _args139.Locale = locale
+  _args139.SimInfo = simInfo
+  var _result140 TalkServiceStartUpdateVerificationResult
+  if err = p.Client_().Call(ctx, "startUpdateVerification", &_args139, &_result140); err != nil {
     return
   }
   switch {
-  case _result119.E!= nil:
-    return r, _result119.E
+  case _result140.E!= nil:
+    return r, _result140.E
   }
 
-  return _result119.GetSuccess(), nil
+  return _result140.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32588,60 +35451,60 @@ func (p *TalkServiceClient) StartUpdateVerification(ctx context.Context, region 
 //  - SimInfo
 //  - OldUdidHash
 func (p *TalkServiceClient) StartVerification(ctx context.Context, region string, carrier Carrier, phone string, udidHash string, deviceInfo *DeviceInfo, networkCode string, mid string, locale string, simInfo *SIMInfo, oldUdidHash string) (r *VerificationSessionData, err error) {
-  var _args120 TalkServiceStartVerificationArgs
-  _args120.Region = region
-  _args120.Carrier = carrier
-  _args120.Phone = phone
-  _args120.UdidHash = udidHash
-  _args120.DeviceInfo = deviceInfo
-  _args120.NetworkCode = networkCode
-  _args120.Mid = mid
-  _args120.Locale = locale
-  _args120.SimInfo = simInfo
-  _args120.OldUdidHash = oldUdidHash
-  var _result121 TalkServiceStartVerificationResult
-  if err = p.Client_().Call(ctx, "startVerification", &_args120, &_result121); err != nil {
+  var _args141 TalkServiceStartVerificationArgs
+  _args141.Region = region
+  _args141.Carrier = carrier
+  _args141.Phone = phone
+  _args141.UdidHash = udidHash
+  _args141.DeviceInfo = deviceInfo
+  _args141.NetworkCode = networkCode
+  _args141.Mid = mid
+  _args141.Locale = locale
+  _args141.SimInfo = simInfo
+  _args141.OldUdidHash = oldUdidHash
+  var _result142 TalkServiceStartVerificationResult
+  if err = p.Client_().Call(ctx, "startVerification", &_args141, &_result142); err != nil {
     return
   }
   switch {
-  case _result121.E!= nil:
-    return r, _result121.E
+  case _result142.E!= nil:
+    return r, _result142.E
   }
 
-  return _result121.GetSuccess(), nil
+  return _result142.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SessionId
 //  - Method
 func (p *TalkServiceClient) ChangeVerificationMethod(ctx context.Context, sessionId string, method Y30) (r *VerificationSessionData, err error) {
-  var _args122 TalkServiceChangeVerificationMethodArgs
-  _args122.SessionId = sessionId
-  _args122.Method = method
-  var _result123 TalkServiceChangeVerificationMethodResult
-  if err = p.Client_().Call(ctx, "changeVerificationMethod", &_args122, &_result123); err != nil {
+  var _args143 TalkServiceChangeVerificationMethodArgs
+  _args143.SessionId = sessionId
+  _args143.Method = method
+  var _result144 TalkServiceChangeVerificationMethodResult
+  if err = p.Client_().Call(ctx, "changeVerificationMethod", &_args143, &_result144); err != nil {
     return
   }
   switch {
-  case _result123.E!= nil:
-    return r, _result123.E
+  case _result144.E!= nil:
+    return r, _result144.E
   }
 
-  return _result123.GetSuccess(), nil
+  return _result144.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) GetEncryptedIdentityV3(ctx context.Context) (r *GetEncryptedIdentityV3Response, err error) {
-  var _args124 TalkServiceGetEncryptedIdentityV3Args
-  var _result125 TalkServiceGetEncryptedIdentityV3Result
-  if err = p.Client_().Call(ctx, "getEncryptedIdentityV3", &_args124, &_result125); err != nil {
+  var _args145 TalkServiceGetEncryptedIdentityV3Args
+  var _result146 TalkServiceGetEncryptedIdentityV3Result
+  if err = p.Client_().Call(ctx, "getEncryptedIdentityV3", &_args145, &_result146); err != nil {
     return
   }
   switch {
-  case _result125.E!= nil:
-    return r, _result125.E
+  case _result146.E!= nil:
+    return r, _result146.E
   }
 
-  return _result125.GetSuccess(), nil
+  return _result146.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32649,20 +35512,20 @@ func (p *TalkServiceClient) GetEncryptedIdentityV3(ctx context.Context) (r *GetE
 //  - ChatMid
 //  - GroupKeyId
 func (p *TalkServiceClient) GetE2EEGroupSharedKey(ctx context.Context, keyVersion int32, chatMid string, groupKeyId int32) (r *E2EEGroupSharedKey, err error) {
-  var _args126 TalkServiceGetE2EEGroupSharedKeyArgs
-  _args126.KeyVersion = keyVersion
-  _args126.ChatMid = chatMid
-  _args126.GroupKeyId = groupKeyId
-  var _result127 TalkServiceGetE2EEGroupSharedKeyResult
-  if err = p.Client_().Call(ctx, "getE2EEGroupSharedKey", &_args126, &_result127); err != nil {
+  var _args147 TalkServiceGetE2EEGroupSharedKeyArgs
+  _args147.KeyVersion = keyVersion
+  _args147.ChatMid = chatMid
+  _args147.GroupKeyId = groupKeyId
+  var _result148 TalkServiceGetE2EEGroupSharedKeyResult
+  if err = p.Client_().Call(ctx, "getE2EEGroupSharedKey", &_args147, &_result148); err != nil {
     return
   }
   switch {
-  case _result127.E!= nil:
-    return r, _result127.E
+  case _result148.E!= nil:
+    return r, _result148.E
   }
 
-  return _result127.GetSuccess(), nil
+  return _result148.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32672,60 +35535,60 @@ func (p *TalkServiceClient) GetE2EEGroupSharedKey(ctx context.Context, keyVersio
 //  - KeyIds
 //  - EncryptedSharedKeys
 func (p *TalkServiceClient) RegisterE2EEGroupKey(ctx context.Context, keyVersion int32, chatMid string, members []string, keyIds []int32, encryptedSharedKeys [][]byte) (r *E2EEGroupSharedKey, err error) {
-  var _args128 TalkServiceRegisterE2EEGroupKeyArgs
-  _args128.KeyVersion = keyVersion
-  _args128.ChatMid = chatMid
-  _args128.Members = members
-  _args128.KeyIds = keyIds
-  _args128.EncryptedSharedKeys = encryptedSharedKeys
-  var _result129 TalkServiceRegisterE2EEGroupKeyResult
-  if err = p.Client_().Call(ctx, "registerE2EEGroupKey", &_args128, &_result129); err != nil {
+  var _args149 TalkServiceRegisterE2EEGroupKeyArgs
+  _args149.KeyVersion = keyVersion
+  _args149.ChatMid = chatMid
+  _args149.Members = members
+  _args149.KeyIds = keyIds
+  _args149.EncryptedSharedKeys = encryptedSharedKeys
+  var _result150 TalkServiceRegisterE2EEGroupKeyResult
+  if err = p.Client_().Call(ctx, "registerE2EEGroupKey", &_args149, &_result150); err != nil {
     return
   }
   switch {
-  case _result129.E!= nil:
-    return r, _result129.E
+  case _result150.E!= nil:
+    return r, _result150.E
   }
 
-  return _result129.GetSuccess(), nil
+  return _result150.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ExpirationTime
 //  - MaxUseCount
 func (p *TalkServiceClient) GenerateUserTicket(ctx context.Context, expirationTime int64, maxUseCount int32) (r *Ticket, err error) {
-  var _args130 TalkServiceGenerateUserTicketArgs
-  _args130.ExpirationTime = expirationTime
-  _args130.MaxUseCount = maxUseCount
-  var _result131 TalkServiceGenerateUserTicketResult
-  if err = p.Client_().Call(ctx, "generateUserTicket", &_args130, &_result131); err != nil {
+  var _args151 TalkServiceGenerateUserTicketArgs
+  _args151.ExpirationTime = expirationTime
+  _args151.MaxUseCount = maxUseCount
+  var _result152 TalkServiceGenerateUserTicketResult
+  if err = p.Client_().Call(ctx, "generateUserTicket", &_args151, &_result152); err != nil {
     return
   }
   switch {
-  case _result131.E!= nil:
-    return r, _result131.E
+  case _result152.E!= nil:
+    return r, _result152.E
   }
 
-  return _result131.GetSuccess(), nil
+  return _result152.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ReqSeq
 //  - PublicKey
 func (p *TalkServiceClient) RegisterE2EEPublicKey(ctx context.Context, reqSeq int32, publicKey *E2EEPublicKey) (r *E2EEPublicKey, err error) {
-  var _args132 TalkServiceRegisterE2EEPublicKeyArgs
-  _args132.ReqSeq = reqSeq
-  _args132.PublicKey = publicKey
-  var _result133 TalkServiceRegisterE2EEPublicKeyResult
-  if err = p.Client_().Call(ctx, "registerE2EEPublicKey", &_args132, &_result133); err != nil {
+  var _args153 TalkServiceRegisterE2EEPublicKeyArgs
+  _args153.ReqSeq = reqSeq
+  _args153.PublicKey = publicKey
+  var _result154 TalkServiceRegisterE2EEPublicKeyResult
+  if err = p.Client_().Call(ctx, "registerE2EEPublicKey", &_args153, &_result154); err != nil {
     return
   }
   switch {
-  case _result133.E!= nil:
-    return r, _result133.E
+  case _result154.E!= nil:
+    return r, _result154.E
   }
 
-  return _result133.GetSuccess(), nil
+  return _result154.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32733,37 +35596,37 @@ func (p *TalkServiceClient) RegisterE2EEPublicKey(ctx context.Context, reqSeq in
 //  - KeyVersion
 //  - KeyId
 func (p *TalkServiceClient) GetE2EEPublicKey(ctx context.Context, mid string, keyVersion int32, keyId int32) (r *E2EEPublicKey, err error) {
-  var _args134 TalkServiceGetE2EEPublicKeyArgs
-  _args134.Mid = mid
-  _args134.KeyVersion = keyVersion
-  _args134.KeyId = keyId
-  var _result135 TalkServiceGetE2EEPublicKeyResult
-  if err = p.Client_().Call(ctx, "getE2EEPublicKey", &_args134, &_result135); err != nil {
+  var _args155 TalkServiceGetE2EEPublicKeyArgs
+  _args155.Mid = mid
+  _args155.KeyVersion = keyVersion
+  _args155.KeyId = keyId
+  var _result156 TalkServiceGetE2EEPublicKeyResult
+  if err = p.Client_().Call(ctx, "getE2EEPublicKey", &_args155, &_result156); err != nil {
     return
   }
   switch {
-  case _result135.E!= nil:
-    return r, _result135.E
+  case _result156.E!= nil:
+    return r, _result156.E
   }
 
-  return _result135.GetSuccess(), nil
+  return _result156.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Provider
 func (p *TalkServiceClient) GetRSAKeyInfo(ctx context.Context, provider IdentityProvider) (r *RSAKey, err error) {
-  var _args136 TalkServiceGetRSAKeyInfoArgs
-  _args136.Provider = provider
-  var _result137 TalkServiceGetRSAKeyInfoResult
-  if err = p.Client_().Call(ctx, "getRSAKeyInfo", &_args136, &_result137); err != nil {
+  var _args157 TalkServiceGetRSAKeyInfoArgs
+  _args157.Provider = provider
+  var _result158 TalkServiceGetRSAKeyInfoResult
+  if err = p.Client_().Call(ctx, "getRSAKeyInfo", &_args157, &_result158); err != nil {
     return
   }
   switch {
-  case _result137.E!= nil:
-    return r, _result137.E
+  case _result158.E!= nil:
+    return r, _result158.E
   }
 
-  return _result137.GetSuccess(), nil
+  return _result158.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32775,24 +35638,24 @@ func (p *TalkServiceClient) GetRSAKeyInfo(ctx context.Context, provider Identity
 //  - Mid
 //  - MigrationPincodeSessionId
 func (p *TalkServiceClient) RegisterWithSnsId(ctx context.Context, snsIdType C60759oi, snsAccessToken string, region string, udidHash string, deviceInfo *DeviceInfo, mid string, migrationPincodeSessionId string) (r *RegisterWithSnsIdResult_, err error) {
-  var _args138 TalkServiceRegisterWithSnsIdArgs
-  _args138.SnsIdType = snsIdType
-  _args138.SnsAccessToken = snsAccessToken
-  _args138.Region = region
-  _args138.UdidHash = udidHash
-  _args138.DeviceInfo = deviceInfo
-  _args138.Mid = mid
-  _args138.MigrationPincodeSessionId = migrationPincodeSessionId
-  var _result139 TalkServiceRegisterWithSnsIdResult
-  if err = p.Client_().Call(ctx, "registerWithSnsId", &_args138, &_result139); err != nil {
+  var _args159 TalkServiceRegisterWithSnsIdArgs
+  _args159.SnsIdType = snsIdType
+  _args159.SnsAccessToken = snsAccessToken
+  _args159.Region = region
+  _args159.UdidHash = udidHash
+  _args159.DeviceInfo = deviceInfo
+  _args159.Mid = mid
+  _args159.MigrationPincodeSessionId = migrationPincodeSessionId
+  var _result160 TalkServiceRegisterWithSnsIdResult
+  if err = p.Client_().Call(ctx, "registerWithSnsId", &_args159, &_result160); err != nil {
     return
   }
   switch {
-  case _result139.E!= nil:
-    return r, _result139.E
+  case _result160.E!= nil:
+    return r, _result160.E
   }
 
-  return _result139.GetSuccess(), nil
+  return _result160.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32802,41 +35665,41 @@ func (p *TalkServiceClient) RegisterWithSnsId(ctx context.Context, snsIdType C60
 //  - MigrationPincodeSessionId
 //  - OldUdidHash
 func (p *TalkServiceClient) FindSnsIdUserStatus(ctx context.Context, snsIdType C60759oi, snsAccessToken string, udidHash string, migrationPincodeSessionId string, oldUdidHash string) (r *SnsIdUserStatus, err error) {
-  var _args140 TalkServiceFindSnsIdUserStatusArgs
-  _args140.SnsIdType = snsIdType
-  _args140.SnsAccessToken = snsAccessToken
-  _args140.UdidHash = udidHash
-  _args140.MigrationPincodeSessionId = migrationPincodeSessionId
-  _args140.OldUdidHash = oldUdidHash
-  var _result141 TalkServiceFindSnsIdUserStatusResult
-  if err = p.Client_().Call(ctx, "findSnsIdUserStatus", &_args140, &_result141); err != nil {
+  var _args161 TalkServiceFindSnsIdUserStatusArgs
+  _args161.SnsIdType = snsIdType
+  _args161.SnsAccessToken = snsAccessToken
+  _args161.UdidHash = udidHash
+  _args161.MigrationPincodeSessionId = migrationPincodeSessionId
+  _args161.OldUdidHash = oldUdidHash
+  var _result162 TalkServiceFindSnsIdUserStatusResult
+  if err = p.Client_().Call(ctx, "findSnsIdUserStatus", &_args161, &_result162); err != nil {
     return
   }
   switch {
-  case _result141.E!= nil:
-    return r, _result141.E
+  case _result162.E!= nil:
+    return r, _result162.E
   }
 
-  return _result141.GetSuccess(), nil
+  return _result162.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ID
 //  - Type
 func (p *TalkServiceClient) GetContactRegistration(ctx context.Context, id string, type_a1 ContactType) (r *ContactRegistration, err error) {
-  var _args142 TalkServiceGetContactRegistrationArgs
-  _args142.ID = id
-  _args142.Type = type_a1
-  var _result143 TalkServiceGetContactRegistrationResult
-  if err = p.Client_().Call(ctx, "getContactRegistration", &_args142, &_result143); err != nil {
+  var _args163 TalkServiceGetContactRegistrationArgs
+  _args163.ID = id
+  _args163.Type = type_a1
+  var _result164 TalkServiceGetContactRegistrationResult
+  if err = p.Client_().Call(ctx, "getContactRegistration", &_args163, &_result164); err != nil {
     return
   }
   switch {
-  case _result143.E!= nil:
-    return r, _result143.E
+  case _result164.E!= nil:
+    return r, _result164.E
   }
 
-  return _result143.GetSuccess(), nil
+  return _result164.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32846,39 +35709,39 @@ func (p *TalkServiceClient) GetContactRegistration(ctx context.Context, id strin
 //  - MigrationPincodeSessionId
 //  - OldUdidHash
 func (p *TalkServiceClient) VerifyPhoneNumber(ctx context.Context, sessionId string, pinCode string, udidHash string, migrationPincodeSessionId string, oldUdidHash string) (r *PhoneVerificationResult_, err error) {
-  var _args144 TalkServiceVerifyPhoneNumberArgs
-  _args144.SessionId = sessionId
-  _args144.PinCode = pinCode
-  _args144.UdidHash = udidHash
-  _args144.MigrationPincodeSessionId = migrationPincodeSessionId
-  _args144.OldUdidHash = oldUdidHash
-  var _result145 TalkServiceVerifyPhoneNumberResult
-  if err = p.Client_().Call(ctx, "verifyPhoneNumber", &_args144, &_result145); err != nil {
+  var _args165 TalkServiceVerifyPhoneNumberArgs
+  _args165.SessionId = sessionId
+  _args165.PinCode = pinCode
+  _args165.UdidHash = udidHash
+  _args165.MigrationPincodeSessionId = migrationPincodeSessionId
+  _args165.OldUdidHash = oldUdidHash
+  var _result166 TalkServiceVerifyPhoneNumberResult
+  if err = p.Client_().Call(ctx, "verifyPhoneNumber", &_args165, &_result166); err != nil {
     return
   }
   switch {
-  case _result145.E!= nil:
-    return r, _result145.E
+  case _result166.E!= nil:
+    return r, _result166.E
   }
 
-  return _result145.GetSuccess(), nil
+  return _result166.GetSuccess(), nil
 }
 
 // Parameters:
 //  - FeatureType
 func (p *TalkServiceClient) AcquireEncryptedAccessToken(ctx context.Context, featureType FeatureType) (r string, err error) {
-  var _args146 TalkServiceAcquireEncryptedAccessTokenArgs
-  _args146.FeatureType = featureType
-  var _result147 TalkServiceAcquireEncryptedAccessTokenResult
-  if err = p.Client_().Call(ctx, "acquireEncryptedAccessToken", &_args146, &_result147); err != nil {
+  var _args167 TalkServiceAcquireEncryptedAccessTokenArgs
+  _args167.FeatureType = featureType
+  var _result168 TalkServiceAcquireEncryptedAccessTokenResult
+  if err = p.Client_().Call(ctx, "acquireEncryptedAccessToken", &_args167, &_result168); err != nil {
     return
   }
   switch {
-  case _result147.E!= nil:
-    return r, _result147.E
+  case _result168.E!= nil:
+    return r, _result168.E
   }
 
-  return _result147.GetSuccess(), nil
+  return _result168.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32890,41 +35753,41 @@ func (p *TalkServiceClient) AcquireEncryptedAccessToken(ctx context.Context, fea
 //  - DeviceInfo
 //  - MigrationPincodeSessionId
 func (p *TalkServiceClient) RegisterWithSnsIdAndIdentityCredential(ctx context.Context, snsIdType C60759oi, snsAccessToken string, identityCredential *IdentityCredential, region string, udidHash string, deviceInfo *DeviceInfo, migrationPincodeSessionId string) (r string, err error) {
-  var _args148 TalkServiceRegisterWithSnsIdAndIdentityCredentialArgs
-  _args148.SnsIdType = snsIdType
-  _args148.SnsAccessToken = snsAccessToken
-  _args148.IdentityCredential = identityCredential
-  _args148.Region = region
-  _args148.UdidHash = udidHash
-  _args148.DeviceInfo = deviceInfo
-  _args148.MigrationPincodeSessionId = migrationPincodeSessionId
-  var _result149 TalkServiceRegisterWithSnsIdAndIdentityCredentialResult
-  if err = p.Client_().Call(ctx, "registerWithSnsIdAndIdentityCredential", &_args148, &_result149); err != nil {
+  var _args169 TalkServiceRegisterWithSnsIdAndIdentityCredentialArgs
+  _args169.SnsIdType = snsIdType
+  _args169.SnsAccessToken = snsAccessToken
+  _args169.IdentityCredential = identityCredential
+  _args169.Region = region
+  _args169.UdidHash = udidHash
+  _args169.DeviceInfo = deviceInfo
+  _args169.MigrationPincodeSessionId = migrationPincodeSessionId
+  var _result170 TalkServiceRegisterWithSnsIdAndIdentityCredentialResult
+  if err = p.Client_().Call(ctx, "registerWithSnsIdAndIdentityCredential", &_args169, &_result170); err != nil {
     return
   }
   switch {
-  case _result149.E!= nil:
-    return r, _result149.E
+  case _result170.E!= nil:
+    return r, _result170.E
   }
 
-  return _result149.GetSuccess(), nil
+  return _result170.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Location
 func (p *TalkServiceClient) GetShakeEventV1(ctx context.Context, location *Geolocation) (r string, err error) {
-  var _args150 TalkServiceGetShakeEventV1Args
-  _args150.Location = location
-  var _result151 TalkServiceGetShakeEventV1Result
-  if err = p.Client_().Call(ctx, "getShakeEventV1", &_args150, &_result151); err != nil {
+  var _args171 TalkServiceGetShakeEventV1Args
+  _args171.Location = location
+  var _result172 TalkServiceGetShakeEventV1Result
+  if err = p.Client_().Call(ctx, "getShakeEventV1", &_args171, &_result172); err != nil {
     return
   }
   switch {
-  case _result151.E!= nil:
-    return r, _result151.E
+  case _result172.E!= nil:
+    return r, _result172.E
   }
 
-  return _result151.GetSuccess(), nil
+  return _result172.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32934,22 +35797,22 @@ func (p *TalkServiceClient) GetShakeEventV1(ctx context.Context, location *Geolo
 //  - Provider
 //  - MigrationPincodeSessionId
 func (p *TalkServiceClient) RegisterDeviceWithIdentityCredential(ctx context.Context, sessionId string, identifier string, verifier string, provider IdentityProvider, migrationPincodeSessionId string) (r string, err error) {
-  var _args152 TalkServiceRegisterDeviceWithIdentityCredentialArgs
-  _args152.SessionId = sessionId
-  _args152.Identifier = identifier
-  _args152.Verifier = verifier
-  _args152.Provider = provider
-  _args152.MigrationPincodeSessionId = migrationPincodeSessionId
-  var _result153 TalkServiceRegisterDeviceWithIdentityCredentialResult
-  if err = p.Client_().Call(ctx, "registerDeviceWithIdentityCredential", &_args152, &_result153); err != nil {
+  var _args173 TalkServiceRegisterDeviceWithIdentityCredentialArgs
+  _args173.SessionId = sessionId
+  _args173.Identifier = identifier
+  _args173.Verifier = verifier
+  _args173.Provider = provider
+  _args173.MigrationPincodeSessionId = migrationPincodeSessionId
+  var _result174 TalkServiceRegisterDeviceWithIdentityCredentialResult
+  if err = p.Client_().Call(ctx, "registerDeviceWithIdentityCredential", &_args173, &_result174); err != nil {
     return
   }
   switch {
-  case _result153.E!= nil:
-    return r, _result153.E
+  case _result174.E!= nil:
+    return r, _result174.E
   }
 
-  return _result153.GetSuccess(), nil
+  return _result174.GetSuccess(), nil
 }
 
 // Parameters:
@@ -32961,43 +35824,43 @@ func (p *TalkServiceClient) RegisterDeviceWithIdentityCredential(ctx context.Con
 //  - VelocityMetersPerSecond
 //  - BearingDegrees
 func (p *TalkServiceClient) UpdateAndGetNearby(ctx context.Context, latitude float64, longitude float64, accuracy *GeolocationAccuracy, networkStatus *ClientNetworkStatus, altitudeMeters float64, velocityMetersPerSecond float64, bearingDegrees float64) (r []*NearbyEntry, err error) {
-  var _args154 TalkServiceUpdateAndGetNearbyArgs
-  _args154.Latitude = latitude
-  _args154.Longitude = longitude
-  _args154.Accuracy = accuracy
-  _args154.NetworkStatus = networkStatus
-  _args154.AltitudeMeters = altitudeMeters
-  _args154.VelocityMetersPerSecond = velocityMetersPerSecond
-  _args154.BearingDegrees = bearingDegrees
-  var _result155 TalkServiceUpdateAndGetNearbyResult
-  if err = p.Client_().Call(ctx, "updateAndGetNearby", &_args154, &_result155); err != nil {
+  var _args175 TalkServiceUpdateAndGetNearbyArgs
+  _args175.Latitude = latitude
+  _args175.Longitude = longitude
+  _args175.Accuracy = accuracy
+  _args175.NetworkStatus = networkStatus
+  _args175.AltitudeMeters = altitudeMeters
+  _args175.VelocityMetersPerSecond = velocityMetersPerSecond
+  _args175.BearingDegrees = bearingDegrees
+  var _result176 TalkServiceUpdateAndGetNearbyResult
+  if err = p.Client_().Call(ctx, "updateAndGetNearby", &_args175, &_result176); err != nil {
     return
   }
   switch {
-  case _result155.E!= nil:
-    return r, _result155.E
+  case _result176.E!= nil:
+    return r, _result176.E
   }
 
-  return _result155.GetSuccess(), nil
+  return _result176.GetSuccess(), nil
 }
 
 // Parameters:
 //  - LocalRev
 //  - Count
 func (p *TalkServiceClient) FetchOperations(ctx context.Context, localRev int64, count int32) (r []*Operation, err error) {
-  var _args156 TalkServiceFetchOperationsArgs
-  _args156.LocalRev = localRev
-  _args156.Count = count
-  var _result157 TalkServiceFetchOperationsResult
-  if err = p.Client_().Call(ctx, "fetchOperations", &_args156, &_result157); err != nil {
+  var _args177 TalkServiceFetchOperationsArgs
+  _args177.LocalRev = localRev
+  _args177.Count = count
+  var _result178 TalkServiceFetchOperationsResult
+  if err = p.Client_().Call(ctx, "fetchOperations", &_args177, &_result178); err != nil {
     return
   }
   switch {
-  case _result157.E!= nil:
-    return r, _result157.E
+  case _result178.E!= nil:
+    return r, _result178.E
   }
 
-  return _result157.GetSuccess(), nil
+  return _result178.GetSuccess(), nil
 }
 
 // Parameters:
@@ -33006,37 +35869,37 @@ func (p *TalkServiceClient) FetchOperations(ctx context.Context, localRev int64,
 //  - GlobalRev
 //  - IndividualRev
 func (p *TalkServiceClient) FetchOps(ctx context.Context, localRev int64, count int32, globalRev int64, individualRev int64) (r []*Operation, err error) {
-  var _args158 TalkServiceFetchOpsArgs
-  _args158.LocalRev = localRev
-  _args158.Count = count
-  _args158.GlobalRev = globalRev
-  _args158.IndividualRev = individualRev
-  var _result159 TalkServiceFetchOpsResult
-  if err = p.Client_().Call(ctx, "fetchOps", &_args158, &_result159); err != nil {
+  var _args179 TalkServiceFetchOpsArgs
+  _args179.LocalRev = localRev
+  _args179.Count = count
+  _args179.GlobalRev = globalRev
+  _args179.IndividualRev = individualRev
+  var _result180 TalkServiceFetchOpsResult
+  if err = p.Client_().Call(ctx, "fetchOps", &_args179, &_result180); err != nil {
     return
   }
   switch {
-  case _result159.E!= nil:
-    return r, _result159.E
+  case _result180.E!= nil:
+    return r, _result180.E
   }
 
-  return _result159.GetSuccess(), nil
+  return _result180.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Seq
 //  - MessageId
 func (p *TalkServiceClient) UnsendMessage(ctx context.Context, seq int32, messageId string) (err error) {
-  var _args160 TalkServiceUnsendMessageArgs
-  _args160.Seq = seq
-  _args160.MessageId = messageId
-  var _result161 TalkServiceUnsendMessageResult
-  if err = p.Client_().Call(ctx, "unsendMessage", &_args160, &_result161); err != nil {
+  var _args181 TalkServiceUnsendMessageArgs
+  _args181.Seq = seq
+  _args181.MessageId = messageId
+  var _result182 TalkServiceUnsendMessageResult
+  if err = p.Client_().Call(ctx, "unsendMessage", &_args181, &_result182); err != nil {
     return
   }
   switch {
-  case _result161.E!= nil:
-    return _result161.E
+  case _result182.E!= nil:
+    return _result182.E
   }
 
   return nil
@@ -33046,16 +35909,16 @@ func (p *TalkServiceClient) UnsendMessage(ctx context.Context, seq int32, messag
 //  - ReqSeq
 //  - ID
 func (p *TalkServiceClient) BlockRecommendation(ctx context.Context, reqSeq int32, id string) (err error) {
-  var _args162 TalkServiceBlockRecommendationArgs
-  _args162.ReqSeq = reqSeq
-  _args162.ID = id
-  var _result163 TalkServiceBlockRecommendationResult
-  if err = p.Client_().Call(ctx, "blockRecommendation", &_args162, &_result163); err != nil {
+  var _args183 TalkServiceBlockRecommendationArgs
+  _args183.ReqSeq = reqSeq
+  _args183.ID = id
+  var _result184 TalkServiceBlockRecommendationResult
+  if err = p.Client_().Call(ctx, "blockRecommendation", &_args183, &_result184); err != nil {
     return
   }
   switch {
-  case _result163.E!= nil:
-    return _result163.E
+  case _result184.E!= nil:
+    return _result184.E
   }
 
   return nil
@@ -33067,21 +35930,21 @@ func (p *TalkServiceClient) BlockRecommendation(ctx context.Context, reqSeq int3
 //  - Type
 //  - Reference
 func (p *TalkServiceClient) FindAndAddContactsByMid(ctx context.Context, reqSeq int32, mid string, type_a1 ContactType, reference string) (r map[string]*Contact, err error) {
-  var _args164 TalkServiceFindAndAddContactsByMidArgs
-  _args164.ReqSeq = reqSeq
-  _args164.Mid = mid
-  _args164.Type = type_a1
-  _args164.Reference = reference
-  var _result165 TalkServiceFindAndAddContactsByMidResult
-  if err = p.Client_().Call(ctx, "findAndAddContactsByMid", &_args164, &_result165); err != nil {
+  var _args185 TalkServiceFindAndAddContactsByMidArgs
+  _args185.ReqSeq = reqSeq
+  _args185.Mid = mid
+  _args185.Type = type_a1
+  _args185.Reference = reference
+  var _result186 TalkServiceFindAndAddContactsByMidResult
+  if err = p.Client_().Call(ctx, "findAndAddContactsByMid", &_args185, &_result186); err != nil {
     return
   }
   switch {
-  case _result165.E!= nil:
-    return r, _result165.E
+  case _result186.E!= nil:
+    return r, _result186.E
   }
 
-  return _result165.GetSuccess(), nil
+  return _result186.GetSuccess(), nil
 }
 
 // Parameters:
@@ -33089,17 +35952,17 @@ func (p *TalkServiceClient) FindAndAddContactsByMid(ctx context.Context, reqSeq 
 //  - SenderMid
 //  - MessageId
 func (p *TalkServiceClient) RequestResendMessage(ctx context.Context, reqSeq int32, senderMid string, messageId string) (err error) {
-  var _args166 TalkServiceRequestResendMessageArgs
-  _args166.ReqSeq = reqSeq
-  _args166.SenderMid = senderMid
-  _args166.MessageId = messageId
-  var _result167 TalkServiceRequestResendMessageResult
-  if err = p.Client_().Call(ctx, "requestResendMessage", &_args166, &_result167); err != nil {
+  var _args187 TalkServiceRequestResendMessageArgs
+  _args187.ReqSeq = reqSeq
+  _args187.SenderMid = senderMid
+  _args187.MessageId = messageId
+  var _result188 TalkServiceRequestResendMessageResult
+  if err = p.Client_().Call(ctx, "requestResendMessage", &_args187, &_result188); err != nil {
     return
   }
   switch {
-  case _result167.E!= nil:
-    return _result167.E
+  case _result188.E!= nil:
+    return _result188.E
   }
 
   return nil
@@ -33111,18 +35974,18 @@ func (p *TalkServiceClient) RequestResendMessage(ctx context.Context, reqSeq int
 //  - LastMessageId
 //  - SessionId
 func (p *TalkServiceClient) SendChatRemoved(ctx context.Context, seq int32, chatMid string, lastMessageId string, sessionId int32) (err error) {
-  var _args168 TalkServiceSendChatRemovedArgs
-  _args168.Seq = seq
-  _args168.ChatMid = chatMid
-  _args168.LastMessageId = lastMessageId
-  _args168.SessionId = sessionId
-  var _result169 TalkServiceSendChatRemovedResult
-  if err = p.Client_().Call(ctx, "sendChatRemoved", &_args168, &_result169); err != nil {
+  var _args189 TalkServiceSendChatRemovedArgs
+  _args189.Seq = seq
+  _args189.ChatMid = chatMid
+  _args189.LastMessageId = lastMessageId
+  _args189.SessionId = sessionId
+  var _result190 TalkServiceSendChatRemovedResult
+  if err = p.Client_().Call(ctx, "sendChatRemoved", &_args189, &_result190); err != nil {
     return
   }
   switch {
-  case _result169.E!= nil:
-    return _result169.E
+  case _result190.E!= nil:
+    return _result190.E
   }
 
   return nil
@@ -33135,19 +35998,19 @@ func (p *TalkServiceClient) SendChatRemoved(ctx context.Context, seq int32, chat
 //  - ResendMessage
 //  - ErrorCode
 func (p *TalkServiceClient) RespondResendMessage(ctx context.Context, reqSeq int32, receiverMid string, originalMessageId string, resendMessage *Message, errorCode TalkExceptionCode) (err error) {
-  var _args170 TalkServiceRespondResendMessageArgs
-  _args170.ReqSeq = reqSeq
-  _args170.ReceiverMid = receiverMid
-  _args170.OriginalMessageId = originalMessageId
-  _args170.ResendMessage = resendMessage
-  _args170.ErrorCode = errorCode
-  var _result171 TalkServiceRespondResendMessageResult
-  if err = p.Client_().Call(ctx, "respondResendMessage", &_args170, &_result171); err != nil {
+  var _args191 TalkServiceRespondResendMessageArgs
+  _args191.ReqSeq = reqSeq
+  _args191.ReceiverMid = receiverMid
+  _args191.OriginalMessageId = originalMessageId
+  _args191.ResendMessage = resendMessage
+  _args191.ErrorCode = errorCode
+  var _result192 TalkServiceRespondResendMessageResult
+  if err = p.Client_().Call(ctx, "respondResendMessage", &_args191, &_result192); err != nil {
     return
   }
   switch {
-  case _result171.E!= nil:
-    return _result171.E
+  case _result192.E!= nil:
+    return _result192.E
   }
 
   return nil
@@ -33158,17 +36021,17 @@ func (p *TalkServiceClient) RespondResendMessage(ctx context.Context, reqSeq int
 //  - RoomId
 //  - ContactIds
 func (p *TalkServiceClient) InviteIntoRoom(ctx context.Context, reqSeq int32, roomId string, contactIds []string) (err error) {
-  var _args172 TalkServiceInviteIntoRoomArgs
-  _args172.ReqSeq = reqSeq
-  _args172.RoomId = roomId
-  _args172.ContactIds = contactIds
-  var _result173 TalkServiceInviteIntoRoomResult
-  if err = p.Client_().Call(ctx, "inviteIntoRoom", &_args172, &_result173); err != nil {
+  var _args193 TalkServiceInviteIntoRoomArgs
+  _args193.ReqSeq = reqSeq
+  _args193.RoomId = roomId
+  _args193.ContactIds = contactIds
+  var _result194 TalkServiceInviteIntoRoomResult
+  if err = p.Client_().Call(ctx, "inviteIntoRoom", &_args193, &_result194); err != nil {
     return
   }
   switch {
-  case _result173.E!= nil:
-    return _result173.E
+  case _result194.E!= nil:
+    return _result194.E
   }
 
   return nil
@@ -33179,17 +36042,17 @@ func (p *TalkServiceClient) InviteIntoRoom(ctx context.Context, reqSeq int32, ro
 //  - EncryptedKeyChain
 //  - HashKeyChain
 func (p *TalkServiceClient) RespondE2EEKeyExchange(ctx context.Context, reqSeq int32, encryptedKeyChain []byte, hashKeyChain []byte) (err error) {
-  var _args174 TalkServiceRespondE2EEKeyExchangeArgs
-  _args174.ReqSeq = reqSeq
-  _args174.EncryptedKeyChain = encryptedKeyChain
-  _args174.HashKeyChain = hashKeyChain
-  var _result175 TalkServiceRespondE2EEKeyExchangeResult
-  if err = p.Client_().Call(ctx, "respondE2EEKeyExchange", &_args174, &_result175); err != nil {
+  var _args195 TalkServiceRespondE2EEKeyExchangeArgs
+  _args195.ReqSeq = reqSeq
+  _args195.EncryptedKeyChain = encryptedKeyChain
+  _args195.HashKeyChain = hashKeyChain
+  var _result196 TalkServiceRespondE2EEKeyExchangeResult
+  if err = p.Client_().Call(ctx, "respondE2EEKeyExchange", &_args195, &_result196); err != nil {
     return
   }
   switch {
-  case _result175.E!= nil:
-    return _result175.E
+  case _result196.E!= nil:
+    return _result196.E
   }
 
   return nil
@@ -33199,19 +36062,19 @@ func (p *TalkServiceClient) RespondE2EEKeyExchange(ctx context.Context, reqSeq i
 //  - ReqSeq
 //  - LocalContacts
 func (p *TalkServiceClient) SyncContacts(ctx context.Context, reqSeq int32, localContacts []*ContactModification) (r map[string]*ContactRegistration, err error) {
-  var _args176 TalkServiceSyncContactsArgs
-  _args176.ReqSeq = reqSeq
-  _args176.LocalContacts = localContacts
-  var _result177 TalkServiceSyncContactsResult
-  if err = p.Client_().Call(ctx, "syncContacts", &_args176, &_result177); err != nil {
+  var _args197 TalkServiceSyncContactsArgs
+  _args197.ReqSeq = reqSeq
+  _args197.LocalContacts = localContacts
+  var _result198 TalkServiceSyncContactsResult
+  if err = p.Client_().Call(ctx, "syncContacts", &_args197, &_result198); err != nil {
     return
   }
   switch {
-  case _result177.E!= nil:
-    return r, _result177.E
+  case _result198.E!= nil:
+    return r, _result198.E
   }
 
-  return _result177.GetSuccess(), nil
+  return _result198.GetSuccess(), nil
 }
 
 // Parameters:
@@ -33219,36 +36082,36 @@ func (p *TalkServiceClient) SyncContacts(ctx context.Context, reqSeq int32, loca
 //  - Phones
 //  - Reference
 func (p *TalkServiceClient) FindAndAddContactsByPhone(ctx context.Context, reqSeq int32, phones []string, reference string) (r map[string]*Contact, err error) {
-  var _args178 TalkServiceFindAndAddContactsByPhoneArgs
-  _args178.ReqSeq = reqSeq
-  _args178.Phones = phones
-  _args178.Reference = reference
-  var _result179 TalkServiceFindAndAddContactsByPhoneResult
-  if err = p.Client_().Call(ctx, "findAndAddContactsByPhone", &_args178, &_result179); err != nil {
+  var _args199 TalkServiceFindAndAddContactsByPhoneArgs
+  _args199.ReqSeq = reqSeq
+  _args199.Phones = phones
+  _args199.Reference = reference
+  var _result200 TalkServiceFindAndAddContactsByPhoneResult
+  if err = p.Client_().Call(ctx, "findAndAddContactsByPhone", &_args199, &_result200); err != nil {
     return
   }
   switch {
-  case _result179.E!= nil:
-    return r, _result179.E
+  case _result200.E!= nil:
+    return r, _result200.E
   }
 
-  return _result179.GetSuccess(), nil
+  return _result200.GetSuccess(), nil
 }
 
 // Parameters:
 //  - LastRev
 //  - Badge
 func (p *TalkServiceClient) NotifySleep(ctx context.Context, lastRev int64, badge int32) (err error) {
-  var _args180 TalkServiceNotifySleepArgs
-  _args180.LastRev = lastRev
-  _args180.Badge = badge
-  var _result181 TalkServiceNotifySleepResult
-  if err = p.Client_().Call(ctx, "notifySleep", &_args180, &_result181); err != nil {
+  var _args201 TalkServiceNotifySleepArgs
+  _args201.LastRev = lastRev
+  _args201.Badge = badge
+  var _result202 TalkServiceNotifySleepResult
+  if err = p.Client_().Call(ctx, "notifySleep", &_args201, &_result202); err != nil {
     return
   }
   switch {
-  case _result181.E!= nil:
-    return _result181.E
+  case _result202.E!= nil:
+    return _result202.E
   }
 
   return nil
@@ -33258,16 +36121,16 @@ func (p *TalkServiceClient) NotifySleep(ctx context.Context, lastRev int64, badg
 //  - SyncOpRevision
 //  - Profile
 func (p *TalkServiceClient) ReportProfile(ctx context.Context, syncOpRevision int64, profile *Profile) (err error) {
-  var _args182 TalkServiceReportProfileArgs
-  _args182.SyncOpRevision = syncOpRevision
-  _args182.Profile = profile
-  var _result183 TalkServiceReportProfileResult
-  if err = p.Client_().Call(ctx, "reportProfile", &_args182, &_result183); err != nil {
+  var _args203 TalkServiceReportProfileArgs
+  _args203.SyncOpRevision = syncOpRevision
+  _args203.Profile = profile
+  var _result204 TalkServiceReportProfileResult
+  if err = p.Client_().Call(ctx, "reportProfile", &_args203, &_result204); err != nil {
     return
   }
   switch {
-  case _result183.E!= nil:
-    return _result183.E
+  case _result204.E!= nil:
+    return _result204.E
   }
 
   return nil
@@ -33279,18 +36142,18 @@ func (p *TalkServiceClient) ReportProfile(ctx context.Context, syncOpRevision in
 //  - UdidHash
 //  - OldUdidHash
 func (p *TalkServiceClient) NotifyUpdated(ctx context.Context, lastRev int64, deviceInfo *DeviceInfo, udidHash string, oldUdidHash string) (err error) {
-  var _args184 TalkServiceNotifyUpdatedArgs
-  _args184.LastRev = lastRev
-  _args184.DeviceInfo = deviceInfo
-  _args184.UdidHash = udidHash
-  _args184.OldUdidHash = oldUdidHash
-  var _result185 TalkServiceNotifyUpdatedResult
-  if err = p.Client_().Call(ctx, "notifyUpdated", &_args184, &_result185); err != nil {
+  var _args205 TalkServiceNotifyUpdatedArgs
+  _args205.LastRev = lastRev
+  _args205.DeviceInfo = deviceInfo
+  _args205.UdidHash = udidHash
+  _args205.OldUdidHash = oldUdidHash
+  var _result206 TalkServiceNotifyUpdatedResult
+  if err = p.Client_().Call(ctx, "notifyUpdated", &_args205, &_result206); err != nil {
     return
   }
   switch {
-  case _result185.E!= nil:
-    return _result185.E
+  case _result206.E!= nil:
+    return _result206.E
   }
 
   return nil
@@ -33300,16 +36163,16 @@ func (p *TalkServiceClient) NotifyUpdated(ctx context.Context, lastRev int64, de
 //  - SyncOpRevision
 //  - Settings
 func (p *TalkServiceClient) ReportSettings(ctx context.Context, syncOpRevision int64, settings *Settings) (err error) {
-  var _args186 TalkServiceReportSettingsArgs
-  _args186.SyncOpRevision = syncOpRevision
-  _args186.Settings = settings
-  var _result187 TalkServiceReportSettingsResult
-  if err = p.Client_().Call(ctx, "reportSettings", &_args186, &_result187); err != nil {
+  var _args207 TalkServiceReportSettingsArgs
+  _args207.SyncOpRevision = syncOpRevision
+  _args207.Settings = settings
+  var _result208 TalkServiceReportSettingsResult
+  if err = p.Client_().Call(ctx, "reportSettings", &_args207, &_result208); err != nil {
     return
   }
   switch {
-  case _result187.E!= nil:
-    return _result187.E
+  case _result208.E!= nil:
+    return _result208.E
   }
 
   return nil
@@ -33318,53 +36181,53 @@ func (p *TalkServiceClient) ReportSettings(ctx context.Context, syncOpRevision i
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetBlockedContactIds(ctx context.Context, syncReason SyncReason) (r []string, err error) {
-  var _args188 TalkServiceGetBlockedContactIdsArgs
-  _args188.SyncReason = syncReason
-  var _result189 TalkServiceGetBlockedContactIdsResult
-  if err = p.Client_().Call(ctx, "getBlockedContactIds", &_args188, &_result189); err != nil {
+  var _args209 TalkServiceGetBlockedContactIdsArgs
+  _args209.SyncReason = syncReason
+  var _result210 TalkServiceGetBlockedContactIdsResult
+  if err = p.Client_().Call(ctx, "getBlockedContactIds", &_args209, &_result210); err != nil {
     return
   }
   switch {
-  case _result189.E!= nil:
-    return r, _result189.E
+  case _result210.E!= nil:
+    return r, _result210.E
   }
 
-  return _result189.GetSuccess(), nil
+  return _result210.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Location
 //  - NetworkStatus
 func (p *TalkServiceClient) OpenProximityMatch(ctx context.Context, location *Location, networkStatus *ClientNetworkStatus) (r string, err error) {
-  var _args190 TalkServiceOpenProximityMatchArgs
-  _args190.Location = location
-  _args190.NetworkStatus = networkStatus
-  var _result191 TalkServiceOpenProximityMatchResult
-  if err = p.Client_().Call(ctx, "openProximityMatch", &_args190, &_result191); err != nil {
+  var _args211 TalkServiceOpenProximityMatchArgs
+  _args211.Location = location
+  _args211.NetworkStatus = networkStatus
+  var _result212 TalkServiceOpenProximityMatchResult
+  if err = p.Client_().Call(ctx, "openProximityMatch", &_args211, &_result212); err != nil {
     return
   }
   switch {
-  case _result191.E!= nil:
-    return r, _result191.E
+  case _result212.E!= nil:
+    return r, _result212.E
   }
 
-  return _result191.GetSuccess(), nil
+  return _result212.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Direction
 //  - MidOrEMid
 func (p *TalkServiceClient) RemoveFriendRequest(ctx context.Context, direction Direction, midOrEMid string) (err error) {
-  var _args192 TalkServiceRemoveFriendRequestArgs
-  _args192.Direction = direction
-  _args192.MidOrEMid = midOrEMid
-  var _result193 TalkServiceRemoveFriendRequestResult
-  if err = p.Client_().Call(ctx, "removeFriendRequest", &_args192, &_result193); err != nil {
+  var _args213 TalkServiceRemoveFriendRequestArgs
+  _args213.Direction = direction
+  _args213.MidOrEMid = midOrEMid
+  var _result214 TalkServiceRemoveFriendRequestResult
+  if err = p.Client_().Call(ctx, "removeFriendRequest", &_args213, &_result214); err != nil {
     return
   }
   switch {
-  case _result193.E!= nil:
-    return _result193.E
+  case _result214.E!= nil:
+    return _result214.E
   }
 
   return nil
@@ -33374,16 +36237,16 @@ func (p *TalkServiceClient) RemoveFriendRequest(ctx context.Context, direction D
 //  - Token
 //  - Type
 func (p *TalkServiceClient) UpdateNotificationToken(ctx context.Context, token string, type_a1 UpdateNotificationTokenType) (err error) {
-  var _args194 TalkServiceUpdateNotificationTokenArgs
-  _args194.Token = token
-  _args194.Type = type_a1
-  var _result195 TalkServiceUpdateNotificationTokenResult
-  if err = p.Client_().Call(ctx, "updateNotificationToken", &_args194, &_result195); err != nil {
+  var _args215 TalkServiceUpdateNotificationTokenArgs
+  _args215.Token = token
+  _args215.Type = type_a1
+  var _result216 TalkServiceUpdateNotificationTokenResult
+  if err = p.Client_().Call(ctx, "updateNotificationToken", &_args215, &_result216); err != nil {
     return
   }
   switch {
-  case _result195.E!= nil:
-    return _result195.E
+  case _result216.E!= nil:
+    return _result216.E
   }
 
   return nil
@@ -33394,17 +36257,17 @@ func (p *TalkServiceClient) UpdateNotificationToken(ctx context.Context, token s
 //  - Attr
 //  - ExtendedProfile
 func (p *TalkServiceClient) UpdateExtendedProfileAttribute(ctx context.Context, reqSeq int32, attr UpdateExtendedProfileAttributeAttr, extendedProfile *ExtendedProfile) (err error) {
-  var _args196 TalkServiceUpdateExtendedProfileAttributeArgs
-  _args196.ReqSeq = reqSeq
-  _args196.Attr = attr
-  _args196.ExtendedProfile = extendedProfile
-  var _result197 TalkServiceUpdateExtendedProfileAttributeResult
-  if err = p.Client_().Call(ctx, "updateExtendedProfileAttribute", &_args196, &_result197); err != nil {
+  var _args217 TalkServiceUpdateExtendedProfileAttributeArgs
+  _args217.ReqSeq = reqSeq
+  _args217.Attr = attr
+  _args217.ExtendedProfile = extendedProfile
+  var _result218 TalkServiceUpdateExtendedProfileAttributeResult
+  if err = p.Client_().Call(ctx, "updateExtendedProfileAttribute", &_args217, &_result218); err != nil {
     return
   }
   switch {
-  case _result197.E!= nil:
-    return _result197.E
+  case _result218.E!= nil:
+    return _result218.E
   }
 
   return nil
@@ -33414,19 +36277,19 @@ func (p *TalkServiceClient) UpdateExtendedProfileAttribute(ctx context.Context, 
 //  - IdentityCredential
 //  - MigrationPincodeSessionId
 func (p *TalkServiceClient) VerifyIdentityCredentialWithResult_(ctx context.Context, identityCredential *IdentityCredential, migrationPincodeSessionId string) (r *UserAuthStatus, err error) {
-  var _args198 TalkServiceVerifyIdentityCredentialWithResultArgs
-  _args198.IdentityCredential = identityCredential
-  _args198.MigrationPincodeSessionId = migrationPincodeSessionId
-  var _result199 TalkServiceVerifyIdentityCredentialWithResultResult
-  if err = p.Client_().Call(ctx, "verifyIdentityCredentialWithResult", &_args198, &_result199); err != nil {
+  var _args219 TalkServiceVerifyIdentityCredentialWithResultArgs
+  _args219.IdentityCredential = identityCredential
+  _args219.MigrationPincodeSessionId = migrationPincodeSessionId
+  var _result220 TalkServiceVerifyIdentityCredentialWithResultResult
+  if err = p.Client_().Call(ctx, "verifyIdentityCredentialWithResult", &_args219, &_result220); err != nil {
     return
   }
   switch {
-  case _result199.E!= nil:
-    return r, _result199.E
+  case _result220.E!= nil:
+    return r, _result220.E
   }
 
-  return _result199.GetSuccess(), nil
+  return _result220.GetSuccess(), nil
 }
 
 // Parameters:
@@ -33434,17 +36297,17 @@ func (p *TalkServiceClient) VerifyIdentityCredentialWithResult_(ctx context.Cont
 //  - Provider
 //  - Locale
 func (p *TalkServiceClient) RequestAccountPasswordReset(ctx context.Context, identifier string, provider IdentityProvider, locale string) (err error) {
-  var _args200 TalkServiceRequestAccountPasswordResetArgs
-  _args200.Identifier = identifier
-  _args200.Provider = provider
-  _args200.Locale = locale
-  var _result201 TalkServiceRequestAccountPasswordResetResult
-  if err = p.Client_().Call(ctx, "requestAccountPasswordReset", &_args200, &_result201); err != nil {
+  var _args221 TalkServiceRequestAccountPasswordResetArgs
+  _args221.Identifier = identifier
+  _args221.Provider = provider
+  _args221.Locale = locale
+  var _result222 TalkServiceRequestAccountPasswordResetResult
+  if err = p.Client_().Call(ctx, "requestAccountPasswordReset", &_args221, &_result222); err != nil {
     return
   }
   switch {
-  case _result201.E!= nil:
-    return _result201.E
+  case _result222.E!= nil:
+    return _result222.E
   }
 
   return nil
@@ -33453,15 +36316,15 @@ func (p *TalkServiceClient) RequestAccountPasswordReset(ctx context.Context, ide
 // Parameters:
 //  - Request
 func (p *TalkServiceClient) SendPostback(ctx context.Context, request *SendPostbackRequest) (err error) {
-  var _args202 TalkServiceSendPostbackArgs
-  _args202.Request = request
-  var _result203 TalkServiceSendPostbackResult
-  if err = p.Client_().Call(ctx, "sendPostback", &_args202, &_result203); err != nil {
+  var _args223 TalkServiceSendPostbackArgs
+  _args223.Request = request
+  var _result224 TalkServiceSendPostbackResult
+  if err = p.Client_().Call(ctx, "sendPostback", &_args223, &_result224); err != nil {
     return
   }
   switch {
-  case _result203.E!= nil:
-    return _result203.E
+  case _result224.E!= nil:
+    return _result224.E
   }
 
   return nil
@@ -33472,17 +36335,17 @@ func (p *TalkServiceClient) SendPostback(ctx context.Context, request *SendPostb
 //  - Method
 //  - FriendRequestParams
 func (p *TalkServiceClient) TryFriendRequest(ctx context.Context, midOrEMid string, method FriendRequestMethod, friendRequestParams string) (err error) {
-  var _args204 TalkServiceTryFriendRequestArgs
-  _args204.MidOrEMid = midOrEMid
-  _args204.Method = method
-  _args204.FriendRequestParams = friendRequestParams
-  var _result205 TalkServiceTryFriendRequestResult
-  if err = p.Client_().Call(ctx, "tryFriendRequest", &_args204, &_result205); err != nil {
+  var _args225 TalkServiceTryFriendRequestArgs
+  _args225.MidOrEMid = midOrEMid
+  _args225.Method = method
+  _args225.FriendRequestParams = friendRequestParams
+  var _result226 TalkServiceTryFriendRequestResult
+  if err = p.Client_().Call(ctx, "tryFriendRequest", &_args225, &_result226); err != nil {
     return
   }
   switch {
-  case _result205.E!= nil:
-    return _result205.E
+  case _result226.E!= nil:
+    return _result226.E
   }
 
   return nil
@@ -33492,16 +36355,16 @@ func (p *TalkServiceClient) TryFriendRequest(ctx context.Context, midOrEMid stri
 //  - SessionId
 //  - Ids
 func (p *TalkServiceClient) AcceptProximityMatches(ctx context.Context, sessionId string, ids []string) (err error) {
-  var _args206 TalkServiceAcceptProximityMatchesArgs
-  _args206.SessionId = sessionId
-  _args206.Ids = ids
-  var _result207 TalkServiceAcceptProximityMatchesResult
-  if err = p.Client_().Call(ctx, "acceptProximityMatches", &_args206, &_result207); err != nil {
+  var _args227 TalkServiceAcceptProximityMatchesArgs
+  _args227.SessionId = sessionId
+  _args227.Ids = ids
+  var _result228 TalkServiceAcceptProximityMatchesResult
+  if err = p.Client_().Call(ctx, "acceptProximityMatches", &_args227, &_result228); err != nil {
     return
   }
   switch {
-  case _result207.E!= nil:
-    return _result207.E
+  case _result228.E!= nil:
+    return _result228.E
   }
 
   return nil
@@ -33510,34 +36373,34 @@ func (p *TalkServiceClient) AcceptProximityMatches(ctx context.Context, sessionI
 // Parameters:
 //  - Ids
 func (p *TalkServiceClient) GetContacts(ctx context.Context, ids []string) (r []*Contact, err error) {
-  var _args208 TalkServiceGetContactsArgs
-  _args208.Ids = ids
-  var _result209 TalkServiceGetContactsResult
-  if err = p.Client_().Call(ctx, "getContacts", &_args208, &_result209); err != nil {
+  var _args229 TalkServiceGetContactsArgs
+  _args229.Ids = ids
+  var _result230 TalkServiceGetContactsResult
+  if err = p.Client_().Call(ctx, "getContacts", &_args229, &_result230); err != nil {
     return
   }
   switch {
-  case _result209.E!= nil:
-    return r, _result209.E
+  case _result230.E!= nil:
+    return r, _result230.E
   }
 
-  return _result209.GetSuccess(), nil
+  return _result230.GetSuccess(), nil
 }
 
 // Parameters:
 //  - BooleanState
 //  - StringState
 func (p *TalkServiceClient) ReportDeviceState(ctx context.Context, booleanState map[C59122ec]bool, stringState map[C59430gc]string) (err error) {
-  var _args210 TalkServiceReportDeviceStateArgs
-  _args210.BooleanState = booleanState
-  _args210.StringState = stringState
-  var _result211 TalkServiceReportDeviceStateResult
-  if err = p.Client_().Call(ctx, "reportDeviceState", &_args210, &_result211); err != nil {
+  var _args231 TalkServiceReportDeviceStateArgs
+  _args231.BooleanState = booleanState
+  _args231.StringState = stringState
+  var _result232 TalkServiceReportDeviceStateResult
+  if err = p.Client_().Call(ctx, "reportDeviceState", &_args231, &_result232); err != nil {
     return
   }
   switch {
-  case _result211.E!= nil:
-    return _result211.E
+  case _result232.E!= nil:
+    return _result232.E
   }
 
   return nil
@@ -33547,16 +36410,16 @@ func (p *TalkServiceClient) ReportDeviceState(ctx context.Context, booleanState 
 //  - ReqSeq
 //  - ID
 func (p *TalkServiceClient) BlockContact(ctx context.Context, reqSeq int32, id string) (err error) {
-  var _args212 TalkServiceBlockContactArgs
-  _args212.ReqSeq = reqSeq
-  _args212.ID = id
-  var _result213 TalkServiceBlockContactResult
-  if err = p.Client_().Call(ctx, "blockContact", &_args212, &_result213); err != nil {
+  var _args233 TalkServiceBlockContactArgs
+  _args233.ReqSeq = reqSeq
+  _args233.ID = id
+  var _result234 TalkServiceBlockContactResult
+  if err = p.Client_().Call(ctx, "blockContact", &_args233, &_result234); err != nil {
     return
   }
   switch {
-  case _result213.E!= nil:
-    return _result213.E
+  case _result234.E!= nil:
+    return _result234.E
   }
 
   return nil
@@ -33565,64 +36428,64 @@ func (p *TalkServiceClient) BlockContact(ctx context.Context, reqSeq int32, id s
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetExtendedProfile(ctx context.Context, syncReason SyncReason) (r *ExtendedProfile, err error) {
-  var _args214 TalkServiceGetExtendedProfileArgs
-  _args214.SyncReason = syncReason
-  var _result215 TalkServiceGetExtendedProfileResult
-  if err = p.Client_().Call(ctx, "getExtendedProfile", &_args214, &_result215); err != nil {
+  var _args235 TalkServiceGetExtendedProfileArgs
+  _args235.SyncReason = syncReason
+  var _result236 TalkServiceGetExtendedProfileResult
+  if err = p.Client_().Call(ctx, "getExtendedProfile", &_args235, &_result236); err != nil {
     return
   }
   switch {
-  case _result215.E!= nil:
-    return r, _result215.E
+  case _result236.E!= nil:
+    return r, _result236.E
   }
 
-  return _result215.GetSuccess(), nil
+  return _result236.GetSuccess(), nil
 }
 
 // Parameters:
 //  - AttributesToRetrieve
 func (p *TalkServiceClient) GetSettingsAttributes2(ctx context.Context, attributesToRetrieve []SettingAttribute) (r *Settings, err error) {
-  var _args216 TalkServiceGetSettingsAttributes2Args
-  _args216.AttributesToRetrieve = attributesToRetrieve
-  var _result217 TalkServiceGetSettingsAttributes2Result
-  if err = p.Client_().Call(ctx, "getSettingsAttributes2", &_args216, &_result217); err != nil {
+  var _args237 TalkServiceGetSettingsAttributes2Args
+  _args237.AttributesToRetrieve = attributesToRetrieve
+  var _result238 TalkServiceGetSettingsAttributes2Result
+  if err = p.Client_().Call(ctx, "getSettingsAttributes2", &_args237, &_result238); err != nil {
     return
   }
-  return _result217.GetSuccess(), nil
+  return _result238.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetProfile(ctx context.Context, syncReason SyncReason) (r *Profile, err error) {
-  var _args218 TalkServiceGetProfileArgs
-  _args218.SyncReason = syncReason
-  var _result219 TalkServiceGetProfileResult
-  if err = p.Client_().Call(ctx, "getProfile", &_args218, &_result219); err != nil {
+  var _args239 TalkServiceGetProfileArgs
+  _args239.SyncReason = syncReason
+  var _result240 TalkServiceGetProfileResult
+  if err = p.Client_().Call(ctx, "getProfile", &_args239, &_result240); err != nil {
     return
   }
   switch {
-  case _result219.E!= nil:
-    return r, _result219.E
+  case _result240.E!= nil:
+    return r, _result240.E
   }
 
-  return _result219.GetSuccess(), nil
+  return _result240.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SessionId
 func (p *TalkServiceClient) GetProximityMatchCandidateList(ctx context.Context, sessionId string) (r *ProximityMatchCandidateResult_, err error) {
-  var _args220 TalkServiceGetProximityMatchCandidateListArgs
-  _args220.SessionId = sessionId
-  var _result221 TalkServiceGetProximityMatchCandidateListResult
-  if err = p.Client_().Call(ctx, "getProximityMatchCandidateList", &_args220, &_result221); err != nil {
+  var _args241 TalkServiceGetProximityMatchCandidateListArgs
+  _args241.SessionId = sessionId
+  var _result242 TalkServiceGetProximityMatchCandidateListResult
+  if err = p.Client_().Call(ctx, "getProximityMatchCandidateList", &_args241, &_result242); err != nil {
     return
   }
   switch {
-  case _result221.E!= nil:
-    return r, _result221.E
+  case _result242.E!= nil:
+    return r, _result242.E
   }
 
-  return _result221.GetSuccess(), nil
+  return _result242.GetSuccess(), nil
 }
 
 // Parameters:
@@ -33630,88 +36493,88 @@ func (p *TalkServiceClient) GetProximityMatchCandidateList(ctx context.Context, 
 //  - SearchId
 //  - Reference
 func (p *TalkServiceClient) FindAndAddContactByMetaTag(ctx context.Context, reqSeq int32, searchId string, reference string) (r *PendingAgreementsResponse, err error) {
-  var _args222 TalkServiceFindAndAddContactByMetaTagArgs
-  _args222.ReqSeq = reqSeq
-  _args222.SearchId = searchId
-  _args222.Reference = reference
-  var _result223 TalkServiceFindAndAddContactByMetaTagResult
-  if err = p.Client_().Call(ctx, "findAndAddContactByMetaTag", &_args222, &_result223); err != nil {
+  var _args243 TalkServiceFindAndAddContactByMetaTagArgs
+  _args243.ReqSeq = reqSeq
+  _args243.SearchId = searchId
+  _args243.Reference = reference
+  var _result244 TalkServiceFindAndAddContactByMetaTagResult
+  if err = p.Client_().Call(ctx, "findAndAddContactByMetaTag", &_args243, &_result244); err != nil {
     return
   }
   switch {
-  case _result223.E!= nil:
-    return r, _result223.E
+  case _result244.E!= nil:
+    return r, _result244.E
   }
 
-  return _result223.GetSuccess(), nil
+  return _result244.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ChatIds
 //  - SyncReason
 func (p *TalkServiceClient) GetMessageReadRange(ctx context.Context, chatIds []string, syncReason SyncReason) (r []*TMessageReadRange, err error) {
-  var _args224 TalkServiceGetMessageReadRangeArgs
-  _args224.ChatIds = chatIds
-  _args224.SyncReason = syncReason
-  var _result225 TalkServiceGetMessageReadRangeResult
-  if err = p.Client_().Call(ctx, "getMessageReadRange", &_args224, &_result225); err != nil {
+  var _args245 TalkServiceGetMessageReadRangeArgs
+  _args245.ChatIds = chatIds
+  _args245.SyncReason = syncReason
+  var _result246 TalkServiceGetMessageReadRangeResult
+  if err = p.Client_().Call(ctx, "getMessageReadRange", &_args245, &_result246); err != nil {
     return
   }
   switch {
-  case _result225.E!= nil:
-    return r, _result225.E
+  case _result246.E!= nil:
+    return r, _result246.E
   }
 
-  return _result225.GetSuccess(), nil
+  return _result246.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ReqSeq
 //  - SearchId
 func (p *TalkServiceClient) RegisterUserid(ctx context.Context, reqSeq int32, searchId string) (r bool, err error) {
-  var _args226 TalkServiceRegisterUseridArgs
-  _args226.ReqSeq = reqSeq
-  _args226.SearchId = searchId
-  var _result227 TalkServiceRegisterUseridResult
-  if err = p.Client_().Call(ctx, "registerUserid", &_args226, &_result227); err != nil {
+  var _args247 TalkServiceRegisterUseridArgs
+  _args247.ReqSeq = reqSeq
+  _args247.SearchId = searchId
+  var _result248 TalkServiceRegisterUseridResult
+  if err = p.Client_().Call(ctx, "registerUserid", &_args247, &_result248); err != nil {
     return
   }
   switch {
-  case _result227.E!= nil:
-    return r, _result227.E
+  case _result248.E!= nil:
+    return r, _result248.E
   }
 
-  return _result227.GetSuccess(), nil
+  return _result248.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ReqSeq
 //  - PushRecvReports
 func (p *TalkServiceClient) ReportPushRecvReports(ctx context.Context, reqSeq int32, pushRecvReports []*PushRecvReport) (err error) {
-  var _args228 TalkServiceReportPushRecvReportsArgs
-  _args228.ReqSeq = reqSeq
-  _args228.PushRecvReports = pushRecvReports
-  var _result229 TalkServiceReportPushRecvReportsResult
-  if err = p.Client_().Call(ctx, "reportPushRecvReports", &_args228, &_result229); err != nil {
+  var _args249 TalkServiceReportPushRecvReportsArgs
+  _args249.ReqSeq = reqSeq
+  _args249.PushRecvReports = pushRecvReports
+  var _result250 TalkServiceReportPushRecvReportsResult
+  if err = p.Client_().Call(ctx, "reportPushRecvReports", &_args249, &_result250); err != nil {
     return
   }
   switch {
-  case _result229.E!= nil:
-    return _result229.E
+  case _result250.E!= nil:
+    return _result250.E
   }
 
   return nil
 }
 
 func (p *TalkServiceClient) Noop(ctx context.Context) (err error) {
-  var _args230 TalkServiceNoopArgs
-  var _result231 TalkServiceNoopResult
-  if err = p.Client_().Call(ctx, "noop", &_args230, &_result231); err != nil {
+  var _args251 TalkServiceNoopArgs
+  var _result252 TalkServiceNoopResult
+  if err = p.Client_().Call(ctx, "noop", &_args251, &_result252); err != nil {
     return
   }
   switch {
-  case _result231.E!= nil:
-    return _result231.E
+  case _result252.E!= nil:
+    return _result252.E
   }
 
   return nil
@@ -33720,32 +36583,32 @@ func (p *TalkServiceClient) Noop(ctx context.Context) (err error) {
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetBlockedRecommendationIds(ctx context.Context, syncReason SyncReason) (r []string, err error) {
-  var _args232 TalkServiceGetBlockedRecommendationIdsArgs
-  _args232.SyncReason = syncReason
-  var _result233 TalkServiceGetBlockedRecommendationIdsResult
-  if err = p.Client_().Call(ctx, "getBlockedRecommendationIds", &_args232, &_result233); err != nil {
+  var _args253 TalkServiceGetBlockedRecommendationIdsArgs
+  _args253.SyncReason = syncReason
+  var _result254 TalkServiceGetBlockedRecommendationIdsResult
+  if err = p.Client_().Call(ctx, "getBlockedRecommendationIds", &_args253, &_result254); err != nil {
     return
   }
   switch {
-  case _result233.E!= nil:
-    return r, _result233.E
+  case _result254.E!= nil:
+    return r, _result254.E
   }
 
-  return _result233.GetSuccess(), nil
+  return _result254.GetSuccess(), nil
 }
 
 // Parameters:
 //  - RemoveFollowerRequest
 func (p *TalkServiceClient) RemoveFollower(ctx context.Context, removeFollowerRequest *RemoveFollowerRequest) (err error) {
-  var _args234 TalkServiceRemoveFollowerArgs
-  _args234.RemoveFollowerRequest = removeFollowerRequest
-  var _result235 TalkServiceRemoveFollowerResult
-  if err = p.Client_().Call(ctx, "removeFollower", &_args234, &_result235); err != nil {
+  var _args255 TalkServiceRemoveFollowerArgs
+  _args255.RemoveFollowerRequest = removeFollowerRequest
+  var _result256 TalkServiceRemoveFollowerResult
+  if err = p.Client_().Call(ctx, "removeFollower", &_args255, &_result256); err != nil {
     return
   }
   switch {
-  case _result235.E!= nil:
-    return _result235.E
+  case _result256.E!= nil:
+    return _result256.E
   }
 
   return nil
@@ -33754,15 +36617,15 @@ func (p *TalkServiceClient) RemoveFollower(ctx context.Context, removeFollowerRe
 // Parameters:
 //  - MigrationSessionId
 func (p *TalkServiceClient) VerifyAccountMigration(ctx context.Context, migrationSessionId string) (err error) {
-  var _args236 TalkServiceVerifyAccountMigrationArgs
-  _args236.MigrationSessionId = migrationSessionId
-  var _result237 TalkServiceVerifyAccountMigrationResult
-  if err = p.Client_().Call(ctx, "verifyAccountMigration", &_args236, &_result237); err != nil {
+  var _args257 TalkServiceVerifyAccountMigrationArgs
+  _args257.MigrationSessionId = migrationSessionId
+  var _result258 TalkServiceVerifyAccountMigrationResult
+  if err = p.Client_().Call(ctx, "verifyAccountMigration", &_args257, &_result258); err != nil {
     return
   }
   switch {
-  case _result237.E!= nil:
-    return _result237.E
+  case _result258.E!= nil:
+    return _result258.E
   }
 
   return nil
@@ -33771,67 +36634,67 @@ func (p *TalkServiceClient) VerifyAccountMigration(ctx context.Context, migratio
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetSettings(ctx context.Context, syncReason SyncReason) (r *Settings, err error) {
-  var _args238 TalkServiceGetSettingsArgs
-  _args238.SyncReason = syncReason
-  var _result239 TalkServiceGetSettingsResult
-  if err = p.Client_().Call(ctx, "getSettings", &_args238, &_result239); err != nil {
+  var _args259 TalkServiceGetSettingsArgs
+  _args259.SyncReason = syncReason
+  var _result260 TalkServiceGetSettingsResult
+  if err = p.Client_().Call(ctx, "getSettings", &_args259, &_result260); err != nil {
     return
   }
   switch {
-  case _result239.E!= nil:
-    return r, _result239.E
+  case _result260.E!= nil:
+    return r, _result260.E
   }
 
-  return _result239.GetSuccess(), nil
+  return _result260.GetSuccess(), nil
 }
 
 // Parameters:
 //  - KeyVersion
 //  - ChatMid
 func (p *TalkServiceClient) GetLastE2EEGroupSharedKey(ctx context.Context, keyVersion int32, chatMid string) (r *E2EEGroupSharedKey, err error) {
-  var _args240 TalkServiceGetLastE2EEGroupSharedKeyArgs
-  _args240.KeyVersion = keyVersion
-  _args240.ChatMid = chatMid
-  var _result241 TalkServiceGetLastE2EEGroupSharedKeyResult
-  if err = p.Client_().Call(ctx, "getLastE2EEGroupSharedKey", &_args240, &_result241); err != nil {
+  var _args261 TalkServiceGetLastE2EEGroupSharedKeyArgs
+  _args261.KeyVersion = keyVersion
+  _args261.ChatMid = chatMid
+  var _result262 TalkServiceGetLastE2EEGroupSharedKeyResult
+  if err = p.Client_().Call(ctx, "getLastE2EEGroupSharedKey", &_args261, &_result262); err != nil {
     return
   }
   switch {
-  case _result241.E!= nil:
-    return r, _result241.E
+  case _result262.E!= nil:
+    return r, _result262.E
   }
 
-  return _result241.GetSuccess(), nil
+  return _result262.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) GetRingbackTone(ctx context.Context) (r *RingbackTone, err error) {
-  var _args242 TalkServiceGetRingbackToneArgs
-  var _result243 TalkServiceGetRingbackToneResult
-  if err = p.Client_().Call(ctx, "getRingbackTone", &_args242, &_result243); err != nil {
+  var _args263 TalkServiceGetRingbackToneArgs
+  var _result264 TalkServiceGetRingbackToneResult
+  if err = p.Client_().Call(ctx, "getRingbackTone", &_args263, &_result264); err != nil {
     return
   }
   switch {
-  case _result243.E!= nil:
-    return r, _result243.E
+  case _result264.E!= nil:
+    return r, _result264.E
   }
 
-  return _result243.GetSuccess(), nil
+  return _result264.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ReqSeq
 //  - RoomId
 func (p *TalkServiceClient) LeaveRoom(ctx context.Context, reqSeq int32, roomId string) (err error) {
-  var _args244 TalkServiceLeaveRoomArgs
-  _args244.ReqSeq = reqSeq
-  _args244.RoomId = roomId
-  var _result245 TalkServiceLeaveRoomResult
-  if err = p.Client_().Call(ctx, "leaveRoom", &_args244, &_result245); err != nil {
+  var _args265 TalkServiceLeaveRoomArgs
+  _args265.ReqSeq = reqSeq
+  _args265.RoomId = roomId
+  var _result266 TalkServiceLeaveRoomResult
+  if err = p.Client_().Call(ctx, "leaveRoom", &_args265, &_result266); err != nil {
     return
   }
   switch {
-  case _result245.E!= nil:
-    return _result245.E
+  case _result266.E!= nil:
+    return _result266.E
   }
 
   return nil
@@ -33843,18 +36706,18 @@ func (p *TalkServiceClient) LeaveRoom(ctx context.Context, reqSeq int32, roomId 
 //  - LastMessageId
 //  - SessionId
 func (p *TalkServiceClient) SendChatChecked(ctx context.Context, seq int32, chatMid string, lastMessageId string, sessionId int32) (err error) {
-  var _args246 TalkServiceSendChatCheckedArgs
-  _args246.Seq = seq
-  _args246.ChatMid = chatMid
-  _args246.LastMessageId = lastMessageId
-  _args246.SessionId = sessionId
-  var _result247 TalkServiceSendChatCheckedResult
-  if err = p.Client_().Call(ctx, "sendChatChecked", &_args246, &_result247); err != nil {
+  var _args267 TalkServiceSendChatCheckedArgs
+  _args267.Seq = seq
+  _args267.ChatMid = chatMid
+  _args267.LastMessageId = lastMessageId
+  _args267.SessionId = sessionId
+  var _result268 TalkServiceSendChatCheckedResult
+  if err = p.Client_().Call(ctx, "sendChatChecked", &_args267, &_result268); err != nil {
     return
   }
   switch {
-  case _result247.E!= nil:
-    return _result247.E
+  case _result268.E!= nil:
+    return _result268.E
   }
 
   return nil
@@ -33865,51 +36728,51 @@ func (p *TalkServiceClient) SendChatChecked(ctx context.Context, seq int32, chat
 //  - SearchId
 //  - Reference
 func (p *TalkServiceClient) FindAndAddContactsByUserid(ctx context.Context, reqSeq int32, searchId string, reference string) (r map[string]*Contact, err error) {
-  var _args248 TalkServiceFindAndAddContactsByUseridArgs
-  _args248.ReqSeq = reqSeq
-  _args248.SearchId = searchId
-  _args248.Reference = reference
-  var _result249 TalkServiceFindAndAddContactsByUseridResult
-  if err = p.Client_().Call(ctx, "findAndAddContactsByUserid", &_args248, &_result249); err != nil {
+  var _args269 TalkServiceFindAndAddContactsByUseridArgs
+  _args269.ReqSeq = reqSeq
+  _args269.SearchId = searchId
+  _args269.Reference = reference
+  var _result270 TalkServiceFindAndAddContactsByUseridResult
+  if err = p.Client_().Call(ctx, "findAndAddContactsByUserid", &_args269, &_result270); err != nil {
     return
   }
   switch {
-  case _result249.E!= nil:
-    return r, _result249.E
+  case _result270.E!= nil:
+    return r, _result270.E
   }
 
-  return _result249.GetSuccess(), nil
+  return _result270.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetAllContactIds(ctx context.Context, syncReason SyncReason) (r []string, err error) {
-  var _args250 TalkServiceGetAllContactIdsArgs
-  _args250.SyncReason = syncReason
-  var _result251 TalkServiceGetAllContactIdsResult
-  if err = p.Client_().Call(ctx, "getAllContactIds", &_args250, &_result251); err != nil {
+  var _args271 TalkServiceGetAllContactIdsArgs
+  _args271.SyncReason = syncReason
+  var _result272 TalkServiceGetAllContactIdsResult
+  if err = p.Client_().Call(ctx, "getAllContactIds", &_args271, &_result272); err != nil {
     return
   }
   switch {
-  case _result251.E!= nil:
-    return r, _result251.E
+  case _result272.E!= nil:
+    return r, _result272.E
   }
 
-  return _result251.GetSuccess(), nil
+  return _result272.GetSuccess(), nil
 }
 
 // Parameters:
 //  - UnfollowRequest
 func (p *TalkServiceClient) Unfollow(ctx context.Context, unfollowRequest *UnfollowRequest) (err error) {
-  var _args252 TalkServiceUnfollowArgs
-  _args252.UnfollowRequest = unfollowRequest
-  var _result253 TalkServiceUnfollowResult
-  if err = p.Client_().Call(ctx, "unfollow", &_args252, &_result253); err != nil {
+  var _args273 TalkServiceUnfollowArgs
+  _args273.UnfollowRequest = unfollowRequest
+  var _result274 TalkServiceUnfollowResult
+  if err = p.Client_().Call(ctx, "unfollow", &_args273, &_result274); err != nil {
     return
   }
   switch {
-  case _result253.E!= nil:
-    return _result253.E
+  case _result274.E!= nil:
+    return _result274.E
   }
 
   return nil
@@ -33918,15 +36781,15 @@ func (p *TalkServiceClient) Unfollow(ctx context.Context, unfollowRequest *Unfol
 // Parameters:
 //  - SessionId
 func (p *TalkServiceClient) CloseProximityMatch(ctx context.Context, sessionId string) (err error) {
-  var _args254 TalkServiceCloseProximityMatchArgs
-  _args254.SessionId = sessionId
-  var _result255 TalkServiceCloseProximityMatchResult
-  if err = p.Client_().Call(ctx, "closeProximityMatch", &_args254, &_result255); err != nil {
+  var _args275 TalkServiceCloseProximityMatchArgs
+  _args275.SessionId = sessionId
+  var _result276 TalkServiceCloseProximityMatchResult
+  if err = p.Client_().Call(ctx, "closeProximityMatch", &_args275, &_result276); err != nil {
     return
   }
   switch {
-  case _result255.E!= nil:
-    return _result255.E
+  case _result276.E!= nil:
+    return _result276.E
   }
 
   return nil
@@ -33935,15 +36798,15 @@ func (p *TalkServiceClient) CloseProximityMatch(ctx context.Context, sessionId s
 // Parameters:
 //  - PhoneNumberList
 func (p *TalkServiceClient) InviteFriendsBySms(ctx context.Context, phoneNumberList []string) (err error) {
-  var _args256 TalkServiceInviteFriendsBySmsArgs
-  _args256.PhoneNumberList = phoneNumberList
-  var _result257 TalkServiceInviteFriendsBySmsResult
-  if err = p.Client_().Call(ctx, "inviteFriendsBySms", &_args256, &_result257); err != nil {
+  var _args277 TalkServiceInviteFriendsBySmsArgs
+  _args277.PhoneNumberList = phoneNumberList
+  var _result278 TalkServiceInviteFriendsBySmsResult
+  if err = p.Client_().Call(ctx, "inviteFriendsBySms", &_args277, &_result278); err != nil {
     return
   }
   switch {
-  case _result257.E!= nil:
-    return _result257.E
+  case _result278.E!= nil:
+    return _result278.E
   }
 
   return nil
@@ -33952,34 +36815,34 @@ func (p *TalkServiceClient) InviteFriendsBySms(ctx context.Context, phoneNumberL
 // Parameters:
 //  - Categories
 func (p *TalkServiceClient) GetChatEffectMetaList(ctx context.Context, categories []C58964da) (r []*ChatEffectMeta, err error) {
-  var _args258 TalkServiceGetChatEffectMetaListArgs
-  _args258.Categories = categories
-  var _result259 TalkServiceGetChatEffectMetaListResult
-  if err = p.Client_().Call(ctx, "getChatEffectMetaList", &_args258, &_result259); err != nil {
+  var _args279 TalkServiceGetChatEffectMetaListArgs
+  _args279.Categories = categories
+  var _result280 TalkServiceGetChatEffectMetaListResult
+  if err = p.Client_().Call(ctx, "getChatEffectMetaList", &_args279, &_result280); err != nil {
     return
   }
   switch {
-  case _result259.E!= nil:
-    return r, _result259.E
+  case _result280.E!= nil:
+    return r, _result280.E
   }
 
-  return _result259.GetSuccess(), nil
+  return _result280.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Seq
 //  - LastMessageId
 func (p *TalkServiceClient) RemoveAllMessages(ctx context.Context, seq int32, lastMessageId string) (err error) {
-  var _args260 TalkServiceRemoveAllMessagesArgs
-  _args260.Seq = seq
-  _args260.LastMessageId = lastMessageId
-  var _result261 TalkServiceRemoveAllMessagesResult
-  if err = p.Client_().Call(ctx, "removeAllMessages", &_args260, &_result261); err != nil {
+  var _args281 TalkServiceRemoveAllMessagesArgs
+  _args281.Seq = seq
+  _args281.LastMessageId = lastMessageId
+  var _result282 TalkServiceRemoveAllMessagesResult
+  if err = p.Client_().Call(ctx, "removeAllMessages", &_args281, &_result282); err != nil {
     return
   }
   switch {
-  case _result261.E!= nil:
-    return _result261.E
+  case _result282.E!= nil:
+    return _result282.E
   }
 
   return nil
@@ -33990,67 +36853,67 @@ func (p *TalkServiceClient) RemoveAllMessages(ctx context.Context, seq int32, la
 //  - ID
 //  - Reference
 func (p *TalkServiceClient) UnblockContact(ctx context.Context, reqSeq int32, id string, reference string) (err error) {
-  var _args262 TalkServiceUnblockContactArgs
-  _args262.ReqSeq = reqSeq
-  _args262.ID = id
-  _args262.Reference = reference
-  var _result263 TalkServiceUnblockContactResult
-  if err = p.Client_().Call(ctx, "unblockContact", &_args262, &_result263); err != nil {
+  var _args283 TalkServiceUnblockContactArgs
+  _args283.ReqSeq = reqSeq
+  _args283.ID = id
+  _args283.Reference = reference
+  var _result284 TalkServiceUnblockContactResult
+  if err = p.Client_().Call(ctx, "unblockContact", &_args283, &_result284); err != nil {
     return
   }
   switch {
-  case _result263.E!= nil:
-    return _result263.E
+  case _result284.E!= nil:
+    return _result284.E
   }
 
   return nil
 }
 
 func (p *TalkServiceClient) GetAnalyticsInfo(ctx context.Context) (r *AnalyticsInfo, err error) {
-  var _args264 TalkServiceGetAnalyticsInfoArgs
-  var _result265 TalkServiceGetAnalyticsInfoResult
-  if err = p.Client_().Call(ctx, "getAnalyticsInfo", &_args264, &_result265); err != nil {
+  var _args285 TalkServiceGetAnalyticsInfoArgs
+  var _result286 TalkServiceGetAnalyticsInfoResult
+  if err = p.Client_().Call(ctx, "getAnalyticsInfo", &_args285, &_result286); err != nil {
     return
   }
   switch {
-  case _result265.E!= nil:
-    return r, _result265.E
+  case _result286.E!= nil:
+    return r, _result286.E
   }
 
-  return _result265.GetSuccess(), nil
+  return _result286.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SyncReason
 func (p *TalkServiceClient) GetRecommendationIds(ctx context.Context, syncReason SyncReason) (r []string, err error) {
-  var _args266 TalkServiceGetRecommendationIdsArgs
-  _args266.SyncReason = syncReason
-  var _result267 TalkServiceGetRecommendationIdsResult
-  if err = p.Client_().Call(ctx, "getRecommendationIds", &_args266, &_result267); err != nil {
+  var _args287 TalkServiceGetRecommendationIdsArgs
+  _args287.SyncReason = syncReason
+  var _result288 TalkServiceGetRecommendationIdsResult
+  if err = p.Client_().Call(ctx, "getRecommendationIds", &_args287, &_result288); err != nil {
     return
   }
   switch {
-  case _result267.E!= nil:
-    return r, _result267.E
+  case _result288.E!= nil:
+    return r, _result288.E
   }
 
-  return _result267.GetSuccess(), nil
+  return _result288.GetSuccess(), nil
 }
 
 // Parameters:
 //  - UdidHash
 //  - ApplicationTypeWithExtensions
 func (p *TalkServiceClient) NotifyRegistrationComplete(ctx context.Context, udidHash string, applicationTypeWithExtensions string) (err error) {
-  var _args268 TalkServiceNotifyRegistrationCompleteArgs
-  _args268.UdidHash = udidHash
-  _args268.ApplicationTypeWithExtensions = applicationTypeWithExtensions
-  var _result269 TalkServiceNotifyRegistrationCompleteResult
-  if err = p.Client_().Call(ctx, "notifyRegistrationComplete", &_args268, &_result269); err != nil {
+  var _args289 TalkServiceNotifyRegistrationCompleteArgs
+  _args289.UdidHash = udidHash
+  _args289.ApplicationTypeWithExtensions = applicationTypeWithExtensions
+  var _result290 TalkServiceNotifyRegistrationCompleteResult
+  if err = p.Client_().Call(ctx, "notifyRegistrationComplete", &_args289, &_result290); err != nil {
     return
   }
   switch {
-  case _result269.E!= nil:
-    return _result269.E
+  case _result290.E!= nil:
+    return _result290.E
   }
 
   return nil
@@ -34059,34 +36922,34 @@ func (p *TalkServiceClient) NotifyRegistrationComplete(ctx context.Context, udid
 // Parameters:
 //  - ClientRevision
 func (p *TalkServiceClient) WakeUpLongPolling(ctx context.Context, clientRevision int64) (r bool, err error) {
-  var _args270 TalkServiceWakeUpLongPollingArgs
-  _args270.ClientRevision = clientRevision
-  var _result271 TalkServiceWakeUpLongPollingResult
-  if err = p.Client_().Call(ctx, "wakeUpLongPolling", &_args270, &_result271); err != nil {
+  var _args291 TalkServiceWakeUpLongPollingArgs
+  _args291.ClientRevision = clientRevision
+  var _result292 TalkServiceWakeUpLongPollingResult
+  if err = p.Client_().Call(ctx, "wakeUpLongPolling", &_args291, &_result292); err != nil {
     return
   }
   switch {
-  case _result271.E!= nil:
-    return r, _result271.E
+  case _result292.E!= nil:
+    return r, _result292.E
   }
 
-  return _result271.GetSuccess(), nil
+  return _result292.GetSuccess(), nil
 }
 
 // Parameters:
 //  - ReqSeq
 //  - ID
 func (p *TalkServiceClient) UnblockRecommendation(ctx context.Context, reqSeq int32, id string) (err error) {
-  var _args272 TalkServiceUnblockRecommendationArgs
-  _args272.ReqSeq = reqSeq
-  _args272.ID = id
-  var _result273 TalkServiceUnblockRecommendationResult
-  if err = p.Client_().Call(ctx, "unblockRecommendation", &_args272, &_result273); err != nil {
+  var _args293 TalkServiceUnblockRecommendationArgs
+  _args293.ReqSeq = reqSeq
+  _args293.ID = id
+  var _result294 TalkServiceUnblockRecommendationResult
+  if err = p.Client_().Call(ctx, "unblockRecommendation", &_args293, &_result294); err != nil {
     return
   }
   switch {
-  case _result273.E!= nil:
-    return _result273.E
+  case _result294.E!= nil:
+    return _result294.E
   }
 
   return nil
@@ -34096,33 +36959,33 @@ func (p *TalkServiceClient) UnblockRecommendation(ctx context.Context, reqSeq in
 //  - Seq
 //  - Message
 func (p *TalkServiceClient) SendMessage(ctx context.Context, seq int32, message *Message) (r *Message, err error) {
-  var _args274 TalkServiceSendMessageArgs
-  _args274.Seq = seq
-  _args274.Message = message
-  var _result275 TalkServiceSendMessageResult
-  if err = p.Client_().Call(ctx, "sendMessage", &_args274, &_result275); err != nil {
+  var _args295 TalkServiceSendMessageArgs
+  _args295.Seq = seq
+  _args295.Message = message
+  var _result296 TalkServiceSendMessageResult
+  if err = p.Client_().Call(ctx, "sendMessage", &_args295, &_result296); err != nil {
     return
   }
   switch {
-  case _result275.E!= nil:
-    return r, _result275.E
+  case _result296.E!= nil:
+    return r, _result296.E
   }
 
-  return _result275.GetSuccess(), nil
+  return _result296.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Text
 func (p *TalkServiceClient) SendEchoPush(ctx context.Context, text string) (err error) {
-  var _args276 TalkServiceSendEchoPushArgs
-  _args276.Text = text
-  var _result277 TalkServiceSendEchoPushResult
-  if err = p.Client_().Call(ctx, "sendEchoPush", &_args276, &_result277); err != nil {
+  var _args297 TalkServiceSendEchoPushArgs
+  _args297.Text = text
+  var _result298 TalkServiceSendEchoPushResult
+  if err = p.Client_().Call(ctx, "sendEchoPush", &_args297, &_result298); err != nil {
     return
   }
   switch {
-  case _result277.E!= nil:
-    return _result277.E
+  case _result298.E!= nil:
+    return _result298.E
   }
 
   return nil
@@ -34132,16 +36995,16 @@ func (p *TalkServiceClient) SendEchoPush(ctx context.Context, text string) (err 
 //  - MigrationPincodeSessionId
 //  - AccountMigrationPincode
 func (p *TalkServiceClient) VerifyAccountMigrationPincode(ctx context.Context, migrationPincodeSessionId string, accountMigrationPincode string) (err error) {
-  var _args278 TalkServiceVerifyAccountMigrationPincodeArgs
-  _args278.MigrationPincodeSessionId = migrationPincodeSessionId
-  _args278.AccountMigrationPincode = accountMigrationPincode
-  var _result279 TalkServiceVerifyAccountMigrationPincodeResult
-  if err = p.Client_().Call(ctx, "verifyAccountMigrationPincode", &_args278, &_result279); err != nil {
+  var _args299 TalkServiceVerifyAccountMigrationPincodeArgs
+  _args299.MigrationPincodeSessionId = migrationPincodeSessionId
+  _args299.AccountMigrationPincode = accountMigrationPincode
+  var _result300 TalkServiceVerifyAccountMigrationPincodeResult
+  if err = p.Client_().Call(ctx, "verifyAccountMigrationPincode", &_args299, &_result300); err != nil {
     return
   }
   switch {
-  case _result279.E!= nil:
-    return _result279.E
+  case _result300.E!= nil:
+    return _result300.E
   }
 
   return nil
@@ -34151,16 +37014,16 @@ func (p *TalkServiceClient) VerifyAccountMigrationPincode(ctx context.Context, m
 //  - UdidHash
 //  - ApplicationTypeWithExtensions
 func (p *TalkServiceClient) NotifyInstalled(ctx context.Context, udidHash string, applicationTypeWithExtensions string) (err error) {
-  var _args280 TalkServiceNotifyInstalledArgs
-  _args280.UdidHash = udidHash
-  _args280.ApplicationTypeWithExtensions = applicationTypeWithExtensions
-  var _result281 TalkServiceNotifyInstalledResult
-  if err = p.Client_().Call(ctx, "notifyInstalled", &_args280, &_result281); err != nil {
+  var _args301 TalkServiceNotifyInstalledArgs
+  _args301.UdidHash = udidHash
+  _args301.ApplicationTypeWithExtensions = applicationTypeWithExtensions
+  var _result302 TalkServiceNotifyInstalledResult
+  if err = p.Client_().Call(ctx, "notifyInstalled", &_args301, &_result302); err != nil {
     return
   }
   switch {
-  case _result281.E!= nil:
-    return _result281.E
+  case _result302.E!= nil:
+    return _result302.E
   }
 
   return nil
@@ -34170,105 +37033,105 @@ func (p *TalkServiceClient) NotifyInstalled(ctx context.Context, udidHash string
 //  - Verifier
 //  - PinCode
 func (p *TalkServiceClient) VerifyQrcode(ctx context.Context, verifier string, pinCode string) (r string, err error) {
-  var _args282 TalkServiceVerifyQrcodeArgs
-  _args282.Verifier = verifier
-  _args282.PinCode = pinCode
-  var _result283 TalkServiceVerifyQrcodeResult
-  if err = p.Client_().Call(ctx, "verifyQrcode", &_args282, &_result283); err != nil {
+  var _args303 TalkServiceVerifyQrcodeArgs
+  _args303.Verifier = verifier
+  _args303.PinCode = pinCode
+  var _result304 TalkServiceVerifyQrcodeResult
+  if err = p.Client_().Call(ctx, "verifyQrcode", &_args303, &_result304); err != nil {
     return
   }
   switch {
-  case _result283.E!= nil:
-    return r, _result283.E
+  case _result304.E!= nil:
+    return r, _result304.E
   }
 
-  return _result283.GetSuccess(), nil
+  return _result304.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SearchId
 //  - Reference
 func (p *TalkServiceClient) FindContactByMetaTag(ctx context.Context, searchId string, reference string) (r *Contact, err error) {
-  var _args284 TalkServiceFindContactByMetaTagArgs
-  _args284.SearchId = searchId
-  _args284.Reference = reference
-  var _result285 TalkServiceFindContactByMetaTagResult
-  if err = p.Client_().Call(ctx, "findContactByMetaTag", &_args284, &_result285); err != nil {
+  var _args305 TalkServiceFindContactByMetaTagArgs
+  _args305.SearchId = searchId
+  _args305.Reference = reference
+  var _result306 TalkServiceFindContactByMetaTagResult
+  if err = p.Client_().Call(ctx, "findContactByMetaTag", &_args305, &_result306); err != nil {
     return
   }
   switch {
-  case _result285.E!= nil:
-    return r, _result285.E
+  case _result306.E!= nil:
+    return r, _result306.E
   }
 
-  return _result285.GetSuccess(), nil
+  return _result306.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Phones
 func (p *TalkServiceClient) FindContactsByPhone(ctx context.Context, phones []string) (r map[string]*Contact, err error) {
-  var _args286 TalkServiceFindContactsByPhoneArgs
-  _args286.Phones = phones
-  var _result287 TalkServiceFindContactsByPhoneResult
-  if err = p.Client_().Call(ctx, "findContactsByPhone", &_args286, &_result287); err != nil {
+  var _args307 TalkServiceFindContactsByPhoneArgs
+  _args307.Phones = phones
+  var _result308 TalkServiceFindContactsByPhoneResult
+  if err = p.Client_().Call(ctx, "findContactsByPhone", &_args307, &_result308); err != nil {
     return
   }
   switch {
-  case _result287.E!= nil:
-    return r, _result287.E
+  case _result308.E!= nil:
+    return r, _result308.E
   }
 
-  return _result287.GetSuccess(), nil
+  return _result308.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SessionId
 //  - MigrationPincodeSessionId
 func (p *TalkServiceClient) RegisterWithPhoneNumber(ctx context.Context, sessionId string, migrationPincodeSessionId string) (r *RegisterWithPhoneNumberResult_, err error) {
-  var _args288 TalkServiceRegisterWithPhoneNumberArgs
-  _args288.SessionId = sessionId
-  _args288.MigrationPincodeSessionId = migrationPincodeSessionId
-  var _result289 TalkServiceRegisterWithPhoneNumberResult
-  if err = p.Client_().Call(ctx, "registerWithPhoneNumber", &_args288, &_result289); err != nil {
+  var _args309 TalkServiceRegisterWithPhoneNumberArgs
+  _args309.SessionId = sessionId
+  _args309.MigrationPincodeSessionId = migrationPincodeSessionId
+  var _result310 TalkServiceRegisterWithPhoneNumberResult
+  if err = p.Client_().Call(ctx, "registerWithPhoneNumber", &_args309, &_result310); err != nil {
     return
   }
   switch {
-  case _result289.E!= nil:
-    return r, _result289.E
+  case _result310.E!= nil:
+    return r, _result310.E
   }
 
-  return _result289.GetSuccess(), nil
+  return _result310.GetSuccess(), nil
 }
 
 // Parameters:
 //  - EMid
 func (p *TalkServiceClient) DecryptFollowEMid(ctx context.Context, eMid string) (r string, err error) {
-  var _args290 TalkServiceDecryptFollowEMidArgs
-  _args290.EMid = eMid
-  var _result291 TalkServiceDecryptFollowEMidResult
-  if err = p.Client_().Call(ctx, "decryptFollowEMid", &_args290, &_result291); err != nil {
+  var _args311 TalkServiceDecryptFollowEMidArgs
+  _args311.EMid = eMid
+  var _result312 TalkServiceDecryptFollowEMidResult
+  if err = p.Client_().Call(ctx, "decryptFollowEMid", &_args311, &_result312); err != nil {
     return
   }
   switch {
-  case _result291.E!= nil:
-    return r, _result291.E
+  case _result312.E!= nil:
+    return r, _result312.E
   }
 
-  return _result291.GetSuccess(), nil
+  return _result312.GetSuccess(), nil
 }
 
 // Parameters:
 //  - AccountMigrationPincode
 func (p *TalkServiceClient) UpdateAccountMigrationPincode(ctx context.Context, accountMigrationPincode string) (err error) {
-  var _args292 TalkServiceUpdateAccountMigrationPincodeArgs
-  _args292.AccountMigrationPincode = accountMigrationPincode
-  var _result293 TalkServiceUpdateAccountMigrationPincodeResult
-  if err = p.Client_().Call(ctx, "updateAccountMigrationPincode", &_args292, &_result293); err != nil {
+  var _args313 TalkServiceUpdateAccountMigrationPincodeArgs
+  _args313.AccountMigrationPincode = accountMigrationPincode
+  var _result314 TalkServiceUpdateAccountMigrationPincodeResult
+  if err = p.Client_().Call(ctx, "updateAccountMigrationPincode", &_args313, &_result314); err != nil {
     return
   }
   switch {
-  case _result293.E!= nil:
-    return _result293.E
+  case _result314.E!= nil:
+    return _result314.E
   }
 
   return nil
@@ -34277,63 +37140,63 @@ func (p *TalkServiceClient) UpdateAccountMigrationPincode(ctx context.Context, a
 // Parameters:
 //  - SearchId
 func (p *TalkServiceClient) IsUseridAvailable(ctx context.Context, searchId string) (r bool, err error) {
-  var _args294 TalkServiceIsUseridAvailableArgs
-  _args294.SearchId = searchId
-  var _result295 TalkServiceIsUseridAvailableResult
-  if err = p.Client_().Call(ctx, "isUseridAvailable", &_args294, &_result295); err != nil {
+  var _args315 TalkServiceIsUseridAvailableArgs
+  _args315.SearchId = searchId
+  var _result316 TalkServiceIsUseridAvailableResult
+  if err = p.Client_().Call(ctx, "isUseridAvailable", &_args315, &_result316); err != nil {
     return
   }
   switch {
-  case _result295.E!= nil:
-    return r, _result295.E
+  case _result316.E!= nil:
+    return r, _result316.E
   }
 
-  return _result295.GetSuccess(), nil
+  return _result316.GetSuccess(), nil
 }
 
 // Parameters:
 //  - GetFollowersRequest
 func (p *TalkServiceClient) GetFollowers(ctx context.Context, getFollowersRequest *GetFollowersRequest) (r *GetFollowersResponse, err error) {
-  var _args296 TalkServiceGetFollowersArgs
-  _args296.GetFollowersRequest = getFollowersRequest
-  var _result297 TalkServiceGetFollowersResult
-  if err = p.Client_().Call(ctx, "getFollowers", &_args296, &_result297); err != nil {
+  var _args317 TalkServiceGetFollowersArgs
+  _args317.GetFollowersRequest = getFollowersRequest
+  var _result318 TalkServiceGetFollowersResult
+  if err = p.Client_().Call(ctx, "getFollowers", &_args317, &_result318); err != nil {
     return
   }
   switch {
-  case _result297.E!= nil:
-    return r, _result297.E
+  case _result318.E!= nil:
+    return r, _result318.E
   }
 
-  return _result297.GetSuccess(), nil
+  return _result318.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) CreateAccountMigrationPincodeSession(ctx context.Context) (r string, err error) {
-  var _args298 TalkServiceCreateAccountMigrationPincodeSessionArgs
-  var _result299 TalkServiceCreateAccountMigrationPincodeSessionResult
-  if err = p.Client_().Call(ctx, "createAccountMigrationPincodeSession", &_args298, &_result299); err != nil {
+  var _args319 TalkServiceCreateAccountMigrationPincodeSessionArgs
+  var _result320 TalkServiceCreateAccountMigrationPincodeSessionResult
+  if err = p.Client_().Call(ctx, "createAccountMigrationPincodeSession", &_args319, &_result320); err != nil {
     return
   }
   switch {
-  case _result299.E!= nil:
-    return r, _result299.E
+  case _result320.E!= nil:
+    return r, _result320.E
   }
 
-  return _result299.GetSuccess(), nil
+  return _result320.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SessionId
 func (p *TalkServiceClient) ResendPinCode(ctx context.Context, sessionId string) (err error) {
-  var _args300 TalkServiceResendPinCodeArgs
-  _args300.SessionId = sessionId
-  var _result301 TalkServiceResendPinCodeResult
-  if err = p.Client_().Call(ctx, "resendPinCode", &_args300, &_result301); err != nil {
+  var _args321 TalkServiceResendPinCodeArgs
+  _args321.SessionId = sessionId
+  var _result322 TalkServiceResendPinCodeResult
+  if err = p.Client_().Call(ctx, "resendPinCode", &_args321, &_result322); err != nil {
     return
   }
   switch {
-  case _result301.E!= nil:
-    return _result301.E
+  case _result322.E!= nil:
+    return _result322.E
   }
 
   return nil
@@ -34342,77 +37205,77 @@ func (p *TalkServiceClient) ResendPinCode(ctx context.Context, sessionId string)
 // Parameters:
 //  - GetFollowingsRequest
 func (p *TalkServiceClient) GetFollowings(ctx context.Context, getFollowingsRequest *GetFollowingsRequest) (r *GetFollowingsResponse, err error) {
-  var _args302 TalkServiceGetFollowingsArgs
-  _args302.GetFollowingsRequest = getFollowingsRequest
-  var _result303 TalkServiceGetFollowingsResult
-  if err = p.Client_().Call(ctx, "getFollowings", &_args302, &_result303); err != nil {
+  var _args323 TalkServiceGetFollowingsArgs
+  _args323.GetFollowingsRequest = getFollowingsRequest
+  var _result324 TalkServiceGetFollowingsResult
+  if err = p.Client_().Call(ctx, "getFollowings", &_args323, &_result324); err != nil {
     return
   }
   switch {
-  case _result303.E!= nil:
-    return r, _result303.E
+  case _result324.E!= nil:
+    return r, _result324.E
   }
 
-  return _result303.GetSuccess(), nil
+  return _result324.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) GetServerTime(ctx context.Context) (r int64, err error) {
-  var _args304 TalkServiceGetServerTimeArgs
-  var _result305 TalkServiceGetServerTimeResult
-  if err = p.Client_().Call(ctx, "getServerTime", &_args304, &_result305); err != nil {
+  var _args325 TalkServiceGetServerTimeArgs
+  var _result326 TalkServiceGetServerTimeResult
+  if err = p.Client_().Call(ctx, "getServerTime", &_args325, &_result326); err != nil {
     return
   }
   switch {
-  case _result305.E!= nil:
-    return r, _result305.E
+  case _result326.E!= nil:
+    return r, _result326.E
   }
 
-  return _result305.GetSuccess(), nil
+  return _result326.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) GetLastOpRevision(ctx context.Context) (r int64, err error) {
-  var _args306 TalkServiceGetLastOpRevisionArgs
-  var _result307 TalkServiceGetLastOpRevisionResult
-  if err = p.Client_().Call(ctx, "getLastOpRevision", &_args306, &_result307); err != nil {
+  var _args327 TalkServiceGetLastOpRevisionArgs
+  var _result328 TalkServiceGetLastOpRevisionResult
+  if err = p.Client_().Call(ctx, "getLastOpRevision", &_args327, &_result328); err != nil {
     return
   }
   switch {
-  case _result307.E!= nil:
-    return r, _result307.E
+  case _result328.E!= nil:
+    return r, _result328.E
   }
 
-  return _result307.GetSuccess(), nil
+  return _result328.GetSuccess(), nil
 }
 
 // Parameters:
 //  - TicketIdWithTag
 func (p *TalkServiceClient) FindContactByUserTicket(ctx context.Context, ticketIdWithTag string) (r *Contact, err error) {
-  var _args308 TalkServiceFindContactByUserTicketArgs
-  _args308.TicketIdWithTag = ticketIdWithTag
-  var _result309 TalkServiceFindContactByUserTicketResult
-  if err = p.Client_().Call(ctx, "findContactByUserTicket", &_args308, &_result309); err != nil {
+  var _args329 TalkServiceFindContactByUserTicketArgs
+  _args329.TicketIdWithTag = ticketIdWithTag
+  var _result330 TalkServiceFindContactByUserTicketResult
+  if err = p.Client_().Call(ctx, "findContactByUserTicket", &_args329, &_result330); err != nil {
     return
   }
   switch {
-  case _result309.E!= nil:
-    return r, _result309.E
+  case _result330.E!= nil:
+    return r, _result330.E
   }
 
-  return _result309.GetSuccess(), nil
+  return _result330.GetSuccess(), nil
 }
 
 // Parameters:
 //  - SessionId
 func (p *TalkServiceClient) FinishUpdateVerification(ctx context.Context, sessionId string) (err error) {
-  var _args310 TalkServiceFinishUpdateVerificationArgs
-  _args310.SessionId = sessionId
-  var _result311 TalkServiceFinishUpdateVerificationResult
-  if err = p.Client_().Call(ctx, "finishUpdateVerification", &_args310, &_result311); err != nil {
+  var _args331 TalkServiceFinishUpdateVerificationArgs
+  _args331.SessionId = sessionId
+  var _result332 TalkServiceFinishUpdateVerificationResult
+  if err = p.Client_().Call(ctx, "finishUpdateVerification", &_args331, &_result332); err != nil {
     return
   }
   switch {
-  case _result311.E!= nil:
-    return _result311.E
+  case _result332.E!= nil:
+    return _result332.E
   }
 
   return nil
@@ -34421,46 +37284,46 @@ func (p *TalkServiceClient) FinishUpdateVerification(ctx context.Context, sessio
 // Parameters:
 //  - SessionId
 func (p *TalkServiceClient) GetAcceptedProximityMatches(ctx context.Context, sessionId string) (r []string, err error) {
-  var _args312 TalkServiceGetAcceptedProximityMatchesArgs
-  _args312.SessionId = sessionId
-  var _result313 TalkServiceGetAcceptedProximityMatchesResult
-  if err = p.Client_().Call(ctx, "getAcceptedProximityMatches", &_args312, &_result313); err != nil {
+  var _args333 TalkServiceGetAcceptedProximityMatchesArgs
+  _args333.SessionId = sessionId
+  var _result334 TalkServiceGetAcceptedProximityMatchesResult
+  if err = p.Client_().Call(ctx, "getAcceptedProximityMatches", &_args333, &_result334); err != nil {
     return
   }
   switch {
-  case _result313.E!= nil:
-    return r, _result313.E
+  case _result334.E!= nil:
+    return r, _result334.E
   }
 
-  return _result313.GetSuccess(), nil
+  return _result334.GetSuccess(), nil
 }
 
 func (p *TalkServiceClient) ClearRingbackTone(ctx context.Context) (err error) {
-  var _args314 TalkServiceClearRingbackToneArgs
-  var _result315 TalkServiceClearRingbackToneResult
-  if err = p.Client_().Call(ctx, "clearRingbackTone", &_args314, &_result315); err != nil {
+  var _args335 TalkServiceClearRingbackToneArgs
+  var _result336 TalkServiceClearRingbackToneResult
+  if err = p.Client_().Call(ctx, "clearRingbackTone", &_args335, &_result336); err != nil {
     return
   }
   switch {
-  case _result315.E!= nil:
-    return _result315.E
+  case _result336.E!= nil:
+    return _result336.E
   }
 
   return nil
 }
 
 func (p *TalkServiceClient) UnregisterUserAndDevice(ctx context.Context) (r string, err error) {
-  var _args316 TalkServiceUnregisterUserAndDeviceArgs
-  var _result317 TalkServiceUnregisterUserAndDeviceResult
-  if err = p.Client_().Call(ctx, "unregisterUserAndDevice", &_args316, &_result317); err != nil {
+  var _args337 TalkServiceUnregisterUserAndDeviceArgs
+  var _result338 TalkServiceUnregisterUserAndDeviceResult
+  if err = p.Client_().Call(ctx, "unregisterUserAndDevice", &_args337, &_result338); err != nil {
     return
   }
   switch {
-  case _result317.E!= nil:
-    return r, _result317.E
+  case _result338.E!= nil:
+    return r, _result338.E
   }
 
-  return _result317.GetSuccess(), nil
+  return _result338.GetSuccess(), nil
 }
 
 type TalkServiceProcessor struct {
@@ -34483,135 +37346,135 @@ func (p *TalkServiceProcessor) ProcessorMap() map[string]thrift.TProcessorFuncti
 
 func NewTalkServiceProcessor(handler TalkService) *TalkServiceProcessor {
 
-  self318 := &TalkServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
-  self318.processorMap["updateSettingsAttributes2"] = &talkServiceProcessorUpdateSettingsAttributes2{handler:handler}
-  self318.processorMap["updateProfileAttributes"] = &talkServiceProcessorUpdateProfileAttributes{handler:handler}
-  self318.processorMap["updateContactSetting"] = &talkServiceProcessorUpdateContactSetting{handler:handler}
-  self318.processorMap["getRecentFriendRequests"] = &talkServiceProcessorGetRecentFriendRequests{handler:handler}
-  self318.processorMap["getCountryWithRequestIp"] = &talkServiceProcessorGetCountryWithRequestIp{handler:handler}
-  self318.processorMap["getContact"] = &talkServiceProcessorGetContact{handler:handler}
-  self318.processorMap["getLastE2EEPublicKeys"] = &talkServiceProcessorGetLastE2EEPublicKeys{handler:handler}
-  self318.processorMap["getRingtone"] = &talkServiceProcessorGetRingtone{handler:handler}
-  self318.processorMap["negotiateE2EEPublicKey"] = &talkServiceProcessorNegotiateE2EEPublicKey{handler:handler}
-  self318.processorMap["findContactByUserid"] = &talkServiceProcessorFindContactByUserid{handler:handler}
-  self318.processorMap["clearRingtone"] = &talkServiceProcessorClearRingtone{handler:handler}
-  self318.processorMap["setNotificationsEnabled"] = &talkServiceProcessorSetNotificationsEnabled{handler:handler}
-  self318.processorMap["deleteOtherFromChat"] = &talkServiceProcessorDeleteOtherFromChat{handler:handler}
-  self318.processorMap["inviteIntoChat"] = &talkServiceProcessorInviteIntoChat{handler:handler}
-  self318.processorMap["acceptChatInvitationByTicket"] = &talkServiceProcessorAcceptChatInvitationByTicket{handler:handler}
-  self318.processorMap["deleteSelfFromChat"] = &talkServiceProcessorDeleteSelfFromChat{handler:handler}
-  self318.processorMap["findChatByTicket"] = &talkServiceProcessorFindChatByTicket{handler:handler}
-  self318.processorMap["cancelChatInvitation"] = &talkServiceProcessorCancelChatInvitation{handler:handler}
-  self318.processorMap["acceptChatInvitation"] = &talkServiceProcessorAcceptChatInvitation{handler:handler}
-  self318.processorMap["getMessageBoxes"] = &talkServiceProcessorGetMessageBoxes{handler:handler}
-  self318.processorMap["updateChat"] = &talkServiceProcessorUpdateChat{handler:handler}
-  self318.processorMap["reissueChatTicket"] = &talkServiceProcessorReissueChatTicket{handler:handler}
-  self318.processorMap["getAllChatMids"] = &talkServiceProcessorGetAllChatMids{handler:handler}
-  self318.processorMap["rejectChatInvitation"] = &talkServiceProcessorRejectChatInvitation{handler:handler}
-  self318.processorMap["createChat"] = &talkServiceProcessorCreateChat{handler:handler}
-  self318.processorMap["getChatRoomAnnouncementsBulk"] = &talkServiceProcessorGetChatRoomAnnouncementsBulk{handler:handler}
-  self318.processorMap["getChats"] = &talkServiceProcessorGetChats{handler:handler}
-  self318.processorMap["startUpdateVerification"] = &talkServiceProcessorStartUpdateVerification{handler:handler}
-  self318.processorMap["startVerification"] = &talkServiceProcessorStartVerification{handler:handler}
-  self318.processorMap["changeVerificationMethod"] = &talkServiceProcessorChangeVerificationMethod{handler:handler}
-  self318.processorMap["getEncryptedIdentityV3"] = &talkServiceProcessorGetEncryptedIdentityV3{handler:handler}
-  self318.processorMap["getE2EEGroupSharedKey"] = &talkServiceProcessorGetE2EEGroupSharedKey{handler:handler}
-  self318.processorMap["registerE2EEGroupKey"] = &talkServiceProcessorRegisterE2EEGroupKey{handler:handler}
-  self318.processorMap["generateUserTicket"] = &talkServiceProcessorGenerateUserTicket{handler:handler}
-  self318.processorMap["registerE2EEPublicKey"] = &talkServiceProcessorRegisterE2EEPublicKey{handler:handler}
-  self318.processorMap["getE2EEPublicKey"] = &talkServiceProcessorGetE2EEPublicKey{handler:handler}
-  self318.processorMap["getRSAKeyInfo"] = &talkServiceProcessorGetRSAKeyInfo{handler:handler}
-  self318.processorMap["registerWithSnsId"] = &talkServiceProcessorRegisterWithSnsId{handler:handler}
-  self318.processorMap["findSnsIdUserStatus"] = &talkServiceProcessorFindSnsIdUserStatus{handler:handler}
-  self318.processorMap["getContactRegistration"] = &talkServiceProcessorGetContactRegistration{handler:handler}
-  self318.processorMap["verifyPhoneNumber"] = &talkServiceProcessorVerifyPhoneNumber{handler:handler}
-  self318.processorMap["acquireEncryptedAccessToken"] = &talkServiceProcessorAcquireEncryptedAccessToken{handler:handler}
-  self318.processorMap["registerWithSnsIdAndIdentityCredential"] = &talkServiceProcessorRegisterWithSnsIdAndIdentityCredential{handler:handler}
-  self318.processorMap["getShakeEventV1"] = &talkServiceProcessorGetShakeEventV1{handler:handler}
-  self318.processorMap["registerDeviceWithIdentityCredential"] = &talkServiceProcessorRegisterDeviceWithIdentityCredential{handler:handler}
-  self318.processorMap["updateAndGetNearby"] = &talkServiceProcessorUpdateAndGetNearby{handler:handler}
-  self318.processorMap["fetchOperations"] = &talkServiceProcessorFetchOperations{handler:handler}
-  self318.processorMap["fetchOps"] = &talkServiceProcessorFetchOps{handler:handler}
-  self318.processorMap["unsendMessage"] = &talkServiceProcessorUnsendMessage{handler:handler}
-  self318.processorMap["blockRecommendation"] = &talkServiceProcessorBlockRecommendation{handler:handler}
-  self318.processorMap["findAndAddContactsByMid"] = &talkServiceProcessorFindAndAddContactsByMid{handler:handler}
-  self318.processorMap["requestResendMessage"] = &talkServiceProcessorRequestResendMessage{handler:handler}
-  self318.processorMap["sendChatRemoved"] = &talkServiceProcessorSendChatRemoved{handler:handler}
-  self318.processorMap["respondResendMessage"] = &talkServiceProcessorRespondResendMessage{handler:handler}
-  self318.processorMap["inviteIntoRoom"] = &talkServiceProcessorInviteIntoRoom{handler:handler}
-  self318.processorMap["respondE2EEKeyExchange"] = &talkServiceProcessorRespondE2EEKeyExchange{handler:handler}
-  self318.processorMap["syncContacts"] = &talkServiceProcessorSyncContacts{handler:handler}
-  self318.processorMap["findAndAddContactsByPhone"] = &talkServiceProcessorFindAndAddContactsByPhone{handler:handler}
-  self318.processorMap["notifySleep"] = &talkServiceProcessorNotifySleep{handler:handler}
-  self318.processorMap["reportProfile"] = &talkServiceProcessorReportProfile{handler:handler}
-  self318.processorMap["notifyUpdated"] = &talkServiceProcessorNotifyUpdated{handler:handler}
-  self318.processorMap["reportSettings"] = &talkServiceProcessorReportSettings{handler:handler}
-  self318.processorMap["getBlockedContactIds"] = &talkServiceProcessorGetBlockedContactIds{handler:handler}
-  self318.processorMap["openProximityMatch"] = &talkServiceProcessorOpenProximityMatch{handler:handler}
-  self318.processorMap["removeFriendRequest"] = &talkServiceProcessorRemoveFriendRequest{handler:handler}
-  self318.processorMap["updateNotificationToken"] = &talkServiceProcessorUpdateNotificationToken{handler:handler}
-  self318.processorMap["updateExtendedProfileAttribute"] = &talkServiceProcessorUpdateExtendedProfileAttribute{handler:handler}
-  self318.processorMap["verifyIdentityCredentialWithResult"] = &talkServiceProcessorVerifyIdentityCredentialWithResult_{handler:handler}
-  self318.processorMap["requestAccountPasswordReset"] = &talkServiceProcessorRequestAccountPasswordReset{handler:handler}
-  self318.processorMap["sendPostback"] = &talkServiceProcessorSendPostback{handler:handler}
-  self318.processorMap["tryFriendRequest"] = &talkServiceProcessorTryFriendRequest{handler:handler}
-  self318.processorMap["acceptProximityMatches"] = &talkServiceProcessorAcceptProximityMatches{handler:handler}
-  self318.processorMap["getContacts"] = &talkServiceProcessorGetContacts{handler:handler}
-  self318.processorMap["reportDeviceState"] = &talkServiceProcessorReportDeviceState{handler:handler}
-  self318.processorMap["blockContact"] = &talkServiceProcessorBlockContact{handler:handler}
-  self318.processorMap["getExtendedProfile"] = &talkServiceProcessorGetExtendedProfile{handler:handler}
-  self318.processorMap["getSettingsAttributes2"] = &talkServiceProcessorGetSettingsAttributes2{handler:handler}
-  self318.processorMap["getProfile"] = &talkServiceProcessorGetProfile{handler:handler}
-  self318.processorMap["getProximityMatchCandidateList"] = &talkServiceProcessorGetProximityMatchCandidateList{handler:handler}
-  self318.processorMap["findAndAddContactByMetaTag"] = &talkServiceProcessorFindAndAddContactByMetaTag{handler:handler}
-  self318.processorMap["getMessageReadRange"] = &talkServiceProcessorGetMessageReadRange{handler:handler}
-  self318.processorMap["registerUserid"] = &talkServiceProcessorRegisterUserid{handler:handler}
-  self318.processorMap["reportPushRecvReports"] = &talkServiceProcessorReportPushRecvReports{handler:handler}
-  self318.processorMap["noop"] = &talkServiceProcessorNoop{handler:handler}
-  self318.processorMap["getBlockedRecommendationIds"] = &talkServiceProcessorGetBlockedRecommendationIds{handler:handler}
-  self318.processorMap["removeFollower"] = &talkServiceProcessorRemoveFollower{handler:handler}
-  self318.processorMap["verifyAccountMigration"] = &talkServiceProcessorVerifyAccountMigration{handler:handler}
-  self318.processorMap["getSettings"] = &talkServiceProcessorGetSettings{handler:handler}
-  self318.processorMap["getLastE2EEGroupSharedKey"] = &talkServiceProcessorGetLastE2EEGroupSharedKey{handler:handler}
-  self318.processorMap["getRingbackTone"] = &talkServiceProcessorGetRingbackTone{handler:handler}
-  self318.processorMap["leaveRoom"] = &talkServiceProcessorLeaveRoom{handler:handler}
-  self318.processorMap["sendChatChecked"] = &talkServiceProcessorSendChatChecked{handler:handler}
-  self318.processorMap["findAndAddContactsByUserid"] = &talkServiceProcessorFindAndAddContactsByUserid{handler:handler}
-  self318.processorMap["getAllContactIds"] = &talkServiceProcessorGetAllContactIds{handler:handler}
-  self318.processorMap["unfollow"] = &talkServiceProcessorUnfollow{handler:handler}
-  self318.processorMap["closeProximityMatch"] = &talkServiceProcessorCloseProximityMatch{handler:handler}
-  self318.processorMap["inviteFriendsBySms"] = &talkServiceProcessorInviteFriendsBySms{handler:handler}
-  self318.processorMap["getChatEffectMetaList"] = &talkServiceProcessorGetChatEffectMetaList{handler:handler}
-  self318.processorMap["removeAllMessages"] = &talkServiceProcessorRemoveAllMessages{handler:handler}
-  self318.processorMap["unblockContact"] = &talkServiceProcessorUnblockContact{handler:handler}
-  self318.processorMap["getAnalyticsInfo"] = &talkServiceProcessorGetAnalyticsInfo{handler:handler}
-  self318.processorMap["getRecommendationIds"] = &talkServiceProcessorGetRecommendationIds{handler:handler}
-  self318.processorMap["notifyRegistrationComplete"] = &talkServiceProcessorNotifyRegistrationComplete{handler:handler}
-  self318.processorMap["wakeUpLongPolling"] = &talkServiceProcessorWakeUpLongPolling{handler:handler}
-  self318.processorMap["unblockRecommendation"] = &talkServiceProcessorUnblockRecommendation{handler:handler}
-  self318.processorMap["sendMessage"] = &talkServiceProcessorSendMessage{handler:handler}
-  self318.processorMap["sendEchoPush"] = &talkServiceProcessorSendEchoPush{handler:handler}
-  self318.processorMap["verifyAccountMigrationPincode"] = &talkServiceProcessorVerifyAccountMigrationPincode{handler:handler}
-  self318.processorMap["notifyInstalled"] = &talkServiceProcessorNotifyInstalled{handler:handler}
-  self318.processorMap["verifyQrcode"] = &talkServiceProcessorVerifyQrcode{handler:handler}
-  self318.processorMap["findContactByMetaTag"] = &talkServiceProcessorFindContactByMetaTag{handler:handler}
-  self318.processorMap["findContactsByPhone"] = &talkServiceProcessorFindContactsByPhone{handler:handler}
-  self318.processorMap["registerWithPhoneNumber"] = &talkServiceProcessorRegisterWithPhoneNumber{handler:handler}
-  self318.processorMap["decryptFollowEMid"] = &talkServiceProcessorDecryptFollowEMid{handler:handler}
-  self318.processorMap["updateAccountMigrationPincode"] = &talkServiceProcessorUpdateAccountMigrationPincode{handler:handler}
-  self318.processorMap["isUseridAvailable"] = &talkServiceProcessorIsUseridAvailable{handler:handler}
-  self318.processorMap["getFollowers"] = &talkServiceProcessorGetFollowers{handler:handler}
-  self318.processorMap["createAccountMigrationPincodeSession"] = &talkServiceProcessorCreateAccountMigrationPincodeSession{handler:handler}
-  self318.processorMap["resendPinCode"] = &talkServiceProcessorResendPinCode{handler:handler}
-  self318.processorMap["getFollowings"] = &talkServiceProcessorGetFollowings{handler:handler}
-  self318.processorMap["getServerTime"] = &talkServiceProcessorGetServerTime{handler:handler}
-  self318.processorMap["getLastOpRevision"] = &talkServiceProcessorGetLastOpRevision{handler:handler}
-  self318.processorMap["findContactByUserTicket"] = &talkServiceProcessorFindContactByUserTicket{handler:handler}
-  self318.processorMap["finishUpdateVerification"] = &talkServiceProcessorFinishUpdateVerification{handler:handler}
-  self318.processorMap["getAcceptedProximityMatches"] = &talkServiceProcessorGetAcceptedProximityMatches{handler:handler}
-  self318.processorMap["clearRingbackTone"] = &talkServiceProcessorClearRingbackTone{handler:handler}
-  self318.processorMap["unregisterUserAndDevice"] = &talkServiceProcessorUnregisterUserAndDevice{handler:handler}
-return self318
+  self339 := &TalkServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
+  self339.processorMap["updateSettingsAttributes2"] = &talkServiceProcessorUpdateSettingsAttributes2{handler:handler}
+  self339.processorMap["updateProfileAttributes"] = &talkServiceProcessorUpdateProfileAttributes{handler:handler}
+  self339.processorMap["updateContactSetting"] = &talkServiceProcessorUpdateContactSetting{handler:handler}
+  self339.processorMap["getRecentFriendRequests"] = &talkServiceProcessorGetRecentFriendRequests{handler:handler}
+  self339.processorMap["getCountryWithRequestIp"] = &talkServiceProcessorGetCountryWithRequestIp{handler:handler}
+  self339.processorMap["getContact"] = &talkServiceProcessorGetContact{handler:handler}
+  self339.processorMap["getLastE2EEPublicKeys"] = &talkServiceProcessorGetLastE2EEPublicKeys{handler:handler}
+  self339.processorMap["getRingtone"] = &talkServiceProcessorGetRingtone{handler:handler}
+  self339.processorMap["negotiateE2EEPublicKey"] = &talkServiceProcessorNegotiateE2EEPublicKey{handler:handler}
+  self339.processorMap["findContactByUserid"] = &talkServiceProcessorFindContactByUserid{handler:handler}
+  self339.processorMap["clearRingtone"] = &talkServiceProcessorClearRingtone{handler:handler}
+  self339.processorMap["setNotificationsEnabled"] = &talkServiceProcessorSetNotificationsEnabled{handler:handler}
+  self339.processorMap["deleteOtherFromChat"] = &talkServiceProcessorDeleteOtherFromChat{handler:handler}
+  self339.processorMap["inviteIntoChat"] = &talkServiceProcessorInviteIntoChat{handler:handler}
+  self339.processorMap["acceptChatInvitationByTicket"] = &talkServiceProcessorAcceptChatInvitationByTicket{handler:handler}
+  self339.processorMap["deleteSelfFromChat"] = &talkServiceProcessorDeleteSelfFromChat{handler:handler}
+  self339.processorMap["findChatByTicket"] = &talkServiceProcessorFindChatByTicket{handler:handler}
+  self339.processorMap["cancelChatInvitation"] = &talkServiceProcessorCancelChatInvitation{handler:handler}
+  self339.processorMap["acceptChatInvitation"] = &talkServiceProcessorAcceptChatInvitation{handler:handler}
+  self339.processorMap["getMessageBoxes"] = &talkServiceProcessorGetMessageBoxes{handler:handler}
+  self339.processorMap["updateChat"] = &talkServiceProcessorUpdateChat{handler:handler}
+  self339.processorMap["reissueChatTicket"] = &talkServiceProcessorReissueChatTicket{handler:handler}
+  self339.processorMap["getAllChatMids"] = &talkServiceProcessorGetAllChatMids{handler:handler}
+  self339.processorMap["rejectChatInvitation"] = &talkServiceProcessorRejectChatInvitation{handler:handler}
+  self339.processorMap["createChat"] = &talkServiceProcessorCreateChat{handler:handler}
+  self339.processorMap["getChatRoomAnnouncementsBulk"] = &talkServiceProcessorGetChatRoomAnnouncementsBulk{handler:handler}
+  self339.processorMap["getChats"] = &talkServiceProcessorGetChats{handler:handler}
+  self339.processorMap["startUpdateVerification"] = &talkServiceProcessorStartUpdateVerification{handler:handler}
+  self339.processorMap["startVerification"] = &talkServiceProcessorStartVerification{handler:handler}
+  self339.processorMap["changeVerificationMethod"] = &talkServiceProcessorChangeVerificationMethod{handler:handler}
+  self339.processorMap["getEncryptedIdentityV3"] = &talkServiceProcessorGetEncryptedIdentityV3{handler:handler}
+  self339.processorMap["getE2EEGroupSharedKey"] = &talkServiceProcessorGetE2EEGroupSharedKey{handler:handler}
+  self339.processorMap["registerE2EEGroupKey"] = &talkServiceProcessorRegisterE2EEGroupKey{handler:handler}
+  self339.processorMap["generateUserTicket"] = &talkServiceProcessorGenerateUserTicket{handler:handler}
+  self339.processorMap["registerE2EEPublicKey"] = &talkServiceProcessorRegisterE2EEPublicKey{handler:handler}
+  self339.processorMap["getE2EEPublicKey"] = &talkServiceProcessorGetE2EEPublicKey{handler:handler}
+  self339.processorMap["getRSAKeyInfo"] = &talkServiceProcessorGetRSAKeyInfo{handler:handler}
+  self339.processorMap["registerWithSnsId"] = &talkServiceProcessorRegisterWithSnsId{handler:handler}
+  self339.processorMap["findSnsIdUserStatus"] = &talkServiceProcessorFindSnsIdUserStatus{handler:handler}
+  self339.processorMap["getContactRegistration"] = &talkServiceProcessorGetContactRegistration{handler:handler}
+  self339.processorMap["verifyPhoneNumber"] = &talkServiceProcessorVerifyPhoneNumber{handler:handler}
+  self339.processorMap["acquireEncryptedAccessToken"] = &talkServiceProcessorAcquireEncryptedAccessToken{handler:handler}
+  self339.processorMap["registerWithSnsIdAndIdentityCredential"] = &talkServiceProcessorRegisterWithSnsIdAndIdentityCredential{handler:handler}
+  self339.processorMap["getShakeEventV1"] = &talkServiceProcessorGetShakeEventV1{handler:handler}
+  self339.processorMap["registerDeviceWithIdentityCredential"] = &talkServiceProcessorRegisterDeviceWithIdentityCredential{handler:handler}
+  self339.processorMap["updateAndGetNearby"] = &talkServiceProcessorUpdateAndGetNearby{handler:handler}
+  self339.processorMap["fetchOperations"] = &talkServiceProcessorFetchOperations{handler:handler}
+  self339.processorMap["fetchOps"] = &talkServiceProcessorFetchOps{handler:handler}
+  self339.processorMap["unsendMessage"] = &talkServiceProcessorUnsendMessage{handler:handler}
+  self339.processorMap["blockRecommendation"] = &talkServiceProcessorBlockRecommendation{handler:handler}
+  self339.processorMap["findAndAddContactsByMid"] = &talkServiceProcessorFindAndAddContactsByMid{handler:handler}
+  self339.processorMap["requestResendMessage"] = &talkServiceProcessorRequestResendMessage{handler:handler}
+  self339.processorMap["sendChatRemoved"] = &talkServiceProcessorSendChatRemoved{handler:handler}
+  self339.processorMap["respondResendMessage"] = &talkServiceProcessorRespondResendMessage{handler:handler}
+  self339.processorMap["inviteIntoRoom"] = &talkServiceProcessorInviteIntoRoom{handler:handler}
+  self339.processorMap["respondE2EEKeyExchange"] = &talkServiceProcessorRespondE2EEKeyExchange{handler:handler}
+  self339.processorMap["syncContacts"] = &talkServiceProcessorSyncContacts{handler:handler}
+  self339.processorMap["findAndAddContactsByPhone"] = &talkServiceProcessorFindAndAddContactsByPhone{handler:handler}
+  self339.processorMap["notifySleep"] = &talkServiceProcessorNotifySleep{handler:handler}
+  self339.processorMap["reportProfile"] = &talkServiceProcessorReportProfile{handler:handler}
+  self339.processorMap["notifyUpdated"] = &talkServiceProcessorNotifyUpdated{handler:handler}
+  self339.processorMap["reportSettings"] = &talkServiceProcessorReportSettings{handler:handler}
+  self339.processorMap["getBlockedContactIds"] = &talkServiceProcessorGetBlockedContactIds{handler:handler}
+  self339.processorMap["openProximityMatch"] = &talkServiceProcessorOpenProximityMatch{handler:handler}
+  self339.processorMap["removeFriendRequest"] = &talkServiceProcessorRemoveFriendRequest{handler:handler}
+  self339.processorMap["updateNotificationToken"] = &talkServiceProcessorUpdateNotificationToken{handler:handler}
+  self339.processorMap["updateExtendedProfileAttribute"] = &talkServiceProcessorUpdateExtendedProfileAttribute{handler:handler}
+  self339.processorMap["verifyIdentityCredentialWithResult"] = &talkServiceProcessorVerifyIdentityCredentialWithResult_{handler:handler}
+  self339.processorMap["requestAccountPasswordReset"] = &talkServiceProcessorRequestAccountPasswordReset{handler:handler}
+  self339.processorMap["sendPostback"] = &talkServiceProcessorSendPostback{handler:handler}
+  self339.processorMap["tryFriendRequest"] = &talkServiceProcessorTryFriendRequest{handler:handler}
+  self339.processorMap["acceptProximityMatches"] = &talkServiceProcessorAcceptProximityMatches{handler:handler}
+  self339.processorMap["getContacts"] = &talkServiceProcessorGetContacts{handler:handler}
+  self339.processorMap["reportDeviceState"] = &talkServiceProcessorReportDeviceState{handler:handler}
+  self339.processorMap["blockContact"] = &talkServiceProcessorBlockContact{handler:handler}
+  self339.processorMap["getExtendedProfile"] = &talkServiceProcessorGetExtendedProfile{handler:handler}
+  self339.processorMap["getSettingsAttributes2"] = &talkServiceProcessorGetSettingsAttributes2{handler:handler}
+  self339.processorMap["getProfile"] = &talkServiceProcessorGetProfile{handler:handler}
+  self339.processorMap["getProximityMatchCandidateList"] = &talkServiceProcessorGetProximityMatchCandidateList{handler:handler}
+  self339.processorMap["findAndAddContactByMetaTag"] = &talkServiceProcessorFindAndAddContactByMetaTag{handler:handler}
+  self339.processorMap["getMessageReadRange"] = &talkServiceProcessorGetMessageReadRange{handler:handler}
+  self339.processorMap["registerUserid"] = &talkServiceProcessorRegisterUserid{handler:handler}
+  self339.processorMap["reportPushRecvReports"] = &talkServiceProcessorReportPushRecvReports{handler:handler}
+  self339.processorMap["noop"] = &talkServiceProcessorNoop{handler:handler}
+  self339.processorMap["getBlockedRecommendationIds"] = &talkServiceProcessorGetBlockedRecommendationIds{handler:handler}
+  self339.processorMap["removeFollower"] = &talkServiceProcessorRemoveFollower{handler:handler}
+  self339.processorMap["verifyAccountMigration"] = &talkServiceProcessorVerifyAccountMigration{handler:handler}
+  self339.processorMap["getSettings"] = &talkServiceProcessorGetSettings{handler:handler}
+  self339.processorMap["getLastE2EEGroupSharedKey"] = &talkServiceProcessorGetLastE2EEGroupSharedKey{handler:handler}
+  self339.processorMap["getRingbackTone"] = &talkServiceProcessorGetRingbackTone{handler:handler}
+  self339.processorMap["leaveRoom"] = &talkServiceProcessorLeaveRoom{handler:handler}
+  self339.processorMap["sendChatChecked"] = &talkServiceProcessorSendChatChecked{handler:handler}
+  self339.processorMap["findAndAddContactsByUserid"] = &talkServiceProcessorFindAndAddContactsByUserid{handler:handler}
+  self339.processorMap["getAllContactIds"] = &talkServiceProcessorGetAllContactIds{handler:handler}
+  self339.processorMap["unfollow"] = &talkServiceProcessorUnfollow{handler:handler}
+  self339.processorMap["closeProximityMatch"] = &talkServiceProcessorCloseProximityMatch{handler:handler}
+  self339.processorMap["inviteFriendsBySms"] = &talkServiceProcessorInviteFriendsBySms{handler:handler}
+  self339.processorMap["getChatEffectMetaList"] = &talkServiceProcessorGetChatEffectMetaList{handler:handler}
+  self339.processorMap["removeAllMessages"] = &talkServiceProcessorRemoveAllMessages{handler:handler}
+  self339.processorMap["unblockContact"] = &talkServiceProcessorUnblockContact{handler:handler}
+  self339.processorMap["getAnalyticsInfo"] = &talkServiceProcessorGetAnalyticsInfo{handler:handler}
+  self339.processorMap["getRecommendationIds"] = &talkServiceProcessorGetRecommendationIds{handler:handler}
+  self339.processorMap["notifyRegistrationComplete"] = &talkServiceProcessorNotifyRegistrationComplete{handler:handler}
+  self339.processorMap["wakeUpLongPolling"] = &talkServiceProcessorWakeUpLongPolling{handler:handler}
+  self339.processorMap["unblockRecommendation"] = &talkServiceProcessorUnblockRecommendation{handler:handler}
+  self339.processorMap["sendMessage"] = &talkServiceProcessorSendMessage{handler:handler}
+  self339.processorMap["sendEchoPush"] = &talkServiceProcessorSendEchoPush{handler:handler}
+  self339.processorMap["verifyAccountMigrationPincode"] = &talkServiceProcessorVerifyAccountMigrationPincode{handler:handler}
+  self339.processorMap["notifyInstalled"] = &talkServiceProcessorNotifyInstalled{handler:handler}
+  self339.processorMap["verifyQrcode"] = &talkServiceProcessorVerifyQrcode{handler:handler}
+  self339.processorMap["findContactByMetaTag"] = &talkServiceProcessorFindContactByMetaTag{handler:handler}
+  self339.processorMap["findContactsByPhone"] = &talkServiceProcessorFindContactsByPhone{handler:handler}
+  self339.processorMap["registerWithPhoneNumber"] = &talkServiceProcessorRegisterWithPhoneNumber{handler:handler}
+  self339.processorMap["decryptFollowEMid"] = &talkServiceProcessorDecryptFollowEMid{handler:handler}
+  self339.processorMap["updateAccountMigrationPincode"] = &talkServiceProcessorUpdateAccountMigrationPincode{handler:handler}
+  self339.processorMap["isUseridAvailable"] = &talkServiceProcessorIsUseridAvailable{handler:handler}
+  self339.processorMap["getFollowers"] = &talkServiceProcessorGetFollowers{handler:handler}
+  self339.processorMap["createAccountMigrationPincodeSession"] = &talkServiceProcessorCreateAccountMigrationPincodeSession{handler:handler}
+  self339.processorMap["resendPinCode"] = &talkServiceProcessorResendPinCode{handler:handler}
+  self339.processorMap["getFollowings"] = &talkServiceProcessorGetFollowings{handler:handler}
+  self339.processorMap["getServerTime"] = &talkServiceProcessorGetServerTime{handler:handler}
+  self339.processorMap["getLastOpRevision"] = &talkServiceProcessorGetLastOpRevision{handler:handler}
+  self339.processorMap["findContactByUserTicket"] = &talkServiceProcessorFindContactByUserTicket{handler:handler}
+  self339.processorMap["finishUpdateVerification"] = &talkServiceProcessorFinishUpdateVerification{handler:handler}
+  self339.processorMap["getAcceptedProximityMatches"] = &talkServiceProcessorGetAcceptedProximityMatches{handler:handler}
+  self339.processorMap["clearRingbackTone"] = &talkServiceProcessorClearRingbackTone{handler:handler}
+  self339.processorMap["unregisterUserAndDevice"] = &talkServiceProcessorUnregisterUserAndDevice{handler:handler}
+return self339
 }
 
 func (p *TalkServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -34622,12 +37485,12 @@ func (p *TalkServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.
   }
   iprot.Skip(thrift.STRUCT)
   iprot.ReadMessageEnd()
-  x319 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
+  x340 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
   oprot.WriteMessageBegin(name, thrift.EXCEPTION, seqId)
-  x319.Write(oprot)
+  x340.Write(oprot)
   oprot.WriteMessageEnd()
   oprot.Flush(ctx)
-  return false, x319
+  return false, x340
 
 }
 
@@ -41337,14 +44200,14 @@ func (p *TalkServiceUpdateSettingsAttributes2Args)  ReadField4(iprot thrift.TPro
   tSet := make([]SettingAttribute, 0, size)
   p.AttributesToUpdate =  tSet
   for i := 0; i < size; i ++ {
-var _elem320 SettingAttribute
+var _elem341 SettingAttribute
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := SettingAttribute(v)
-    _elem320 = temp
+    _elem341 = temp
 }
-    p.AttributesToUpdate = append(p.AttributesToUpdate, _elem320)
+    p.AttributesToUpdate = append(p.AttributesToUpdate, _elem341)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -41516,14 +44379,14 @@ func (p *TalkServiceUpdateSettingsAttributes2Result)  ReadField0(iprot thrift.TP
   tSet := make([]SettingAttribute, 0, size)
   p.Success =  tSet
   for i := 0; i < size; i ++ {
-var _elem321 SettingAttribute
+var _elem342 SettingAttribute
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := SettingAttribute(v)
-    _elem321 = temp
+    _elem342 = temp
 }
-    p.Success = append(p.Success, _elem321)
+    p.Success = append(p.Success, _elem342)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -42984,17 +45847,17 @@ func (p *TalkServiceGetLastE2EEPublicKeysResult)  ReadField0(iprot thrift.TProto
   tMap := make(map[string]*E2EEPublicKey, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key322 string
+var _key343 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key322 = v
+    _key343 = v
 }
-    _val323 := &E2EEPublicKey{}
-    if err := _val323.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val323), err)
+    _val344 := &E2EEPublicKey{}
+    if err := _val344.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val344), err)
     }
-    p.Success[_key322] = _val323
+    p.Success[_key343] = _val344
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -47539,13 +50402,13 @@ func (p *TalkServiceGetChatRoomAnnouncementsBulkArgs)  ReadField2(iprot thrift.T
   tSlice := make([]string, 0, size)
   p.ChatRoomMids =  tSlice
   for i := 0; i < size; i ++ {
-var _elem324 string
+var _elem345 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem324 = v
+    _elem345 = v
 }
-    p.ChatRoomMids = append(p.ChatRoomMids, _elem324)
+    p.ChatRoomMids = append(p.ChatRoomMids, _elem345)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -47700,29 +50563,29 @@ func (p *TalkServiceGetChatRoomAnnouncementsBulkResult)  ReadField0(iprot thrift
   tMap := make(map[string][]*ChatRoomAnnouncement, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key325 string
+var _key346 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key325 = v
+    _key346 = v
 }
     _, size, err := iprot.ReadListBegin()
     if err != nil {
       return thrift.PrependError("error reading list begin: ", err)
     }
     tSlice := make([]*ChatRoomAnnouncement, 0, size)
-    _val326 :=  tSlice
+    _val347 :=  tSlice
     for i := 0; i < size; i ++ {
-      _elem327 := &ChatRoomAnnouncement{}
-      if err := _elem327.Read(iprot); err != nil {
-        return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem327), err)
+      _elem348 := &ChatRoomAnnouncement{}
+      if err := _elem348.Read(iprot); err != nil {
+        return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem348), err)
       }
-      _val326 = append(_val326, _elem327)
+      _val347 = append(_val347, _elem348)
     }
     if err := iprot.ReadListEnd(); err != nil {
       return thrift.PrependError("error reading list end: ", err)
     }
-    p.Success[_key325] = _val326
+    p.Success[_key346] = _val347
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -50048,13 +52911,13 @@ func (p *TalkServiceRegisterE2EEGroupKeyArgs)  ReadField4(iprot thrift.TProtocol
   tSlice := make([]string, 0, size)
   p.Members =  tSlice
   for i := 0; i < size; i ++ {
-var _elem328 string
+var _elem349 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem328 = v
+    _elem349 = v
 }
-    p.Members = append(p.Members, _elem328)
+    p.Members = append(p.Members, _elem349)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -50070,13 +52933,13 @@ func (p *TalkServiceRegisterE2EEGroupKeyArgs)  ReadField5(iprot thrift.TProtocol
   tSlice := make([]int32, 0, size)
   p.KeyIds =  tSlice
   for i := 0; i < size; i ++ {
-var _elem329 int32
+var _elem350 int32
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem329 = v
+    _elem350 = v
 }
-    p.KeyIds = append(p.KeyIds, _elem329)
+    p.KeyIds = append(p.KeyIds, _elem350)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -50092,13 +52955,13 @@ func (p *TalkServiceRegisterE2EEGroupKeyArgs)  ReadField6(iprot thrift.TProtocol
   tSlice := make([][]byte, 0, size)
   p.EncryptedSharedKeys =  tSlice
   for i := 0; i < size; i ++ {
-var _elem330 []byte
+var _elem351 []byte
     if v, err := iprot.ReadBinary(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem330 = v
+    _elem351 = v
 }
-    p.EncryptedSharedKeys = append(p.EncryptedSharedKeys, _elem330)
+    p.EncryptedSharedKeys = append(p.EncryptedSharedKeys, _elem351)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -54686,11 +57549,11 @@ func (p *TalkServiceUpdateAndGetNearbyResult)  ReadField0(iprot thrift.TProtocol
   tSlice := make([]*NearbyEntry, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-    _elem331 := &NearbyEntry{}
-    if err := _elem331.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem331), err)
+    _elem352 := &NearbyEntry{}
+    if err := _elem352.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem352), err)
     }
-    p.Success = append(p.Success, _elem331)
+    p.Success = append(p.Success, _elem352)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -54977,11 +57840,11 @@ func (p *TalkServiceFetchOperationsResult)  ReadField0(iprot thrift.TProtocol) e
   tSlice := make([]*Operation, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-    _elem332 := &Operation{}
-    if err := _elem332.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem332), err)
+    _elem353 := &Operation{}
+    if err := _elem353.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem353), err)
     }
-    p.Success = append(p.Success, _elem332)
+    p.Success = append(p.Success, _elem353)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -55340,11 +58203,11 @@ func (p *TalkServiceFetchOpsResult)  ReadField0(iprot thrift.TProtocol) error {
   tSlice := make([]*Operation, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-    _elem333 := &Operation{}
-    if err := _elem333.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem333), err)
+    _elem354 := &Operation{}
+    if err := _elem354.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem354), err)
     }
-    p.Success = append(p.Success, _elem333)
+    p.Success = append(p.Success, _elem354)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -56157,17 +59020,17 @@ func (p *TalkServiceFindAndAddContactsByMidResult)  ReadField0(iprot thrift.TPro
   tMap := make(map[string]*Contact, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key334 string
+var _key355 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key334 = v
+    _key355 = v
 }
-    _val335 := &Contact{}
-    if err := _val335.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val335), err)
+    _val356 := &Contact{}
+    if err := _val356.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val356), err)
     }
-    p.Success[_key334] = _val335
+    p.Success[_key355] = _val356
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -57255,13 +60118,13 @@ func (p *TalkServiceInviteIntoRoomArgs)  ReadField3(iprot thrift.TProtocol) erro
   tSlice := make([]string, 0, size)
   p.ContactIds =  tSlice
   for i := 0; i < size; i ++ {
-var _elem336 string
+var _elem357 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem336 = v
+    _elem357 = v
 }
-    p.ContactIds = append(p.ContactIds, _elem336)
+    p.ContactIds = append(p.ContactIds, _elem357)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -57777,11 +60640,11 @@ func (p *TalkServiceSyncContactsArgs)  ReadField2(iprot thrift.TProtocol) error 
   tSlice := make([]*ContactModification, 0, size)
   p.LocalContacts =  tSlice
   for i := 0; i < size; i ++ {
-    _elem337 := &ContactModification{}
-    if err := _elem337.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem337), err)
+    _elem358 := &ContactModification{}
+    if err := _elem358.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem358), err)
     }
-    p.LocalContacts = append(p.LocalContacts, _elem337)
+    p.LocalContacts = append(p.LocalContacts, _elem358)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -57927,17 +60790,17 @@ func (p *TalkServiceSyncContactsResult)  ReadField0(iprot thrift.TProtocol) erro
   tMap := make(map[string]*ContactRegistration, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key338 string
+var _key359 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key338 = v
+    _key359 = v
 }
-    _val339 := &ContactRegistration{}
-    if err := _val339.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val339), err)
+    _val360 := &ContactRegistration{}
+    if err := _val360.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val360), err)
     }
-    p.Success[_key338] = _val339
+    p.Success[_key359] = _val360
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -58111,13 +60974,13 @@ func (p *TalkServiceFindAndAddContactsByPhoneArgs)  ReadField2(iprot thrift.TPro
   tSet := make([]string, 0, size)
   p.Phones =  tSet
   for i := 0; i < size; i ++ {
-var _elem340 string
+var _elem361 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem340 = v
+    _elem361 = v
 }
-    p.Phones = append(p.Phones, _elem340)
+    p.Phones = append(p.Phones, _elem361)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -58289,17 +61152,17 @@ func (p *TalkServiceFindAndAddContactsByPhoneResult)  ReadField0(iprot thrift.TP
   tMap := make(map[string]*Contact, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key341 string
+var _key362 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key341 = v
+    _key362 = v
 }
-    _val342 := &Contact{}
-    if err := _val342.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val342), err)
+    _val363 := &Contact{}
+    if err := _val363.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val363), err)
     }
-    p.Success[_key341] = _val342
+    p.Success[_key362] = _val363
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -59557,13 +62420,13 @@ func (p *TalkServiceGetBlockedContactIdsResult)  ReadField0(iprot thrift.TProtoc
   tSlice := make([]string, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-var _elem343 string
+var _elem364 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem343 = v
+    _elem364 = v
 }
-    p.Success = append(p.Success, _elem343)
+    p.Success = append(p.Success, _elem364)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -61743,13 +64606,13 @@ func (p *TalkServiceAcceptProximityMatchesArgs)  ReadField3(iprot thrift.TProtoc
   tSet := make([]string, 0, size)
   p.Ids =  tSet
   for i := 0; i < size; i ++ {
-var _elem344 string
+var _elem365 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem344 = v
+    _elem365 = v
 }
-    p.Ids = append(p.Ids, _elem344)
+    p.Ids = append(p.Ids, _elem365)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -61974,13 +64837,13 @@ func (p *TalkServiceGetContactsArgs)  ReadField2(iprot thrift.TProtocol) error {
   tSlice := make([]string, 0, size)
   p.Ids =  tSlice
   for i := 0; i < size; i ++ {
-var _elem345 string
+var _elem366 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem345 = v
+    _elem366 = v
 }
-    p.Ids = append(p.Ids, _elem345)
+    p.Ids = append(p.Ids, _elem366)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -62114,11 +64977,11 @@ func (p *TalkServiceGetContactsResult)  ReadField0(iprot thrift.TProtocol) error
   tSlice := make([]*Contact, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-    _elem346 := &Contact{}
-    if err := _elem346.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem346), err)
+    _elem367 := &Contact{}
+    if err := _elem367.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem367), err)
     }
-    p.Success = append(p.Success, _elem346)
+    p.Success = append(p.Success, _elem367)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -62266,20 +65129,20 @@ func (p *TalkServiceReportDeviceStateArgs)  ReadField2(iprot thrift.TProtocol) e
   tMap := make(map[C59122ec]bool, size)
   p.BooleanState =  tMap
   for i := 0; i < size; i ++ {
-var _key347 C59122ec
+var _key368 C59122ec
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := C59122ec(v)
-    _key347 = temp
+    _key368 = temp
 }
-var _val348 bool
+var _val369 bool
     if v, err := iprot.ReadBool(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _val348 = v
+    _val369 = v
 }
-    p.BooleanState[_key347] = _val348
+    p.BooleanState[_key368] = _val369
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -62295,20 +65158,20 @@ func (p *TalkServiceReportDeviceStateArgs)  ReadField3(iprot thrift.TProtocol) e
   tMap := make(map[C59430gc]string, size)
   p.StringState =  tMap
   for i := 0; i < size; i ++ {
-var _key349 C59430gc
+var _key370 C59430gc
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := C59430gc(v)
-    _key349 = temp
+    _key370 = temp
 }
-var _val350 string
+var _val371 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _val350 = v
+    _val371 = v
 }
-    p.StringState[_key349] = _val350
+    p.StringState[_key370] = _val371
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -63002,14 +65865,14 @@ func (p *TalkServiceGetSettingsAttributes2Args)  ReadField2(iprot thrift.TProtoc
   tSet := make([]SettingAttribute, 0, size)
   p.AttributesToRetrieve =  tSet
   for i := 0; i < size; i ++ {
-var _elem351 SettingAttribute
+var _elem372 SettingAttribute
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := SettingAttribute(v)
-    _elem351 = temp
+    _elem372 = temp
 }
-    p.AttributesToRetrieve = append(p.AttributesToRetrieve, _elem351)
+    p.AttributesToRetrieve = append(p.AttributesToRetrieve, _elem372)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -64021,13 +66884,13 @@ func (p *TalkServiceGetMessageReadRangeArgs)  ReadField2(iprot thrift.TProtocol)
   tSlice := make([]string, 0, size)
   p.ChatIds =  tSlice
   for i := 0; i < size; i ++ {
-var _elem352 string
+var _elem373 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem352 = v
+    _elem373 = v
 }
-    p.ChatIds = append(p.ChatIds, _elem352)
+    p.ChatIds = append(p.ChatIds, _elem373)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -64182,11 +67045,11 @@ func (p *TalkServiceGetMessageReadRangeResult)  ReadField0(iprot thrift.TProtoco
   tSlice := make([]*TMessageReadRange, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-    _elem353 := &TMessageReadRange{}
-    if err := _elem353.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem353), err)
+    _elem374 := &TMessageReadRange{}
+    if err := _elem374.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem374), err)
     }
-    p.Success = append(p.Success, _elem353)
+    p.Success = append(p.Success, _elem374)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -64614,11 +67477,11 @@ func (p *TalkServiceReportPushRecvReportsArgs)  ReadField2(iprot thrift.TProtoco
   tSlice := make([]*PushRecvReport, 0, size)
   p.PushRecvReports =  tSlice
   for i := 0; i < size; i ++ {
-    _elem354 := &PushRecvReport{}
-    if err := _elem354.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem354), err)
+    _elem375 := &PushRecvReport{}
+    if err := _elem375.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem375), err)
     }
-    p.PushRecvReports = append(p.PushRecvReports, _elem354)
+    p.PushRecvReports = append(p.PushRecvReports, _elem375)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -65107,13 +67970,13 @@ func (p *TalkServiceGetBlockedRecommendationIdsResult)  ReadField0(iprot thrift.
   tSlice := make([]string, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-var _elem355 string
+var _elem376 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem355 = v
+    _elem376 = v
 }
-    p.Success = append(p.Success, _elem355)
+    p.Success = append(p.Success, _elem376)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -67057,17 +69920,17 @@ func (p *TalkServiceFindAndAddContactsByUseridResult)  ReadField0(iprot thrift.T
   tMap := make(map[string]*Contact, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key356 string
+var _key377 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key356 = v
+    _key377 = v
 }
-    _val357 := &Contact{}
-    if err := _val357.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val357), err)
+    _val378 := &Contact{}
+    if err := _val378.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val378), err)
     }
-    p.Success[_key356] = _val357
+    p.Success[_key377] = _val378
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -67320,13 +70183,13 @@ func (p *TalkServiceGetAllContactIdsResult)  ReadField0(iprot thrift.TProtocol) 
   tSlice := make([]string, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-var _elem358 string
+var _elem379 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem358 = v
+    _elem379 = v
 }
-    p.Success = append(p.Success, _elem358)
+    p.Success = append(p.Success, _elem379)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -67848,13 +70711,13 @@ func (p *TalkServiceInviteFriendsBySmsArgs)  ReadField2(iprot thrift.TProtocol) 
   tSlice := make([]string, 0, size)
   p.PhoneNumberList =  tSlice
   for i := 0; i < size; i ++ {
-var _elem359 string
+var _elem380 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem359 = v
+    _elem380 = v
 }
-    p.PhoneNumberList = append(p.PhoneNumberList, _elem359)
+    p.PhoneNumberList = append(p.PhoneNumberList, _elem380)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -68060,14 +70923,14 @@ func (p *TalkServiceGetChatEffectMetaListArgs)  ReadField1(iprot thrift.TProtoco
   tSet := make([]C58964da, 0, size)
   p.Categories =  tSet
   for i := 0; i < size; i ++ {
-var _elem360 C58964da
+var _elem381 C58964da
     if v, err := iprot.ReadI32(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
     temp := C58964da(v)
-    _elem360 = temp
+    _elem381 = temp
 }
-    p.Categories = append(p.Categories, _elem360)
+    p.Categories = append(p.Categories, _elem381)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -68208,11 +71071,11 @@ func (p *TalkServiceGetChatEffectMetaListResult)  ReadField0(iprot thrift.TProto
   tSlice := make([]*ChatEffectMeta, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-    _elem361 := &ChatEffectMeta{}
-    if err := _elem361.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem361), err)
+    _elem382 := &ChatEffectMeta{}
+    if err := _elem382.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _elem382), err)
     }
-    p.Success = append(p.Success, _elem361)
+    p.Success = append(p.Success, _elem382)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -69149,13 +72012,13 @@ func (p *TalkServiceGetRecommendationIdsResult)  ReadField0(iprot thrift.TProtoc
   tSlice := make([]string, 0, size)
   p.Success =  tSlice
   for i := 0; i < size; i ++ {
-var _elem362 string
+var _elem383 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem362 = v
+    _elem383 = v
 }
-    p.Success = append(p.Success, _elem362)
+    p.Success = append(p.Success, _elem383)
   }
   if err := iprot.ReadListEnd(); err != nil {
     return thrift.PrependError("error reading list end: ", err)
@@ -71451,13 +74314,13 @@ func (p *TalkServiceFindContactsByPhoneArgs)  ReadField2(iprot thrift.TProtocol)
   tSet := make([]string, 0, size)
   p.Phones =  tSet
   for i := 0; i < size; i ++ {
-var _elem363 string
+var _elem384 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem363 = v
+    _elem384 = v
 }
-    p.Phones = append(p.Phones, _elem363)
+    p.Phones = append(p.Phones, _elem384)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -71598,17 +74461,17 @@ func (p *TalkServiceFindContactsByPhoneResult)  ReadField0(iprot thrift.TProtoco
   tMap := make(map[string]*Contact, size)
   p.Success =  tMap
   for i := 0; i < size; i ++ {
-var _key364 string
+var _key385 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _key364 = v
+    _key385 = v
 }
-    _val365 := &Contact{}
-    if err := _val365.Read(iprot); err != nil {
-      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val365), err)
+    _val386 := &Contact{}
+    if err := _val386.Read(iprot); err != nil {
+      return thrift.PrependError(fmt.Sprintf("%T error reading struct: ", _val386), err)
     }
-    p.Success[_key364] = _val365
+    p.Success[_key385] = _val386
   }
   if err := iprot.ReadMapEnd(); err != nil {
     return thrift.PrependError("error reading map end: ", err)
@@ -74497,13 +77360,13 @@ func (p *TalkServiceGetAcceptedProximityMatchesResult)  ReadField0(iprot thrift.
   tSet := make([]string, 0, size)
   p.Success =  tSet
   for i := 0; i < size; i ++ {
-var _elem366 string
+var _elem387 string
     if v, err := iprot.ReadString(); err != nil {
     return thrift.PrependError("error reading field 0: ", err)
 } else {
-    _elem366 = v
+    _elem387 = v
 }
-    p.Success = append(p.Success, _elem366)
+    p.Success = append(p.Success, _elem387)
   }
   if err := iprot.ReadSetEnd(); err != nil {
     return thrift.PrependError("error reading set end: ", err)
@@ -74974,83 +77837,83 @@ func (p *SecondaryQrcodeLoginServiceClient) Client_() thrift.TClient {
 // Parameters:
 //  - Request
 func (p *SecondaryQrcodeLoginServiceClient) CreateSession(ctx context.Context, request *CreateQrSessionRequest) (r *CreateQrSessionResponse, err error) {
-  var _args884 SecondaryQrcodeLoginServiceCreateSessionArgs
-  _args884.Request = request
-  var _result885 SecondaryQrcodeLoginServiceCreateSessionResult
-  if err = p.Client_().Call(ctx, "createSession", &_args884, &_result885); err != nil {
+  var _args905 SecondaryQrcodeLoginServiceCreateSessionArgs
+  _args905.Request = request
+  var _result906 SecondaryQrcodeLoginServiceCreateSessionResult
+  if err = p.Client_().Call(ctx, "createSession", &_args905, &_result906); err != nil {
     return
   }
   switch {
-  case _result885.E!= nil:
-    return r, _result885.E
+  case _result906.E!= nil:
+    return r, _result906.E
   }
 
-  return _result885.GetSuccess(), nil
+  return _result906.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *SecondaryQrcodeLoginServiceClient) CreateQrCode(ctx context.Context, request *CreateQrCodeRequest) (r *CreateQrCodeResponse, err error) {
-  var _args886 SecondaryQrcodeLoginServiceCreateQrCodeArgs
-  _args886.Request = request
-  var _result887 SecondaryQrcodeLoginServiceCreateQrCodeResult
-  if err = p.Client_().Call(ctx, "createQrCode", &_args886, &_result887); err != nil {
+  var _args907 SecondaryQrcodeLoginServiceCreateQrCodeArgs
+  _args907.Request = request
+  var _result908 SecondaryQrcodeLoginServiceCreateQrCodeResult
+  if err = p.Client_().Call(ctx, "createQrCode", &_args907, &_result908); err != nil {
     return
   }
   switch {
-  case _result887.E!= nil:
-    return r, _result887.E
+  case _result908.E!= nil:
+    return r, _result908.E
   }
 
-  return _result887.GetSuccess(), nil
+  return _result908.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *SecondaryQrcodeLoginServiceClient) CreatePinCode(ctx context.Context, request *CreatePinCodeRequest) (r *CreatePinCodeResponse, err error) {
-  var _args888 SecondaryQrcodeLoginServiceCreatePinCodeArgs
-  _args888.Request = request
-  var _result889 SecondaryQrcodeLoginServiceCreatePinCodeResult
-  if err = p.Client_().Call(ctx, "createPinCode", &_args888, &_result889); err != nil {
+  var _args909 SecondaryQrcodeLoginServiceCreatePinCodeArgs
+  _args909.Request = request
+  var _result910 SecondaryQrcodeLoginServiceCreatePinCodeResult
+  if err = p.Client_().Call(ctx, "createPinCode", &_args909, &_result910); err != nil {
     return
   }
   switch {
-  case _result889.E!= nil:
-    return r, _result889.E
+  case _result910.E!= nil:
+    return r, _result910.E
   }
 
-  return _result889.GetSuccess(), nil
+  return _result910.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *SecondaryQrcodeLoginServiceClient) QrCodeLogin(ctx context.Context, request *QrCodeLoginRequest) (r *QrCodeLoginResponse, err error) {
-  var _args890 SecondaryQrcodeLoginServiceQrCodeLoginArgs
-  _args890.Request = request
-  var _result891 SecondaryQrcodeLoginServiceQrCodeLoginResult
-  if err = p.Client_().Call(ctx, "qrCodeLogin", &_args890, &_result891); err != nil {
+  var _args911 SecondaryQrcodeLoginServiceQrCodeLoginArgs
+  _args911.Request = request
+  var _result912 SecondaryQrcodeLoginServiceQrCodeLoginResult
+  if err = p.Client_().Call(ctx, "qrCodeLogin", &_args911, &_result912); err != nil {
     return
   }
   switch {
-  case _result891.E!= nil:
-    return r, _result891.E
+  case _result912.E!= nil:
+    return r, _result912.E
   }
 
-  return _result891.GetSuccess(), nil
+  return _result912.GetSuccess(), nil
 }
 
 // Parameters:
 //  - Request
 func (p *SecondaryQrcodeLoginServiceClient) VerifyCertificate(ctx context.Context, request *VerifyCertificateRequest) (err error) {
-  var _args892 SecondaryQrcodeLoginServiceVerifyCertificateArgs
-  _args892.Request = request
-  var _result893 SecondaryQrcodeLoginServiceVerifyCertificateResult
-  if err = p.Client_().Call(ctx, "verifyCertificate", &_args892, &_result893); err != nil {
+  var _args913 SecondaryQrcodeLoginServiceVerifyCertificateArgs
+  _args913.Request = request
+  var _result914 SecondaryQrcodeLoginServiceVerifyCertificateResult
+  if err = p.Client_().Call(ctx, "verifyCertificate", &_args913, &_result914); err != nil {
     return
   }
   switch {
-  case _result893.E!= nil:
-    return _result893.E
+  case _result914.E!= nil:
+    return _result914.E
   }
 
   return nil
@@ -75076,13 +77939,13 @@ func (p *SecondaryQrcodeLoginServiceProcessor) ProcessorMap() map[string]thrift.
 
 func NewSecondaryQrcodeLoginServiceProcessor(handler SecondaryQrcodeLoginService) *SecondaryQrcodeLoginServiceProcessor {
 
-  self894 := &SecondaryQrcodeLoginServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
-  self894.processorMap["createSession"] = &secondaryQrcodeLoginServiceProcessorCreateSession{handler:handler}
-  self894.processorMap["createQrCode"] = &secondaryQrcodeLoginServiceProcessorCreateQrCode{handler:handler}
-  self894.processorMap["createPinCode"] = &secondaryQrcodeLoginServiceProcessorCreatePinCode{handler:handler}
-  self894.processorMap["qrCodeLogin"] = &secondaryQrcodeLoginServiceProcessorQrCodeLogin{handler:handler}
-  self894.processorMap["verifyCertificate"] = &secondaryQrcodeLoginServiceProcessorVerifyCertificate{handler:handler}
-return self894
+  self915 := &SecondaryQrcodeLoginServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
+  self915.processorMap["createSession"] = &secondaryQrcodeLoginServiceProcessorCreateSession{handler:handler}
+  self915.processorMap["createQrCode"] = &secondaryQrcodeLoginServiceProcessorCreateQrCode{handler:handler}
+  self915.processorMap["createPinCode"] = &secondaryQrcodeLoginServiceProcessorCreatePinCode{handler:handler}
+  self915.processorMap["qrCodeLogin"] = &secondaryQrcodeLoginServiceProcessorQrCodeLogin{handler:handler}
+  self915.processorMap["verifyCertificate"] = &secondaryQrcodeLoginServiceProcessorVerifyCertificate{handler:handler}
+return self915
 }
 
 func (p *SecondaryQrcodeLoginServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -75093,12 +77956,12 @@ func (p *SecondaryQrcodeLoginServiceProcessor) Process(ctx context.Context, ipro
   }
   iprot.Skip(thrift.STRUCT)
   iprot.ReadMessageEnd()
-  x895 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
+  x916 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
   oprot.WriteMessageBegin(name, thrift.EXCEPTION, seqId)
-  x895.Write(oprot)
+  x916.Write(oprot)
   oprot.WriteMessageEnd()
   oprot.Flush(ctx)
-  return false, x895
+  return false, x916
 
 }
 
@@ -76575,15 +79438,15 @@ func (p *SecondaryQrCodeLoginPermitNoticeServiceClient) Client_() thrift.TClient
 // Parameters:
 //  - Request
 func (p *SecondaryQrCodeLoginPermitNoticeServiceClient) CheckPinCodeVerified(ctx context.Context, request *CheckPinCodeVerifiedRequest) (err error) {
-  var _args926 SecondaryQrCodeLoginPermitNoticeServiceCheckPinCodeVerifiedArgs
-  _args926.Request = request
-  var _result927 SecondaryQrCodeLoginPermitNoticeServiceCheckPinCodeVerifiedResult
-  if err = p.Client_().Call(ctx, "checkPinCodeVerified", &_args926, &_result927); err != nil {
+  var _args947 SecondaryQrCodeLoginPermitNoticeServiceCheckPinCodeVerifiedArgs
+  _args947.Request = request
+  var _result948 SecondaryQrCodeLoginPermitNoticeServiceCheckPinCodeVerifiedResult
+  if err = p.Client_().Call(ctx, "checkPinCodeVerified", &_args947, &_result948); err != nil {
     return
   }
   switch {
-  case _result927.E!= nil:
-    return _result927.E
+  case _result948.E!= nil:
+    return _result948.E
   }
 
   return nil
@@ -76592,15 +79455,15 @@ func (p *SecondaryQrCodeLoginPermitNoticeServiceClient) CheckPinCodeVerified(ctx
 // Parameters:
 //  - Request
 func (p *SecondaryQrCodeLoginPermitNoticeServiceClient) CheckQrCodeVerified(ctx context.Context, request *CheckQrCodeVerifiedRequest) (err error) {
-  var _args928 SecondaryQrCodeLoginPermitNoticeServiceCheckQrCodeVerifiedArgs
-  _args928.Request = request
-  var _result929 SecondaryQrCodeLoginPermitNoticeServiceCheckQrCodeVerifiedResult
-  if err = p.Client_().Call(ctx, "checkQrCodeVerified", &_args928, &_result929); err != nil {
+  var _args949 SecondaryQrCodeLoginPermitNoticeServiceCheckQrCodeVerifiedArgs
+  _args949.Request = request
+  var _result950 SecondaryQrCodeLoginPermitNoticeServiceCheckQrCodeVerifiedResult
+  if err = p.Client_().Call(ctx, "checkQrCodeVerified", &_args949, &_result950); err != nil {
     return
   }
   switch {
-  case _result929.E!= nil:
-    return _result929.E
+  case _result950.E!= nil:
+    return _result950.E
   }
 
   return nil
@@ -76626,10 +79489,10 @@ func (p *SecondaryQrCodeLoginPermitNoticeServiceProcessor) ProcessorMap() map[st
 
 func NewSecondaryQrCodeLoginPermitNoticeServiceProcessor(handler SecondaryQrCodeLoginPermitNoticeService) *SecondaryQrCodeLoginPermitNoticeServiceProcessor {
 
-  self930 := &SecondaryQrCodeLoginPermitNoticeServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
-  self930.processorMap["checkPinCodeVerified"] = &secondaryQrCodeLoginPermitNoticeServiceProcessorCheckPinCodeVerified{handler:handler}
-  self930.processorMap["checkQrCodeVerified"] = &secondaryQrCodeLoginPermitNoticeServiceProcessorCheckQrCodeVerified{handler:handler}
-return self930
+  self951 := &SecondaryQrCodeLoginPermitNoticeServiceProcessor{handler:handler, processorMap:make(map[string]thrift.TProcessorFunction)}
+  self951.processorMap["checkPinCodeVerified"] = &secondaryQrCodeLoginPermitNoticeServiceProcessorCheckPinCodeVerified{handler:handler}
+  self951.processorMap["checkQrCodeVerified"] = &secondaryQrCodeLoginPermitNoticeServiceProcessorCheckQrCodeVerified{handler:handler}
+return self951
 }
 
 func (p *SecondaryQrCodeLoginPermitNoticeServiceProcessor) Process(ctx context.Context, iprot, oprot thrift.TProtocol) (success bool, err thrift.TException) {
@@ -76640,12 +79503,12 @@ func (p *SecondaryQrCodeLoginPermitNoticeServiceProcessor) Process(ctx context.C
   }
   iprot.Skip(thrift.STRUCT)
   iprot.ReadMessageEnd()
-  x931 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
+  x952 := thrift.NewTApplicationException(thrift.UNKNOWN_METHOD, "Unknown function " + name)
   oprot.WriteMessageBegin(name, thrift.EXCEPTION, seqId)
-  x931.Write(oprot)
+  x952.Write(oprot)
   oprot.WriteMessageEnd()
   oprot.Flush(ctx)
-  return false, x931
+  return false, x952
 
 }
 
