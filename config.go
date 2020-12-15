@@ -5,6 +5,7 @@ import api "github.com/sakura-rip/linego/talkservice"
 const LineHost = "https://gxx.line.naver.jp"
 const TalkPath = "/S4"
 const PollPath = "/P4"
+const LiffPath = "/LIFF1"
 const SQLogin = "/acct/lgn/sq/v1"
 const SQLoginCheck = "/acct/lp/lgn/sq/v1"
 
