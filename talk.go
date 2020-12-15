@@ -1,6 +1,6 @@
 package linego
 
-import api "github.com/sakura-rip/linego/talkservice"
+import api "github.com/shillbie/jem/talkservice"
 
 /*
 PROFILE FUNCTION
