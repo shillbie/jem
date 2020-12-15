@@ -3,7 +3,7 @@ package linego
 import (
 	"context"
 	"fmt"
-	api "github.com/sakura-rip/linego/talkservice"
+	api "github.com/shillbie/jem/talkservice"
 )
 
 type LineClient struct {
