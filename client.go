@@ -9,6 +9,7 @@ import (
 type LineClient struct {
 	Talk *api.TalkServiceClient
 	Poll *api.TalkServiceClient
+	Liff *api.LiffServiceClient
 
 	ctx           context.Context
 	appType       api.AppType
